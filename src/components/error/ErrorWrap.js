@@ -6,7 +6,7 @@ import ErrorPicture from './ErrorPicture';
 
 const ErrorWrap = () => {
     return(
-        <div id="Error-wrap" className="d-flex flex-column align-items-center justify-content-center">
+        <div id="Error-wrap" className="d-flex flex-column align-items-center m-auto">
             <ErrorMessage />
             <ErrorPicture />
         </div>

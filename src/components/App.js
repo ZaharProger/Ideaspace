@@ -5,10 +5,11 @@ import { Routes, Route } from 'react-router-dom';
 // import LOGIN from '../routes/login';
 import ErrorWrap from './error/ErrorWrap';
 import NOT_FOUND_CONTENT from '../routes/notFoundContent';
+import '../styles/media.css';
 
 const App = () => {
   return (
-    <div id="App" className="d-flex align-items-center justify-content-center">
+    <div id="App" className="d-flex align-items-center">
       <Routes>
         {/* <Route path={ LOGIN } element={ <LoginWrap /> } /> */}
         <Route path={ NOT_FOUND_CONTENT } element={ <ErrorWrap /> } />
