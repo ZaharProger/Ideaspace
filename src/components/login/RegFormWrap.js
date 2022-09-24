@@ -24,6 +24,8 @@ const RegFormWrap = () => {
 
         window.onresize = () => showButton.classList.replace(window.innerWidth > 1000?
             'fa-arrow-down' : 'fa-arrow-right', window.innerWidth > 1000? 'fa-arrow-right' : 'fa-arrow-down');
+        
+        window.onresize();
     })
 
     return (

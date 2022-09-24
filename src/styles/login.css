@@ -5,16 +5,16 @@
 
 #Login-form{
     background-color: #d7d7d7;
-    padding: 20px 30px 30px;
+    padding: 20px;
     z-index: 1000;
     transition: 0.3s ease-out;
 }
 
-#Login-form > label, #Login-form > input, #Login-form > button, #Reg-form > label, #Reg-form > input, #Reg-form > button{
+#Login-header > label, #Login-form > input, #Login-form > button, #Reg-form > label, #Reg-form > input, #Reg-form > button{
     text-align: center;
 }
 
-#Login-form > label, #Login-form > button, #Reg-form > label, #Reg-form > button{
+#Login-header > label, #Login-form > button, #Reg-form > label, #Reg-form > button{
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -47,18 +47,17 @@
     border-radius: 20px;
 }
 
-#Login-form > label{
+#Login-header > label{
     color: #787878;
-    margin-bottom: 50px;
 }
 
 #Reg-form > label{
     color: white;
     font-size: 1.2em;
-    margin-bottom: 31.8px;
+    margin-bottom: 41px;
 }
 
-#Login-form > label span{
+#Login-header > label span{
     font-size: 2.5em;
 }
 
@@ -132,4 +131,8 @@
 
 .show-button-animation-backwards{
     transform: scaleX(1);
+}
+
+#Login-header > object{
+    width: 50px;
 }
