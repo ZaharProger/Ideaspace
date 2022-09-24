@@ -1,10 +1,10 @@
 #Error-wrap{
     width: 800px;
-    padding-top: 200px;
+    margin: auto;
 }
 
 #Error-message > p{
-    margin: 0;
+    margin-bottom: 36px;
     padding: 0;
     font-family: 'Quicksand', sans-serif;
     font-size: 1.2em;
@@ -15,6 +15,10 @@
 #Error-message > p span{
     font-size: 1.3em;
     font-weight: bold;
+}
+
+#Error-picture{
+    display: flex;
 }
 
 .error-figure{

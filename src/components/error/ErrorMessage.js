@@ -2,7 +2,7 @@ import React from "react";
 
 const ErrorMessage = () => {
     return(
-        <div id="Error-message" className="d-flex mb-4">
+        <div id="Error-message" className="d-flex">
             <p>
                 <span>Ой, извините</span>
                 <br />

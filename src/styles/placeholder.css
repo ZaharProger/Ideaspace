@@ -1,0 +1,14 @@
+.input-placeholder::placeholder{
+    color: black;
+    opacity: 0.25;
+}
+
+.input-placeholder::-moz-placeholder{
+    color: black;
+    opacity: 0.25;
+}
+
+.input-placeholder::-webkit-input-placeholder{
+    color: black;
+    opacity: 0.25;
+}

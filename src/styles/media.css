@@ -1,6 +1,52 @@
 @media screen and (max-width: 1000px){
     #Error-wrap{
-        width: 300px;
-        padding: 0;
+        width: 100%;
+    }
+
+    #Error-message > p{
+        margin-bottom: 0;
+    }
+
+    #Error-picture{
+        display: none;
+    }
+
+    #Login-wrap{
+        flex-direction: column;
+    }
+
+    #Reg-form-wrap{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-right: 0;
+        padding-bottom: 8px;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .reg-form-animation-forwards{
+        height: 500px;
+        width: 100%;
+    }
+
+    .reg-form-animation-backwards{
+        height: 50px;
+        width: 100px;
+    }
+    
+    .login-form-animation-forwards{
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .login-form-animation-backwards{
+        border-radius: 10px;
+    }
+
+    .show-button-animation-forwards{
+        transform: scaleY(-1);
+    }
+    
+    .show-button-animation-backwards{
+        transform: scaleY(1);
     }
 }

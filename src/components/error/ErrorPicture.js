@@ -11,7 +11,7 @@ const ErrorPicture = () => {
     })
 
     return(
-        <div id="Error-picture" className="d-flex flex-row align-items-center mt-5">
+        <div id="Error-picture" className="flex-row mt-5 me-auto ms-auto">
             <div className="error-figure">
                 <p>404</p>
             </div>

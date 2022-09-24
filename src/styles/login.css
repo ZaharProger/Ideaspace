@@ -1,0 +1,135 @@
+#Login-wrap{
+    flex-direction: row;
+    margin: auto;
+}
+
+#Login-form{
+    background-color: #d7d7d7;
+    padding: 20px 30px 30px;
+    z-index: 1000;
+    transition: 0.3s ease-out;
+}
+
+#Login-form > label, #Login-form > input, #Login-form > button, #Reg-form > label, #Reg-form > input, #Reg-form > button{
+    text-align: center;
+}
+
+#Login-form > label, #Login-form > button, #Reg-form > label, #Reg-form > button{
+    font-family: 'Quicksand', sans-serif;
+}
+
+#Login-form > input, #Reg-form > input{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: black;
+    outline: none;
+    padding: 2px 20px;
+}
+
+#Login-form > input{
+    border: 2px solid #a2a2a2;
+}
+
+#Reg-form > input{
+    border: 2px solid #9b9bed;
+}
+
+#Login-form > input:focus{
+    border-color: #787878;
+}
+
+#Reg-form > input:focus{
+    border-color: #32328f;
+}
+
+#Login-form > input, #Login-form > button, #Reg-form > input, #Reg-form > button{
+    border-radius: 20px;
+}
+
+#Login-form > label{
+    color: #787878;
+    margin-bottom: 50px;
+}
+
+#Reg-form > label{
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 31.8px;
+}
+
+#Login-form > label span{
+    font-size: 2.5em;
+}
+
+#Login-form > button, #Reg-form > button{
+    border-style: none;
+    letter-spacing: 2px;
+    font-size: 1.3em;
+    transition: 0.3s ease-out;
+}
+
+#Login-form > button{
+    background-color: #787878;
+    color: #d7d7d7;
+}
+
+#Reg-form > button{
+    background-color: #32328f;
+    color: white
+}
+
+#Login-form > button:hover{
+    background-color: #4848ca;
+    color: white;
+}
+
+#Reg-form > button:hover{
+    background-color: #9b9bed;
+    color: white;
+}
+
+#Reg-form-wrap{
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 13px;
+    background-color: #4848ca;
+    transition: 0.3s ease-out;
+    overflow: hidden;
+}
+
+#Reg-form-wrap > i{
+    cursor: pointer;
+    font-size: 1.3em;
+    color: white;
+    transition: 0.3s ease-out;
+}
+
+.login-form-animation-forwards{
+    border-radius: 10px 0 0 10px;
+}
+
+.login-form-animation-backwards{
+    border-radius: 10px;
+}
+
+.reg-form-animation-forwards{
+    width: 400px;
+    height: 100%;
+    border-radius: 0 10px 10px 0;
+}
+
+.reg-form-animation-backwards{
+    width: 50px;
+    height: 100px;
+    border-radius: 0 10px 10px 0;
+}
+
+.show-button-animation-forwards{
+    transform: scaleX(-1);
+}
+
+.show-button-animation-backwards{
+    transform: scaleX(1);
+}
