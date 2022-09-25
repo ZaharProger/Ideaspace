@@ -5,6 +5,8 @@ import LoginWrap from './login/LoginWrap';
 import LOGIN from '../routes/login';
 import ErrorWrap from './error/ErrorWrap';
 import NOT_FOUND_CONTENT from '../routes/notFoundContent';
+import ContentWrap from './content/ContentWrap';
+import MAIN from '../routes/main';
 import '../styles/media.css';
 import '../styles/placeholder.css';
 
@@ -12,6 +14,7 @@ const App = () => {
   return (
     <div id="App" className="d-flex flex-column w-100 h-100">
       <Routes>
+        <Route path={ MAIN } element={ <ContentWrap /> } />
         <Route path={ LOGIN } element={ <LoginWrap /> } />
         <Route path={ NOT_FOUND_CONTENT } element={ <ErrorWrap /> } />
       </Routes>

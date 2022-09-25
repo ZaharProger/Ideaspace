@@ -49,4 +49,32 @@
     .show-button-animation-backwards{
         transform: scaleY(1);
     }
+
+    #Navbar-icon > object{
+        margin-left: auto;
+    }
+
+    #Navbar-list{
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    #Navbar-list > i, .Navbar-list-item{
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .Navbar-list-item{
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: navbar-list-item-reveal 1s ease-out 0s 1 forwards;
+    }
+
+    .Navbar-list-item:last-child{
+        margin-bottom: 0;
+    }
+
+    .Navbar-list-item > span{
+        display: none;
+    }
 }

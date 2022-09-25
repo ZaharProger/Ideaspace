@@ -1,0 +1,65 @@
+#Navbar-icon{
+    background-color: #4848ca;
+}
+
+#Navbar-icon > object{
+    width: 50px;
+    margin-left: 48px;
+    margin-right: auto;
+}
+
+#Navbar-icon, #Navbar-list{
+    padding-top: 20px;
+}
+
+#Navbar-list{
+    flex-direction: row;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #4848ca;
+}
+
+#Navbar-list > i, .Navbar-list-item{
+    transition: 0.3s ease-out;
+    color: #787878;
+}
+
+#Navbar-list > i:hover{
+    color: #4848ca;
+}
+
+#Navbar-list > i{
+    font-size: 3em;
+}
+
+.Navbar-list-item{
+    display: flex;
+    margin-left: 48px;
+    margin-right: 48px;
+    opacity: 1;
+}
+
+.Navbar-list-item, #Navbar-list > i{
+    cursor: pointer;
+}
+
+.Navbar-list-item > i, .Navbar-list-item > span, #Navbar-list > i{
+    text-align: center;
+}
+
+.Navbar-list-item > i{
+    font-size: 1.8em;
+}
+
+.Navbar-list-item > span{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1em;
+}
+
+@keyframes navbar-list-item-reveal{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
