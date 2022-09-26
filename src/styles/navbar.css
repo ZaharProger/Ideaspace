@@ -73,7 +73,6 @@
     margin: auto;
     border-radius: 20px;
     border: 2px solid #9b9bed;
-    min-width: 200px;
 }
 
 #Navbar-search > input:focus{
