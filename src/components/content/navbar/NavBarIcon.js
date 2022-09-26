@@ -7,7 +7,9 @@ const NavBarIcon = () => {
     return (
         <div id="Navbar-icon" className="d-flex flex-grow-1">
             <object type="image/svg+xml" data={ appLogo } aria-label="app-logo" className="mb-3"></object>
-            <NavBarSearch />
+            {
+                window.innerWidth > 1000? <NavBarSearch /> : null
+            }
         </div>
     )
 }

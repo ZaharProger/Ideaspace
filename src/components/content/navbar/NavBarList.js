@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import NavBarListItem from "./NavBarListItem";
 
-const NavBarList = () => {
-    const [menuButtonStatus, changeMenuButtonStatus] = useState(false);
+const NavBarList = (props) => {
     const [menuStatus, changeMenuStatus] = useState(false);
 
     const listItems = [
@@ -32,19 +31,16 @@ const NavBarList = () => {
                 listItem.style.color = '#787878';
             }
         })
-
-        window.onresize = () => changeMenuButtonStatus(window.innerWidth <= 1000);
-        window.onresize();
     })
 
     return (
         <div id="Navbar-list" className="d-flex pb-3">
             {
-                menuButtonStatus? <i id="Menu-button" className={ `fa-solid fa-bars ${menuStatus? 'mb-3' : ''}` }
+                props.menu_button_status? <i id="Menu-button" className={ `fa-solid fa-bars ${menuStatus? 'mb-3' : ''}` }
                 onClick={ () => changeMenuStatus(!menuStatus) }></i> : null
             }
             {
-                menuStatus || !menuButtonStatus? listItems : null
+                menuStatus || !props.menu_button_status? listItems : null
             }
         </div>
     )

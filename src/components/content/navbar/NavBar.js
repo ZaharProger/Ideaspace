@@ -4,11 +4,11 @@ import NavBarList from './NavBarList';
 import NavBarIcon from './NavBarIcon';
 import '../../../styles/navbar.css';
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         <div id="Navbar" className="d-flex flex-row w-100">
             <NavBarIcon />
-            <NavBarList />
+            <NavBarList menu_button_status={ props.menu_button_status } />
         </div>
     )
 }

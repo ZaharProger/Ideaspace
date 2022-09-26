@@ -1,8 +1,4 @@
 @media screen and (max-width: 1000px){
-    body{
-        background-color: white;
-    }
-
     #Error-wrap{
         width: 100%;
     }
@@ -52,10 +48,10 @@
     
     .show-button-animation-backwards{
         transform: scaleY(1);
-    }
+    }  
 
     #Navbar-icon > object{
-        margin-left: 10px;
+        margin-left: auto;
     }
 
     #Navbar-list{
@@ -66,6 +62,20 @@
     #Navbar-list > i, .Navbar-list-item{
         margin-left: 4px;
         margin-right: 4px;
+    }
+
+    #Navbar-search{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 16px;
+    }
+
+    #Navbar-search > input{
+        border-color: #a2a2a2;
+    }
+
+    #Navbar-search > input:focus{
+        border-color: #787878;
     }
 
     .Navbar-list-item{
@@ -82,21 +92,43 @@
         display: none;
     }
 
+    .post-footer-animation{
+        animation: post-footer-item-click-media 1s ease-out 0s 1 forwards;
+    }
+
+    #Content{
+        flex-direction: column;
+    }
+
     #Profile{
+        background: linear-gradient(white, transparent);
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+        columns: 1;
         box-shadow: none;
     }
 
-    #Post{
+    #Profile-footer{
         margin: 0;
-        box-shadow: none;
+    }
+
+    #Wall{
+        padding: 0;
+        scroll-snap-type: none;
+        overflow: unset;
+    }
+
+    .Post{
+        columns: 1;
         border-radius: 0;
     }
 
-    #Post-footer{
-        margin-left: auto;
+    .Post-header{
+        border-radius: 0;
     }
 
-    .post-footer-animation{
-        animation: post-footer-item-click-media 1s ease-out 0s 1 forwards;
+    .Post-footer{
+        margin: auto auto 8px;
     }
 }

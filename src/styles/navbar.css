@@ -12,6 +12,16 @@
     padding-top: 20px;
 }
 
+#Navbar-search{
+    margin-left: 48px;
+    margin-right: 48px;
+    width: 100%;
+}
+
+#Navbar-search > input{
+    width: 100%;
+}
+
 #Navbar-list{
     flex-direction: row;
     padding-bottom: 16px;
