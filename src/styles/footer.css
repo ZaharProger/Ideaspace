@@ -1,0 +1,25 @@
+#Footer{
+    background-color: #4848ca;
+}
+
+#Footer-caption > span, #Footer-contacts > a{
+    color: white;
+}
+
+#Footer-caption > span{
+    font-size: 1.2em;
+    text-align: center;
+}
+
+#Footer-contacts > a i{
+    font-size: 2.1em;
+    transition: 0.3s ease-out;
+}
+
+#Footer-contacts > a i:hover{
+    color: #9b9bed;
+}
+
+#Footer-caption{
+    font-family: 'Roboto', sans-serif;
+}
