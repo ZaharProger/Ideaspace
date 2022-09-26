@@ -1,12 +1,14 @@
 import React from 'react';
 
+import PostHeader from './PostHeader';
 import PostContent from './PostContent';
 import PostFooter from './PostFooter';
 import '../../../../styles/post.css';
 
 const Post = () => {
     return(
-        <div id="Post" className="d-flex flex-column flex-grow-1 p-2">
+        <div className="Post d-flex flex-column col-8 w-100">
+            <PostHeader />
             <PostContent />
             <PostFooter />
         </div>
