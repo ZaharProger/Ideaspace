@@ -6,9 +6,9 @@
 #Error-message > p{
     margin-bottom: 36px;
     padding: 0;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 1.2em;
-    color: #bdbdbd;
+    color: #787878;
     text-align: center;
 }
 
@@ -37,30 +37,22 @@
 
 .error-figure > p{
     margin: 0;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 1.5em;
     font-weight: bolder;
-    color: #787878;
+    color: #000000b5;
     text-align: center;
 }
 
 .error-figure:first-child{
-    background-color: #d7d7d7;
+    background-color: #afafaf;
     animation: error-figure-first-last-moving 3s ease-out 0s infinite forwards;
-}
-
-.error-figure:first-child > p{
-    color: #949494;
 }
 
 .error-figure:last-child{
     background-color: #a2a2a2;
     animation: error-figure-first-last-moving 5s ease-out 0s infinite backwards;
     margin-right: 0;
-}
-
-.error-figure:last-child > p{
-    color: #5d5d5d;
 }
 
 @keyframes error-figure-first-last-moving {

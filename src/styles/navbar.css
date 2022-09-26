@@ -15,7 +15,7 @@
 #Navbar-list{
     flex-direction: row;
     padding-bottom: 16px;
-    border-bottom: 2px solid #4848ca;
+    border-bottom: 3px solid #4848ca;
 }
 
 #Navbar-list > i, .Navbar-list-item{
@@ -62,4 +62,20 @@
     100%{
         opacity: 1;
     }
+}
+
+#Navbar-search > input{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: black;
+    outline: none;
+    padding: 2px 20px;
+    margin: auto;
+    border-radius: 20px;
+    border: 2px solid #9b9bed;
+    min-width: 200px;
+}
+
+#Navbar-search > input:focus{
+    border-color: #32328f;
 }

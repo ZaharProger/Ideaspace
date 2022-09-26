@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import '../../styles/error.css';
 import ErrorMessage from './ErrorMessage';

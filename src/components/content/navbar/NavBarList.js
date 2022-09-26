@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 import NavBarListItem from "./NavBarListItem";
 
@@ -7,6 +7,10 @@ const NavBarList = () => {
     const [menuStatus, changeMenuStatus] = useState(false);
 
     const listItems = [
+        <NavBarListItem key="profile" item_params={{
+            icon_type: 'fa-user',
+            caption: 'Профиль',
+        }}/>,
         <NavBarListItem key="favourite" item_params={{
             icon_type: 'fa-star',
             caption: 'Избранное',

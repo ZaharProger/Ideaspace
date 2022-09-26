@@ -1,4 +1,8 @@
 @media screen and (max-width: 1000px){
+    body{
+        background-color: white;
+    }
+
     #Error-wrap{
         width: 100%;
     }
@@ -51,7 +55,7 @@
     }
 
     #Navbar-icon > object{
-        margin-left: auto;
+        margin-left: 10px;
     }
 
     #Navbar-list{
@@ -76,5 +80,23 @@
 
     .Navbar-list-item > span{
         display: none;
+    }
+
+    #Profile{
+        box-shadow: none;
+    }
+
+    #Post{
+        margin: 0;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    #Post-footer{
+        margin-left: auto;
+    }
+
+    .post-footer-animation{
+        animation: post-footer-item-click-media 1s ease-out 0s 1 forwards;
     }
 }

@@ -15,7 +15,7 @@
 }
 
 #Login-header > label, #Login-form > button, #Reg-form > label, #Reg-form > button{
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 #Login-form > input, #Reg-form > input{
