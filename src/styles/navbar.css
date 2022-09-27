@@ -24,6 +24,7 @@
 }
 
 #Navbar-list{
+    background-color: #9b9bed33;
     flex-direction: row;
     padding-bottom: 16px;
     border-bottom: 3px solid #4848ca;

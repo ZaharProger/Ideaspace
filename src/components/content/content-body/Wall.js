@@ -11,6 +11,7 @@ const Wall = () => {
         <Post key="3" />,
         <Post key="4" />
     ]
+    
     return(
         <div id="Wall" className="d-flex flex-column">
             {

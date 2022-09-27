@@ -1,4 +1,9 @@
 @media screen and (max-width: 1000px){
+    body::-webkit-scrollbar{
+        width: 4px;
+        height: 4px;
+    }
+
     #Error-wrap{
         width: 100%;
     }
@@ -101,7 +106,7 @@
     }
 
     #Profile{
-        background: linear-gradient(white, transparent);
+        background: linear-gradient(transparent, white);
         width: 100%;
         border-radius: 0;
         margin: 0;
@@ -115,8 +120,10 @@
 
     #Wall{
         padding: 0;
+        margin: 0;
         scroll-snap-type: none;
         overflow: unset;
+        border: none;
     }
 
     .Post{

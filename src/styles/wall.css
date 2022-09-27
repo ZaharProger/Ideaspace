@@ -1,9 +1,17 @@
 #Wall{
-    padding: 16px 0 16px 48px;
+    height: calc(100vh - 117px);
+    border-bottom: 3px solid #4848ca;
+    border-left: 3px solid #4848ca;
+    border-bottom-left-radius: 10px;
+    padding: 16px;
+    margin-left: 48px;
+    margin-bottom: 16px;
     overflow: auto;
     scroll-snap-type: y proximity;
     scrollbar-color: #4848ca transparent;
     scrollbar-width: thin;
+    box-shadow: inset 2px 2px 10px #787878;
+    background-color: #ececec;
 }
 
 #Wall::-webkit-scrollbar{
