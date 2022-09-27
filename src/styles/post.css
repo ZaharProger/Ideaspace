@@ -29,13 +29,14 @@
     border-radius: 10px 0 0 0;
 }
 
+.Post-header > img{
+    width: 20px;
+    border-radius: 100%;
+}
+
 .Post-header > span{
     font-weight: bold;
     margin-left: 16px;
-}
-
-.Post-header > span:first-child{
-    margin-left: 0;
 }
 
 .Post-footer{

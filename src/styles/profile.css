@@ -18,6 +18,10 @@
     font-size: 1.3em;
 }
 
+#Profile-header > img{
+    width: 100px;
+}
+
 #Profile-content > i{
     opacity: 0.9;
 }

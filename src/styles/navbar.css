@@ -2,7 +2,8 @@
     background-color: #4848ca;
 }
 
-#Navbar-icon > object{
+#Navbar-icon > img{
+    cursor: pointer;
     width: 50px;
     margin-left: 48px;
     margin-right: auto;

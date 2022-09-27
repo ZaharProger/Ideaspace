@@ -17,6 +17,10 @@ const NavBarList = (props) => {
         <NavBarListItem key="liked" item_params={{
             icon_type: 'fa-heart',
             caption: 'Понравилось',
+        }}/>,
+        <NavBarListItem key="sign out" item_params={{
+            icon_type: 'fa-circle-xmark',
+            caption: 'Выход',
         }}/>
     ]
 

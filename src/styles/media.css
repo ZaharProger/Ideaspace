@@ -50,7 +50,7 @@
         transform: scaleY(1);
     }  
 
-    #Navbar-icon > object{
+    #Navbar-icon > img{
         margin-left: auto;
     }
 
@@ -126,6 +126,10 @@
 
     .Post-header{
         border-radius: 0;
+    }
+
+    .Post-header > span{
+        font-size: 0.8em;
     }
 
     .Post-footer{
