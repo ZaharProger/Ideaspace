@@ -51,6 +51,10 @@
     color: #787878;
 }
 
+#Reg-form-wrap{
+    margin: auto 0;
+}
+
 #Reg-form > label{
     color: white;
     font-size: 1.2em;

@@ -6,7 +6,7 @@ import RegFormWrap from './RegFormWrap';
 
 const LoginWrap = () => {
   return (
-    <div id="Login-wrap" className="d-flex align-items-center">
+    <div id="Login-wrap" className="d-flex">
         <LoginForm />
         <RegFormWrap />
     </div>

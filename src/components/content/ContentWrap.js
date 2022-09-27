@@ -9,7 +9,7 @@ const ContentWrap = () => {
 
     useEffect(() => {
         window.onresize = () => {
-            const isMediaActive = window.innerWidth <= 1000;
+            const isMediaActive = window.innerWidth <= 1100;
 
             changeMenuButtonStatus(isMediaActive);
             changeNavBarSearchStatus(isMediaActive);

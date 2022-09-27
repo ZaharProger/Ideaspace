@@ -7,7 +7,6 @@ html, body{
 body {
     background-color: #ececec;
     overflow: auto;
-    scroll-snap-type: y proximity;
     scrollbar-color: #9b9bed #4848ca;
     scrollbar-width: thin;
 }

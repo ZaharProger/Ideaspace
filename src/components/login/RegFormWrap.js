@@ -22,8 +22,8 @@ const RegFormWrap = () => {
             loginForm.classList.add(regShowStatus? 'login-form-animation-forwards' : 'login-form-animation-backwards');
         }
 
-        window.onresize = () => showButton.classList.replace(window.innerWidth > 1000?
-            'fa-arrow-down' : 'fa-arrow-right', window.innerWidth > 1000? 'fa-arrow-right' : 'fa-arrow-down');
+        window.onresize = () => showButton.classList.replace(window.innerWidth > 1100?
+            'fa-arrow-down' : 'fa-arrow-right', window.innerWidth > 1100? 'fa-arrow-right' : 'fa-arrow-down');
         
         window.onresize();
     })
