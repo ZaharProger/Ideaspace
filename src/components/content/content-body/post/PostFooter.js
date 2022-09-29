@@ -5,11 +5,15 @@ const PostFooter = () => {
         Array.from(document.getElementsByClassName('Post-footer')).forEach(footer => {
             Array.from(footer.getElementsByTagName('i')).forEach(footerItem => {
                 footerItem.onmouseover = () => {
-                    footerItem.classList.replace('fa-regular', 'fa-solid');
-                    footerItem.style.color = footerItem.classList.contains('fa-heart')? '#ee0000' : '#eaea00';
+                    if (!footerItem.classList.contains('non-changeable')){
+                        footerItem.classList.replace('fa-regular', 'fa-solid');
+                    }
+                    footerItem.style.color = footerItem.classList.contains('fa-heart')? '#ee0000' : '#4848ca';
                 }
                 footerItem.onmouseleave = () => {
-                    footerItem.classList.replace('fa-solid', 'fa-regular');
+                    if (!footerItem.classList.contains('non-changeable')){
+                        footerItem.classList.replace('fa-solid', 'fa-regular');
+                    }
                     footerItem.style.color = '#787878';
                 }
                 footerItem.onclick = () => {
@@ -25,7 +29,7 @@ const PostFooter = () => {
     return(
         <div className="Post-footer d-flex flex-row">
             <i className="fa-regular fa-heart me-3"></i>
-            <i className="fa-regular fa-star ms-3"></i>
+            <i className="fa-regular fa-share-from-square ms-3 non-changeable"></i>
         </div>
     )
 }
