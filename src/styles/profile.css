@@ -1,5 +1,9 @@
-#Profile{
+.profile-position-settings-off{
     margin: auto;
+}
+
+.profile-position-settings-on{
+    margin: 100px auto auto;
 }
 
 #Profile-header > p, #Profile-content > i, #Profile-footer > p{

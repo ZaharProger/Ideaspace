@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import NavBarListItem from "./NavBarListItem";
+import PROFILE from '../../../routes/profile';
+import AUTH from '../../../routes/auth';
 
 const NavBarList = (props) => {
     const [menuStatus, changeMenuStatus] = useState(false);
+    const navigate = useNavigate();
 
     const listItems = [
-        <NavBarListItem key="profile" item_params={{
+        <NavBarListItem key="profile" navbar_item_props={{
             icon_type: 'fa-user',
             caption: 'Профиль',
+            action: () => navigate(PROFILE)
         }}/>,
-        <NavBarListItem key="liked" item_params={{
+        <NavBarListItem key="liked" navbar_item_props={{
             icon_type: 'fa-heart',
             caption: 'Понравилось',
+            action: () => console.log('')
         }}/>,
-        <NavBarListItem key="sign out" item_params={{
+        <NavBarListItem key="sign out" navbar_item_props={{
             icon_type: 'fa-circle-xmark',
             caption: 'Выход',
+            action: () => navigate(AUTH)
         }}/>
     ]
 
