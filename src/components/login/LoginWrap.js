@@ -5,6 +5,7 @@ import LoginForm from './LoginForm';
 import RegFormWrap from './RegFormWrap';
 
 const LoginWrap = () => {
+  //console.log('login-wrap');
   return (
     <div id="Login-wrap" className="d-flex">
         <LoginForm />

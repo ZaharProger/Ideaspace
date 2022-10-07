@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import NavBarListItem from "./NavBarListItem";
 
 const NavBarList = (props) => {
+    //console.log('navbar-list');
     const [menuStatus, changeMenuStatus] = useState(false);
 
     const listItems = [
-        <NavBarListItem key="profile" item_params={{
-            icon_type: 'fa-user',
-            caption: 'Профиль',
+        <NavBarListItem key="settings" item_params={{
+            icon_type: 'fa-gear',
+            caption: 'Настройки',
         }}/>,
         <NavBarListItem key="liked" item_params={{
             icon_type: 'fa-heart',

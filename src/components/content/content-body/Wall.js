@@ -4,6 +4,7 @@ import Post from './post/Post';
 import '../../../styles/wall.css';
 
 const Wall = () => {
+    //console.log('wall');
     const posts = [
         <Post key="0" />,
         <Post key="1" />,

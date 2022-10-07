@@ -1,6 +1,7 @@
 import React from 'react';
 
 const RegForm = () => {
+  //console.log('reg-form');
   return (
     <form id="Reg-form" className="d-flex flex-column m-auto p-2">
         <label>Создайте бесплатный аккаунт</label>

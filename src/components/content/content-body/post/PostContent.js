@@ -1,6 +1,7 @@
 import React from 'react';
 
 const PostContent = () => {
+    //console.log('post-content');
     return(
         <div className="Post-content d-flex">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 

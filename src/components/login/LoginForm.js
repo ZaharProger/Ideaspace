@@ -3,6 +3,7 @@ import React from 'react';
 import LoginHeader from './LoginHeader';
 
 const LoginForm = () => {
+  //console.log('login-form');
   return (
     <form id="Login-form" className="d-flex flex-column login-form-animation-backwards">
         <LoginHeader />

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 const ErrorPicture = () => {
+    //console.log('error-picture');
     useEffect(() => {
         const errorFigure = document.createElement('div');
 

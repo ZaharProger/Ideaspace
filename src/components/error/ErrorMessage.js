@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ErrorMessage = () => {
+    //console.log('error-message');
     return(
         <div id="Error-message" className="d-flex">
             <p>

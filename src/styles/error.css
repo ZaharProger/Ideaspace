@@ -23,8 +23,6 @@
 
 .error-figure{
     display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 100px;
     width: 150px;
     height: 80px;
@@ -36,7 +34,7 @@
 }
 
 .error-figure > p{
-    margin: 0;
+    margin: auto;
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5em;
     font-weight: bolder;

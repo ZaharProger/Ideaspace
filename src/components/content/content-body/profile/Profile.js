@@ -6,8 +6,9 @@ import ProfileFooter from './ProfileFooter';
 import '../../../../styles/profile.css';
 
 const Profile = () => {
+    //console.log('profile');
     return(
-        <div id="Profile" className="d-flex flex-column align-items-center p-3 col-5">
+        <div id="Profile" className="d-flex flex-column p-3 col-5">
             <ProfileHeader />
             <ProfileContent />
             <ProfileFooter />

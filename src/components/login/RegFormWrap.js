@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import RegForm from './RegForm';
 
 const RegFormWrap = () => {
+    //console.log('reg-form-wrap');
     const [regShowStatus, changeRegShowStatus] = useState(true);
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const RegFormWrap = () => {
     return (
         <div id="Reg-form-wrap" className="d-flex reg-form-animation-backwards">
             { !regShowStatus? <RegForm /> : null }
-            <i className="fa-solid fa-arrow-right d-flex justify-content-end"></i>
+            <i id="Reg-ref-button" className="fa-solid fa-arrow-right d-flex"></i>
         </div>
   )
 }

@@ -5,6 +5,7 @@ import NavBarIcon from './NavBarIcon';
 import '../../../styles/navbar.css';
 
 const NavBar = (props) => {
+    //console.log('navbar');
     return (
         <div id="Navbar" className="d-flex flex-row w-100">
             <NavBarIcon />
