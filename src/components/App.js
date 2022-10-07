@@ -7,6 +7,7 @@ import ErrorWrap from './error/ErrorWrap';
 import NOT_FOUND_CONTENT from '../routes/notFoundContent';
 import ContentWrap from './content/ContentWrap';
 import MAIN from '../routes/main';
+import PROFILE from '../routes/profile';
 import '../styles/media.css';
 import '../styles/placeholder.css';
 
@@ -15,8 +16,9 @@ const App = () => {
   return (
     <div id="App" className="d-flex flex-column w-100 h-100">
       <Routes>
-        <Route path={ MAIN } element={ <ContentWrap /> } />
+        <Route path={ MAIN } element={ <ContentWrap show_profile={ false } /> } />
         <Route path={ AUTH } element={ <LoginWrap /> } />
+        <Route path={ PROFILE } element={ <ContentWrap show_profile={ true } /> } />
         <Route path={ NOT_FOUND_CONTENT } element={ <ErrorWrap /> } />
       </Routes>
     </div>

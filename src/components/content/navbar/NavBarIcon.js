@@ -5,6 +5,7 @@ import NavBarSearch from './NavBarSearch';
 
 const NavBarIcon = () => {
     //console.log('navbar-icon');
+
     return (
         <div id="Navbar-icon" className="d-flex flex-grow-1">
             <img src={ appLogo } alt="app-logo" className="mb-3" />

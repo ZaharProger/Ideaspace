@@ -10,10 +10,12 @@ const Content = (props) => {
     return (
         <div id="Content" className="d-flex">
             {
-                props.navbar_search_status? <NavBarSearch /> : null
+                props.content_props.navbar_search_status? <NavBarSearch /> : null
             }
-            <Profile />
-            <Wall />
+            <Profile enable_settings={ props.content_props.show_profile } />
+            {
+                props.content_props.show_profile? null : <Wall />
+            }
         </div>
     )
 }

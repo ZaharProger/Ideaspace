@@ -11,11 +11,11 @@ const NavBarList = (props) => {
             icon_type: 'fa-gear',
             caption: 'Настройки',
         }}/>,
-        <NavBarListItem key="liked" item_params={{
+        <NavBarListItem key="liked" navbar_item_props={{
             icon_type: 'fa-heart',
             caption: 'Понравилось',
         }}/>,
-        <NavBarListItem key="sign out" item_params={{
+        <NavBarListItem key="sign out" navbar_item_props={{
             icon_type: 'fa-circle-xmark',
             caption: 'Выход',
         }}/>

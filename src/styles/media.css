@@ -102,17 +102,24 @@
         animation: post-footer-item-click-media 1s ease-out 0s 1 forwards;
     }
 
+    #Content-wrap{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     #Content{
         flex-direction: column;
         height: auto;
     }
 
     #Profile{
-        background: linear-gradient(transparent, white);
         width: 100%;
-        margin: 0;
         columns: 1;
         box-shadow: none;
+    }
+
+    .profile-position-settings-on, .profile-position-settings-off{
+        margin: 0;
     }
 
     #Profile-footer{
