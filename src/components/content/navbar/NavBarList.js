@@ -7,7 +7,7 @@ const NavBarList = (props) => {
     const [menuStatus, changeMenuStatus] = useState(false);
 
     const listItems = [
-        <NavBarListItem key="settings" item_params={{
+        <NavBarListItem key="settings" navbar_item_props={{
             icon_type: 'fa-gear',
             caption: 'Настройки',
         }}/>,

@@ -7,20 +7,20 @@ html, body{
 body {
     background-color: #ececec;
     overflow: auto;
-    scrollbar-color: #9b9bed #4848ca;
+    scrollbar-color: #32328f #9b9bed;
     scrollbar-width: thin;
 }
 
 body::-webkit-scrollbar{
     width: 6px;
     height: 6px;
-    background-color: #4848ca;
-}
-
-body::-webkit-scrollbar-thumb{
     background-color: #9b9bed;
 }
 
+body::-webkit-scrollbar-thumb{
+    background-color: #32328f;
+}
+
 body::-webkit-scrollbar-corner{
-    background-color: #4848ca;
+    background-color: #9b9bed;
 }
