@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import NavBarListItem from "./NavBarListItem";
-import { navigate_buttons } from '../../../globalConstants';
+import { routes } from '../../../globalConstants';
 
 const NavBarList = (props) => {
     //console.log('navbar-list');
@@ -11,22 +11,22 @@ const NavBarList = (props) => {
         <NavBarListItem key="settings" navbar_item_props={{
             icon_type: 'fa-gear',
             caption: 'Настройки',
-            item_type: navigate_buttons.nav_items.settings
+            route_name: routes.settings
         }}/>,
         <NavBarListItem key="create" navbar_item_props={{
             icon_type: 'fa-circle-plus',
             caption: 'Создать',
-            item_type: navigate_buttons.nav_items.create_post
+            route_name: routes.create
         }}/>,
         <NavBarListItem key="liked" navbar_item_props={{
             icon_type: 'fa-heart',
             caption: 'Понравилось',
-            item_type: navigate_buttons.nav_items.liked
+            route_name: routes.main
         }}/>,
         <NavBarListItem key="sign out" navbar_item_props={{
             icon_type: 'fa-right-from-bracket',
             caption: 'Выход',
-            item_type: navigate_buttons.nav_items.sign_out
+            route_name: routes.auth
         }}/>
     ]
 
