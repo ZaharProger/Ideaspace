@@ -26,7 +26,7 @@ const PostFooter = () => {
     return(
         <div className="Post-footer d-flex flex-row">
             <i className="fa-regular fa-heart me-3"></i>
-            <i className="fa-regular fa-square-up-right ms-3"></i>
+            <i className="fa-regular fa-arrow-up-right-from-square ms-3"></i>
         </div>
     )
 }
