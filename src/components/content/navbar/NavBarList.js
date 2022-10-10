@@ -1,37 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import NavBarListItem from "./NavBarListItem";
-import { routes } from '../../../globalConstants';
+import { paneTemplates } from '../../../globalConstants';
 import { navBarContext } from '../../../contexts';
+import useButtonsPane from '../../../hooks/useButtonsPane';
 
 const NavBarList = () => {
     //console.log('navbar-list');
     const [menuStatus, changeMenuStatus] = useState(false);
-
     const menuButtonStatus = useContext(navBarContext);
-
-    const listItems = [
-        <NavBarListItem key="settings" navbar_item_props={{
-            icon_type: 'fa-gear',
-            caption: 'Настройки',
-            route_name: routes.settings
-        }}/>,
-        <NavBarListItem key="create" navbar_item_props={{
-            icon_type: 'fa-circle-plus',
-            caption: 'Создать',
-            route_name: routes.create
-        }}/>,
-        <NavBarListItem key="liked" navbar_item_props={{
-            icon_type: 'fa-heart',
-            caption: 'Понравилось',
-            route_name: routes.main
-        }}/>,
-        <NavBarListItem key="sign out" navbar_item_props={{
-            icon_type: 'fa-right-from-bracket',
-            caption: 'Выход',
-            route_name: routes.auth
-        }}/>
-    ]
+    const listItems = useButtonsPane(paneTemplates.navigation);
 
     useEffect(() => {
         Array.from(document.getElementById('Navbar-list').getElementsByClassName('Navbar-list-item')).forEach(listItem => {

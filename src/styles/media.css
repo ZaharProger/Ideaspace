@@ -90,6 +90,23 @@
     .Navbar-list-item > span{
         display: none;
     }
+
+    #Footer-buttons{
+        margin-left: 10px;
+        margin-right: 10px;
+        flex-direction: column;
+    }
+
+    #Footer-buttons > button{
+        width: auto;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    #Footer-buttons > button:last-child{
+        margin-right: 0;
+        margin-bottom: 0;
+    }
 }
 
 @media screen and (max-width: 1300px){
@@ -100,11 +117,6 @@
 
     .post-footer-animation{
         animation: post-footer-item-click-media 1s ease-out 0s 1 forwards;
-    }
-
-    #Content-wrap{
-        margin-left: auto;
-        margin-right: auto;
     }
 
     #Content{
@@ -122,14 +134,18 @@
         margin: 0;
     }
 
-    #Profile-footer{
-        margin: 0;
+    #Profile-header, #Profile-footer{
+        border-radius: 0;
+    }
+
+    #Profile-header{
+        margin-top: 30px;
     }
 
     #Wall{
         width: auto;
         padding: 0;
-        margin: 0;
+        margin: 30px 0 0 0;
         scroll-snap-type: none;
         overflow: unset;
         border: none;

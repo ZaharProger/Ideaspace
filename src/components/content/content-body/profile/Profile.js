@@ -10,7 +10,7 @@ const Profile = (props) => {
     const profileMargins = `profile-position-settings-${props.enable_settings? 'on' : 'off'}`;
 
     return(
-        <div id="Profile" className={`d-flex flex-column p-3 col-5 ${profileMargins}`} >
+        <div id="Profile" className={`d-flex flex-column col-5 ${profileMargins}`}>
             <ProfileHeader enable_settings={ props.enable_settings } />
             <ProfileContent enable_settings={ props.enable_settings } />
             <ProfileFooter enable_settings={ props.enable_settings } />

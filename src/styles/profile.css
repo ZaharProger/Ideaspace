@@ -1,20 +1,30 @@
 .profile-position-settings-off{
-    margin: auto;
+    margin: 100px 10px auto;
 }
 
 .profile-position-settings-on{
-    margin: 100px auto auto;
+    margin: 100px auto 0;
+}
+
+#Profile-header > p, #Profile-content > i, #Profile-footer > p, #Footer-buttons > button{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
 }
 
 #Profile-header > p, #Profile-content > i, #Profile-footer > p{
     font-family: 'Roboto', sans-serif;
-    color: #000000b5;
     padding: 0;
     margin: 0;
     text-align: center;
 }
 
+#Profile-header{
+    border-radius: 20px 20px 0 0;
+    background-color: #4848ca;
+}
+
 #Profile-header > p{
+    color: white;
     font-weight: bolder;
     font-size: 1.3em;
 }
@@ -23,13 +33,80 @@
     width: 100px;
 }
 
+#Profile-content{
+    background-color: white;
+    border-left: 2px solid #4848ca;
+    border-right: 2px solid #4848ca;
+}
+
 #Profile-content > i{
     opacity: 0.9;
+    color: #000000b5;
+}
+
+#Profile-footer{
+    background-color: #4848ca;
+    border-radius: 0 0 20px 20px;
 }
 
 #Profile-footer > p{
-    opacity: 0.66;
     margin-top: auto;
+    color: white;
+}
+
+#Footer-buttons{
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+}
+
+#Footer-buttons > button{
+    margin-right: 36px;
+    width: 200px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-color: #4848ca;
+    color: white;
+    letter-spacing: 2px;
+    font-size: 1.3em;
+    transition: 0.3s ease-out;
+}
+
+#Footer-buttons > button:last-child{
+    margin-right: 0;
+}
+
+#Footer-buttons > button:hover{
+    color: #4848ca;
+    background-color: white;
+    border-color: #4848ca;
+}
+
+#Profile-header > input, #Profile-content > textarea, #Profile-footer > input {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: black;
+    outline: none;
+    padding: 2px 20px;
+    border-radius: 10px;
+    border: 2px solid;
+}
+
+#Profile-header > input, #Profile-footer > input{
+    border-color: #9b9bed;
+}
+
+#Profile-header > input:focus, #Profile-footer > input:focus{
+    border-color: #32328f;
+}
+
+#Profile-content > textarea{
+    border-color: #a2a2a2;
+    min-height: 100px;
+}
+
+#Profile-content > textarea:focus{
+    border-color: #787878;
 }
 
 

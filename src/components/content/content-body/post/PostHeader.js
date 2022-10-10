@@ -1,6 +1,6 @@
 import React from 'react';
 
-import userIconPost from '../../../../pics/user-icon-white.svg';
+import userIconPost from '../../../../pics/user-icon-post.svg';
 
 const PostHeader = () => {
     //console.log('post-header');

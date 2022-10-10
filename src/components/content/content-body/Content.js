@@ -9,7 +9,7 @@ const Content = (props) => {
     //console.log('content');
 
     return (
-        <div id="Content" className="d-flex">
+        <div id="Content" className="d-flex w-100">
             {
                 props.content_props.navbar_search_status? <NavBarSearch /> : null
             }

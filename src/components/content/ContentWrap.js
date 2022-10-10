@@ -20,7 +20,7 @@ const ContentWrap = (props) => {
         window.onresize();
     })
     return (
-        <div id="Content-wrap" className={`d-flex flex-column${props.show_profile? '' : ' ms-auto me-auto'}`}>
+        <div id="Content-wrap" className='d-flex flex-column'>
             <navBarContext.Provider value={ menuButtonStatus }>
                 <NavBar />
             </navBarContext.Provider>
