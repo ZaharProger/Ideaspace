@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import NavBarListItem from "./NavBarListItem";
 import { routes } from '../../../globalConstants';
+import { navBarContext } from '../../../contexts';
 
-const NavBarList = (props) => {
+const NavBarList = () => {
     //console.log('navbar-list');
     const [menuStatus, changeMenuStatus] = useState(false);
+
+    const menuButtonStatus = useContext(navBarContext);
 
     const listItems = [
         <NavBarListItem key="settings" navbar_item_props={{
@@ -46,11 +49,11 @@ const NavBarList = (props) => {
     return (
         <div id="Navbar-list" className="d-flex pb-3">
             {
-                props.menu_button_status? <i id="Menu-button" className={ `fa-solid fa-bars ${menuStatus? 'mb-3' : ''}` }
+                menuButtonStatus? <i id="Menu-button" className={ `fa-solid fa-bars ${menuStatus? 'mb-3' : ''}` }
                 onClick={ () => changeMenuStatus(!menuStatus) }></i> : null
             }
             {
-                menuStatus || !props.menu_button_status? listItems : null
+                menuStatus || !menuButtonStatus? listItems : null
             }
         </div>
     )

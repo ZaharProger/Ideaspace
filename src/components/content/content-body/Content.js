@@ -7,6 +7,7 @@ import '../../../styles/content.css';
 
 const Content = (props) => {
     //console.log('content');
+
     return (
         <div id="Content" className="d-flex">
             {
