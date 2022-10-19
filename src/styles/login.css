@@ -10,17 +10,70 @@
     transition: 0.3s ease-out;
 }
 
-#Login-header > label, #Login-form > input, #Login-form > button, #Reg-form > label, #Reg-form > input, #Reg-form > button{
+#Login-header > label, #Login-form > input, #Login-form > button, #Reg-form > label, #Reg-form > input, #Reg-form > button,
+#Reg-success-popup > span{
     text-align: center;
 }
 
-#Login-header > label, #Login-form > button, #Reg-form > label, #Reg-form > button{
+#Login-header > label, #Login-form > button, #Reg-form > label, #Reg-form > button, #Reg-success-popup > span{
     font-family: 'Roboto', sans-serif;
 }
 
-#Login-form > input, #Reg-form > input{
+#Login-form > input, #Reg-form > input, #Login-form > span, #Reg-form > span{
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
+}
+
+#Login-form > span, #Reg-form > span{
+    color: #a20000;
+    text-align: center;
+}
+
+#Reg-success-popup{
+    background-color: #4848ca;
+    z-index: 10000;
+}
+
+#Reg-success-popup > span{
+    font-size: 1.3em;
+    color: white;
+}
+
+#Reg-success-popup > i{
+    color: white;
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+.active{
+    display: flex;
+    animation: reg-success-popup-reveal 1s ease-out 0s 1 forwards;
+}
+
+.hidden{
+    display: none;
+}
+
+.correct{
+    box-shadow: none;
+}
+
+.incorrect{
+    box-shadow: 0 3px 3px red;
+}
+
+@keyframes reg-success-popup-reveal{
+    from{
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+#Login-form > input, #Reg-form > input{  
     margin-bottom: 30px;
     color: black;
     outline: none;

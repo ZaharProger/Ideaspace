@@ -8,7 +8,7 @@ const RegFormWrap = () => {
 
     useEffect(() => {
         const regFormWrap = document.getElementById('Reg-form-wrap');
-        const showButton =Array.from(regFormWrap.getElementsByTagName('i'))[0];
+        const showButton = document.getElementById('Reg-ref-button');
         const loginForm = document.getElementById('Login-form');
 
         showButton.onclick = () => {
