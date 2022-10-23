@@ -5,6 +5,7 @@ import RegForm from './RegForm';
 const RegFormWrap = () => {
     //console.log('reg-form-wrap');
     const [regShowStatus, changeRegShowStatus] = useState(true);
+    const [regInputsData, changeRegInputsData] = useState(null);
 
     useEffect(() => {
         const regFormWrap = document.getElementById('Reg-form-wrap');
@@ -13,6 +14,13 @@ const RegFormWrap = () => {
 
         showButton.onclick = () => {
             changeRegShowStatus(!regShowStatus);
+
+            const regForm = document.getElementById('Reg-form');
+            if (regForm != undefined && !regShowStatus){
+                const regInputs = Array.from(regForm.getElementsByTagName('input'));
+                changeRegInputsData(regInputs.map(input => input.value));
+            }
+
             regFormWrap.classList.remove('reg-form-animation-forwards', 'reg-form-animation-backwards');
             regFormWrap.classList.add(regShowStatus? 'reg-form-animation-forwards' : 'reg-form-animation-backwards');
 
@@ -31,7 +39,7 @@ const RegFormWrap = () => {
 
     return (
         <div id="Reg-form-wrap" className="d-flex reg-form-animation-backwards">
-            { !regShowStatus? <RegForm /> : null }
+            { !regShowStatus? <RegForm saved_inputs={ regInputsData } /> : null }
             <i id="Reg-ref-button" className="fa-solid fa-arrow-right d-flex"></i>
         </div>
   )

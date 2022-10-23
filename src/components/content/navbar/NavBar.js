@@ -7,7 +7,7 @@ import '../../../styles/navbar.css';
 const NavBar = () => {
     //console.log('navbar');
     return (
-        <div id="Navbar" className="d-flex flex-row w-100">
+        <div id="Navbar" className="d-flex flex-row w-100 position-fixed">
             <NavBarIcon />
             <NavBarList />
         </div>

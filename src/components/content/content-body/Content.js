@@ -15,7 +15,7 @@ const Content = (props) => {
             }
             <Profile enable_settings={ props.content_props.show_profile } />
             {
-                props.content_props.show_profile? null : <Wall />
+                props.content_props.show_profile? null : <Wall wall_width={ props.content_props.wall_width } />
             }
         </div>
     )

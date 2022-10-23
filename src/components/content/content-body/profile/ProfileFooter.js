@@ -8,7 +8,7 @@ const ProfileFooter = (props) => {
     const footerButtons = useButtonsPane(paneTemplates.profile_footer);
 
     return(
-        <div id="Profile-footer" className='d-flex flex-column p-2'>
+        <div id="Profile-footer" className='d-flex flex-column'>
             {
                 props.enable_settings?
                 <>

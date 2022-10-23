@@ -1,3 +1,7 @@
+#Navbar{
+    z-index: 10000;
+}
+
 #Navbar-icon{
     background-color: #4848ca;
 }
@@ -23,6 +27,7 @@
     flex-direction: row;
     padding-bottom: 16px;
     border-bottom: 3px solid #4848ca;
+    background-color: #ececec;
 }
 
 #Navbar-list > i, .Navbar-list-item{

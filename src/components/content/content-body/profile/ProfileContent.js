@@ -3,7 +3,7 @@ import React from 'react';
 const ProfileContent = (props) => {
     //console.log('profile-content');
     return(
-        <div id="Profile-content" className="d-flex pt-3 pe-1 ps-1 pb-5">
+        <div id="Profile-content" className="d-flex mb-4">
             {
                 props.enable_settings?
                 <textarea type="text" autoComplete="off" placeholder="Статус" className="input-placeholder w-100"></textarea>

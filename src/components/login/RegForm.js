@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import useFormValidation from '../../hooks/useFormValidation';
 
-const RegForm = () => {
+const RegForm = (props) => {
   const [errorMessage, changeErrorMessage] = useState("");
   const validateForm = useFormValidation();
   //console.log('reg-form');

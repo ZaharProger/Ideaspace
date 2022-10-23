@@ -1,9 +1,17 @@
 .profile-position-settings-off{
     margin: 100px 10px auto;
+    position: fixed;
 }
 
 .profile-position-settings-on{
-    margin: 100px auto 0;
+    margin: 50px auto 0;
+    position: relative;
+}
+
+#Profile{
+    background-color: white;
+    box-shadow: 0 2px 10px #a2a2a2;
+    border-radius: 10px;
 }
 
 #Profile-header > p, #Profile-content > i, #Profile-footer > p, #Footer-buttons > button{
@@ -18,13 +26,8 @@
     text-align: center;
 }
 
-#Profile-header{
-    border-radius: 20px 20px 0 0;
-    background-color: #4848ca;
-}
-
 #Profile-header > p{
-    color: white;
+    color: #787878;
     font-weight: bolder;
     font-size: 1.3em;
 }
@@ -33,25 +36,14 @@
     width: 100px;
 }
 
-#Profile-content{
-    background-color: white;
-    border-left: 2px solid #4848ca;
-    border-right: 2px solid #4848ca;
-}
-
 #Profile-content > i{
     opacity: 0.9;
     color: #000000b5;
 }
 
-#Profile-footer{
-    background-color: #4848ca;
-    border-radius: 0 0 20px 20px;
-}
-
 #Profile-footer > p{
     margin-top: auto;
-    color: white;
+    color: #787878;
 }
 
 #Footer-buttons{
@@ -78,7 +70,7 @@
 
 #Footer-buttons > button:hover{
     color: #4848ca;
-    background-color: white;
+    background-color: transparent;
     border-color: #4848ca;
 }
 
@@ -92,20 +84,15 @@
     border: 2px solid;
 }
 
-#Profile-header > input, #Profile-footer > input{
-    border-color: #9b9bed;
-}
-
-#Profile-header > input:focus, #Profile-footer > input:focus{
-    border-color: #32328f;
-}
-
 #Profile-content > textarea{
-    border-color: #a2a2a2;
     min-height: 100px;
 }
 
-#Profile-content > textarea:focus{
+#Profile-content > textarea, #Profile-header > input, #Profile-footer > input{
+    border-color: #a2a2a2;
+}
+
+#Profile-content > textarea:focus, #Profile-header > input:focus, #Profile-footer > input:focus{
     border-color: #787878;
 }
 

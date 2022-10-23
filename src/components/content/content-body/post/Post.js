@@ -8,7 +8,7 @@ import '../../../../styles/post.css';
 const Post = () => {
     //console.log('post');
     return(
-        <div className="Post d-flex flex-column col-8 w-100">
+        <div className="Post d-flex flex-column w-100">
             <PostHeader />
             <PostContent />
             <PostFooter />

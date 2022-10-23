@@ -9,6 +9,7 @@ const ContentWrap = (props) => {
 
     const [menuButtonStatus, changeMenuButtonStatus] = useState(false);
     const [navBarSearchStatus, changeNavBarSearchStatus] = useState(false);
+    const [wallWidth, changeWallWidth] = useState('col-7');
 
     useEffect(() => {
         window.onresize = () => {
@@ -16,6 +17,7 @@ const ContentWrap = (props) => {
 
             changeMenuButtonStatus(isMediaActive);
             changeNavBarSearchStatus(isMediaActive);
+            changeWallWidth(isMediaActive? '' : 'col-7');
         }
         window.onresize();
     })
@@ -26,7 +28,8 @@ const ContentWrap = (props) => {
             </navBarContext.Provider>
             <Content content_props={ {
                 navbar_search_status: navBarSearchStatus,
-                show_profile: props.show_profile
+                show_profile: props.show_profile,
+                wall_width: wallWidth
             } } />
         </div>
     )

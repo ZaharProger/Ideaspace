@@ -110,11 +110,6 @@
 }
 
 @media screen and (max-width: 1300px){
-    body::-webkit-scrollbar{
-        width: 4px;
-        height: 4px;
-    }
-
     .post-footer-animation{
         animation: post-footer-item-click-media 1s ease-out 0s 1 forwards;
     }
@@ -124,40 +119,27 @@
         height: auto;
     }
 
-    #Profile{
+    #Wall{
+        margin: 0;
         width: 100%;
-        columns: 1;
-        box-shadow: none;
+        padding: 16px;
+    }
+
+    #Profile{
+        position: relative;
+        width: 100%;
     }
 
     .profile-position-settings-on, .profile-position-settings-off{
-        margin: 0;
-    }
-
-    #Profile-header, #Profile-footer{
-        border-radius: 0;
+        margin: 30px 0 0 0;
     }
 
     #Profile-header{
         margin-top: 30px;
     }
 
-    #Wall{
-        width: auto;
-        padding: 0;
-        margin: 30px 0 0 0;
-        scroll-snap-type: none;
-        overflow: unset;
-        border: none;
-    }
-
     .Post{
         columns: 1;
-        border-radius: 0;
-    }
-
-    .Post-header{
-        border-radius: 0;
     }
 
     .Post-header > span{

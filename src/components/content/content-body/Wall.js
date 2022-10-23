@@ -1,9 +1,8 @@
 import React from 'react';
 
 import Post from './post/Post';
-import '../../../styles/wall.css';
 
-const Wall = () => {
+const Wall = (props) => {
     //console.log('wall');
     const posts = [
         <Post key="0" />,
@@ -14,7 +13,7 @@ const Wall = () => {
     ]
     
     return(
-        <div id="Wall" className="d-flex flex-column">
+        <div id="Wall" className={ `d-flex flex-column ${props.wall_width}` }>
             {
                 posts
             }
