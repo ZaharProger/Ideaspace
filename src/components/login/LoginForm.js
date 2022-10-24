@@ -32,7 +32,7 @@ const LoginForm = () => {
         <input name="password" type="password" autoComplete="off" placeholder="Пароль"
         className="input-placeholder w-100 correct"></input>
         <span>{ errorMessage }</span>
-        <button type="submit" className="mt-5 p-2 w-100">Войти</button>
+        <button type="submit" className="mt-3 p-2 w-100">Войти</button>
     </form>
   )
 }
