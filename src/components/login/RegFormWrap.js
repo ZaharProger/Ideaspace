@@ -12,13 +12,13 @@ const RegFormWrap = () => {
         const showButton = document.getElementById('Reg-ref-button');
         const loginForm = document.getElementById('Login-form');
 
-        showButton.onclick = () => {
+        showButton.onclick = (e, isRegister=false) => {
             changeRegShowStatus(!regShowStatus);
-
+            
             const regForm = document.getElementById('Reg-form');
             if (regForm != undefined && !regShowStatus){
                 const regInputs = Array.from(regForm.getElementsByTagName('input'));
-                changeRegInputsData(regInputs.map(input => input.value));
+                changeRegInputsData(regInputs.map(input => isRegister? "" : input.value));
             }
 
             regFormWrap.classList.remove('reg-form-animation-forwards', 'reg-form-animation-backwards');

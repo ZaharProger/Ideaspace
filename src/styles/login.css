@@ -27,6 +27,7 @@
 #Login-form > span, #Reg-form > span{
     color: #a20000;
     text-align: center;
+    min-height: 40px;
 }
 
 #Reg-success-popup{
@@ -150,7 +151,7 @@
     justify-content: flex-end;
     align-items: center;
     padding-right: 13px;
-    background-color: #4848ca;
+    background-color: #4848caee;
     transition: 0.3s ease-out;
     overflow: hidden;
 }

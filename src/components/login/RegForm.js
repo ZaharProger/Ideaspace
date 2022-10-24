@@ -22,7 +22,14 @@ const RegForm = (props) => {
         }
         setTimeout(() => regSuccessPopup.classList.replace('hidden', 'active'), 100);
 
-        document.getElementById('Reg-ref-button').onclick();
+        document.getElementById('Reg-ref-button').onclick(new MouseEvent('mousedown'), true);
+      }
+    }
+
+    if (props.saved_inputs != null && errorMessage == ""){
+      const regInputs = Array.from(loginForm.getElementsByTagName('input'));
+      for (let i = 0; i < regInputs.length; ++i){
+        regInputs[i].value = props.saved_inputs[i];
       }
     }
   })
@@ -30,7 +37,8 @@ const RegForm = (props) => {
   return (
     <form id="Reg-form" className="d-flex flex-column m-auto p-2">
         <label>Создайте бесплатный аккаунт</label>
-        <input name="login" type="text" autoComplete="off" placeholder="Логин" className="input-placeholder w-100 correct"></input>
+        <input name="login" type="text" autoComplete="off" placeholder="Логин"
+        className="input-placeholder w-100 correct"></input>
         <input name="password" type="password" autoComplete="off" placeholder="Пароль"
         className="input-placeholder w-100 correct"></input>
         <input name="repeat-password" type="password" autoComplete="off" placeholder="Повторите пароль"
