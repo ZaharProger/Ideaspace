@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { routes } from '../../globalConstants';
-import useFormValidation from '../../hooks/useFormValidation';
+import { RequestTypes } from '../../globalConstants';
+import useRegAuth from '../../hooks/useRegAuth';
 import LoginHeader from './LoginHeader';
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const [errorMessage, changeErrorMessage] = useState("");
-  const validateForm = useFormValidation();
+  const authorizeUser = useRegAuth();
   //console.log('login-form');
 
   useEffect(() => {
     const loginForm = document.getElementById('Login-form');
-    loginForm.onsubmit = (e) => {
+    loginForm.onsubmit = async (e) => {
       e.preventDefault();
 
-      const validationResult = validateForm(loginForm.id);
-      changeErrorMessage(validationResult);
-      if (validationResult == ""){
-        navigate(routes.main);
-      }
+      const receivedMessage = await authorizeUser(loginForm, RequestTypes.auth);
+      changeErrorMessage(receivedMessage);
     }
   })
 

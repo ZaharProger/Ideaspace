@@ -6,6 +6,18 @@ export const routes = {
     not_found: '/*'
 };
 
+export const errorMessages = {
+    empty_fields: 'Заполните все поля!',
+    invalid_login: 'В логине нельзя использовать пробел!',
+    invalid_password: 'Длина пароля не менее 8 символов!',
+    password_mismatch: 'Пароли не совпадают!'
+}
+
+export const RequestTypes = {
+    auth: 'auth',
+    reg: 'reg'
+}
+
 export const paneTemplates = {
     navigation: [
         {

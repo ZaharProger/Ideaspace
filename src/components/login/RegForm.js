@@ -1,33 +1,24 @@
 import React, { useState, useEffect } from 'react';
 
-import useFormValidation from '../../hooks/useFormValidation';
+import { RequestTypes } from '../../globalConstants';
+import useRegAuth from '../../hooks/useRegAuth';
 
 const RegForm = (props) => {
   const [errorMessage, changeErrorMessage] = useState("");
-  const validateForm = useFormValidation();
+  const registerUser = useRegAuth();
   //console.log('reg-form');
 
   useEffect(() => {
-    const loginForm = document.getElementById('Reg-form');
-    loginForm.onsubmit = (e) => {
+    const regForm = document.getElementById('Reg-form');
+    regForm.onsubmit = async (e) => {
       e.preventDefault();
 
-      const regSuccessPopup = document.getElementById('Reg-success-popup');
-
-      const validationResult = validateForm(loginForm.id);
-      changeErrorMessage(validationResult);
-      if (validationResult == ""){
-        if (regSuccessPopup.classList.contains('active')){
-            regSuccessPopup.classList.replace('active', 'hidden');
-        }
-        setTimeout(() => regSuccessPopup.classList.replace('hidden', 'active'), 100);
-
-        document.getElementById('Reg-ref-button').onclick(new MouseEvent('mousedown'), true);
-      }
+      const receivedMessage = await registerUser(regForm, RequestTypes.reg);
+      changeErrorMessage(receivedMessage);
     }
-
+    
     if (props.saved_inputs != null && errorMessage == ""){
-      const regInputs = Array.from(loginForm.getElementsByTagName('input'));
+      const regInputs = Array.from(regForm.getElementsByTagName('input'));
       for (let i = 0; i < regInputs.length; ++i){
         regInputs[i].value = props.saved_inputs[i];
       }

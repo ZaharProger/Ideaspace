@@ -107,6 +107,10 @@
         margin-right: 0;
         margin-bottom: 0;
     }
+
+    #Reg-ref-button{
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width: 1300px){

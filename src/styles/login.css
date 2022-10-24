@@ -151,7 +151,7 @@
     justify-content: flex-end;
     align-items: center;
     padding-right: 13px;
-    background-color: #4848caee;
+    background-color: #4848cadd;
     transition: 0.3s ease-out;
     overflow: hidden;
 }
@@ -193,4 +193,8 @@
 
 #Login-header > img{
     width: 50px;
+}
+
+#Reg-ref-button{
+    margin-left: 20px;
 }
