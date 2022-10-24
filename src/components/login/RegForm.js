@@ -44,7 +44,7 @@ const RegForm = (props) => {
         <input name="repeat-password" type="password" autoComplete="off" placeholder="Повторите пароль"
         className="input-placeholder w-100 correct"></input>
         <span>{ errorMessage }</span>
-        <button type="submit" className="mt-5 p-2 w-100">Создать аккаунт</button>
+        <button type="submit" className="mt-3 p-2 w-100">Создать аккаунт</button>
     </form>
   )
 }
