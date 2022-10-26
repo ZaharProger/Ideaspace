@@ -6,6 +6,10 @@ export const routes = {
     not_found: '/*'
 };
 
+export const localStorageKeys = {
+    session_id: "session_id"
+}
+
 export const errorMessages = {
     empty_fields: 'Заполните все поля!',
     invalid_login: 'В логине нельзя использовать пробел!',

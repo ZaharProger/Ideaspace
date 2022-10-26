@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { errorMessages, RequestTypes, routes } from "../globalConstants";
+import { errorMessages, localStorageKeys, RequestTypes, routes } from "../globalConstants";
 
 const useRegAuth = () => {
     const navigate = useNavigate();
@@ -80,12 +80,10 @@ const useRegAuth = () => {
             
             const formButton = Array.from(form.getElementsByTagName('button'))[0];
             const prevButtonText = formButton.innerText;
-            console.log(prevButtonText);
             formButton.innerText = 'Подождите...';
 
-            const response = await fetch('https://localhost:7042/ideaspace/api/Users', {
+            const response = await fetch('/api/Users', {
                 method: 'POST',
-                mode: 'cors',
                 body: formData    
             });
             
@@ -94,6 +92,7 @@ const useRegAuth = () => {
                 const responseData = await response.json();
         
                 if (responseData.result){
+                    localStorage.setItem(localStorageKeys.session_id, responseData.sessionId);
                     errorInputs = [];             
                 }
                 else{
