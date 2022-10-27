@@ -1,50 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
-import { errorMessages, localStorageKeys, RequestTypes, routes } from "../globalConstants";
+import useFormValidation from "./useFormValidation";
+import { localStorageKeys, RequestTypes, routes } from "../globalConstants";
 
 const useRegAuth = () => {
     const navigate = useNavigate();
-
-    function performValidation(inputsToValidate, messageIfError, predicate){
-        const validationResult = inputsToValidate.filter(input => predicate(input));
-
-        let errorMessage = "";
-        let errorInputs = [];
-        if (validationResult.length != 0){
-            errorMessage = messageIfError;
-            errorInputs.push(...validationResult);
-        }
-
-        return {
-            error_message: errorMessage,
-            error_inputs: errorInputs
-        }
-    }
-
-    function validateFormOnclient(formInputs, requestType) {
-        let validationResults = [];
-
-        validationResults.push(performValidation(formInputs, errorMessages.empty_fields, (input) => input.value == ""));
-        validationResults.push(performValidation(formInputs, errorMessages.invalid_login,
-            (input) => input.name == 'login' && input.value.includes(" ")));
-
-        if (requestType == RequestTypes.reg){
-            validationResults.push(performValidation(formInputs, errorMessages.invalid_password,
-            (input) => input.name == 'password' && input.value.length < 8));
-
-            const formPasswords = formInputs.filter(input => input.name.includes('password'));
-            validationResults.push(performValidation(formPasswords, errorMessages.password_mismatch,
-            (input) => input.value != formPasswords[0].value));
-        }
-
-        let i = 0;
-        let isErrorFound = false;
-        for (i = 0; i < validationResults.length && !isErrorFound; ++i){
-            isErrorFound = validationResults[i].error_message != "";
-        }
-        
-        return validationResults[--i];
-    }
+    const validate = useFormValidation();
 
     function updateInputs(oldInputs, newInputs){
         oldInputs.forEach(input => {
@@ -71,7 +32,7 @@ const useRegAuth = () => {
 
     return async function(form, requestType){
         const formInputs = Array.from(form.getElementsByTagName('input'));
-        let { error_message: errorMessage, error_inputs: errorInputs } = validateFormOnclient(formInputs, requestType);
+        let { error_message: errorMessage, error_inputs: errorInputs } = validate(formInputs, requestType);
  
         if (errorMessage == ""){
             const formData = new FormData(form);        
