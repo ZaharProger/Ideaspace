@@ -3,6 +3,7 @@ import React from 'react'
 import ProfileHeader from './ProfileHeader';
 import ProfileContent from './ProfileContent';
 import ProfileFooter from './ProfileFooter';
+import { profileContext } from '../../../../contexts';
 import '../../../../styles/profile.css';
 
 const Profile = (props) => {
@@ -11,9 +12,11 @@ const Profile = (props) => {
 
     return(
         <div id="Profile" className={`d-flex flex-column col-5 p-2 ${profileMargins}`}>
-            <ProfileHeader enable_settings={ props.enable_settings } />
-            <ProfileContent enable_settings={ props.enable_settings } />
-            <ProfileFooter enable_settings={ props.enable_settings } />
+            <profileContext.Provider value={ props.enable_settings } >
+                <ProfileHeader />
+                <ProfileContent />
+                <ProfileFooter />
+            </profileContext.Provider>
         </div>
     )
 }

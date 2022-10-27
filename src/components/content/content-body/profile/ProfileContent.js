@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-const ProfileContent = (props) => {
+import { profileContext } from '../../../../contexts';
+
+const ProfileContent = () => {
     //console.log('profile-content');
+    const enableSettings = useContext(profileContext);
+
     return(
         <div id="Profile-content" className="d-flex mb-4">
             {
-                props.enable_settings?
+                enableSettings?
                 <textarea type="text" autoComplete="off" placeholder="Статус" className="input-placeholder w-100"></textarea>
                 :
                 <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 

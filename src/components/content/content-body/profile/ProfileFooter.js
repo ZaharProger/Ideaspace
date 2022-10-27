@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import useButtonsPane from '../../../../hooks/useButtonsPane';
 import { paneTemplates } from '../../../../globalConstants';
+import { profileContext } from '../../../../contexts';
 
-const ProfileFooter = (props) => {
+const ProfileFooter = () => {
     //console.log('profile-footer');
     const footerButtons = useButtonsPane(paneTemplates.profile_footer);
+    const enableSettings = useContext(profileContext);
 
     return(
         <div id="Profile-footer" className='d-flex flex-column'>
             {
-                props.enable_settings?
+                enableSettings?
                 <>
                     <input type="text" autoComplete="off" placeholder="дд.мм.гггг" className="input-placeholder"></input>
                     <div id="Footer-buttons" className="d-flex mt-4">
