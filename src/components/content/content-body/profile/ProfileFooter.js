@@ -9,7 +9,8 @@ const ProfileFooter = () => {
     const footerButtons = useButtonsPane(paneTemplates.profile_footer);
     const contextData = useContext(profileContext);
 
-    const convertedBirthday = new Date(contextData.user_data.user_birthday * 1000);
+    const convertedBirthday = contextData.user_data.user_birthday != null?
+        new Date(contextData.user_data.user_birthday * 1000) : null;
     
     return(
         <div id="Profile-footer" className='d-flex flex-column'>
@@ -24,7 +25,7 @@ const ProfileFooter = () => {
                     </div>
                 </>
                 :
-                <p>{ convertedBirthday.toLocaleDateString() }</p>
+                <p>{ convertedBirthday != null? convertedBirthday.toLocaleDateString() : "" }</p>
             }
         </div>
     )
