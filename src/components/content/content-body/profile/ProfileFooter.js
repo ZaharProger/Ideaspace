@@ -9,7 +9,7 @@ const ProfileFooter = () => {
     const footerButtons = useButtonsPane(paneTemplates.profile_footer);
     const contextData = useContext(profileContext);
 
-    const convertedBirthday = new Date(contextData.user_data.user_birthday);
+    const convertedBirthday = new Date(contextData.user_data.user_birthday * 1000);
     
     return(
         <div id="Profile-footer" className='d-flex flex-column'>
