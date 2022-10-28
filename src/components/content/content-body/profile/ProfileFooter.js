@@ -7,12 +7,14 @@ import { profileContext } from '../../../../contexts';
 const ProfileFooter = () => {
     //console.log('profile-footer');
     const footerButtons = useButtonsPane(paneTemplates.profile_footer);
-    const enableSettings = useContext(profileContext);
+    const contextData = useContext(profileContext);
 
+    const convertedBirthday = new Date(contextData.user_data.user_birthday);
+    
     return(
         <div id="Profile-footer" className='d-flex flex-column'>
             {
-                enableSettings?
+                contextData.enable_settings?
                 <>
                     <input type="text" autoComplete="off" placeholder="дд.мм.гггг" className="input-placeholder"></input>
                     <div id="Footer-buttons" className="d-flex mt-4">
@@ -22,7 +24,7 @@ const ProfileFooter = () => {
                     </div>
                 </>
                 :
-                <p>12.09.2002</p>
+                <p>{ convertedBirthday.toLocaleDateString() }</p>
             }
         </div>
     )

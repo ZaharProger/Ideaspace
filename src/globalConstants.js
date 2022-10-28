@@ -10,6 +10,12 @@ export const localStorageKeys = {
     session_id: "session_id"
 }
 
+export const queryStringParams = {
+    session_id: 'SessionId',
+    user_id: 'UserId',
+    search_string: 'SearchString'
+}
+
 export const errorMessages = {
     empty_fields: 'Заполните все поля!',
     invalid_login: 'В логине нельзя использовать пробел!',
