@@ -6,12 +6,7 @@ export const routes = {
     not_found: '/*'
 };
 
-export const localStorageKeys = {
-    session_id: "session_id"
-}
-
 export const queryStringParams = {
-    session_id: 'SessionId',
     user_id: 'UserId',
     search_string: 'SearchString'
 }
@@ -23,33 +18,46 @@ export const errorMessages = {
     password_mismatch: 'Пароли не совпадают!'
 }
 
-export const RequestTypes = {
+export const cookies = {
+    is_logged: 'is_logged=true'
+}
+
+export const requestTypes = {
     auth: 'auth',
     reg: 'reg'
+}
+
+export const buttons = {
+    settings: 'settings',
+    create: 'create',
+    liked: 'liked',
+    sign_out: 'sign out',
+    save_profile: 'save_profile',
+    cancel: 'cancel'
 }
 
 export const paneTemplates = {
     navigation: [
         {
-            key: 'settings',
+            key: buttons.settings,
             icon: 'fa-gear',
             caption: 'Настройки',
             route: routes.settings
         },
         {
-            key: 'create',
+            key: buttons.create,
             icon: 'fa-circle-plus',
             caption: 'Создать',
             route: routes.create
         },
         {
-            key: 'liked',
+            key: buttons.liked,
             icon: 'fa-heart',
             caption: 'Понравилось',
             route: routes.main
         },
         {
-            key: 'sign out',
+            key: buttons.sign_out,
             icon: 'fa-right-from-bracket',
             caption: 'Выход',
             route: routes.auth
@@ -57,12 +65,17 @@ export const paneTemplates = {
     ],
     profile_footer: [
         {
-            key: 'save',
+            key: buttons.save_profile,
             caption: 'Сохранить'
         },
         {
-            key: 'cancel',
+            key: buttons.cancel,
             caption: 'Отмена'
         }
     ]
+}
+
+export const profilePlaceholders = {
+    profile_content: 'Статус',
+    profile_footer: 'дд.мм.гггг'
 }

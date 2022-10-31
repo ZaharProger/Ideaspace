@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { RequestTypes } from '../../globalConstants';
+import { requestTypes } from '../../globalConstants';
 import useRegAuth from '../../hooks/useRegAuth';
 import LoginHeader from './LoginHeader';
 
@@ -14,7 +14,7 @@ const LoginForm = () => {
     loginForm.onsubmit = async (e) => {
       e.preventDefault();
 
-      const receivedMessage = await authorizeUser(loginForm, RequestTypes.auth);
+      const receivedMessage = await authorizeUser(loginForm, requestTypes.auth);
       changeErrorMessage(receivedMessage);
     }
   })

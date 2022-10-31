@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { RequestTypes } from '../../globalConstants';
+import { requestTypes } from '../../globalConstants';
 import useRegAuth from '../../hooks/useRegAuth';
 
 const RegForm = (props) => {
@@ -13,7 +13,7 @@ const RegForm = (props) => {
     regForm.onsubmit = async (e) => {
       e.preventDefault();
 
-      const receivedMessage = await registerUser(regForm, RequestTypes.reg);
+      const receivedMessage = await registerUser(regForm, requestTypes.reg);
       changeErrorMessage(receivedMessage);
     }
     

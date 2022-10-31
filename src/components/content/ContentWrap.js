@@ -5,7 +5,7 @@ import Content from './content-body/Content';
 import { navBarContext } from '../../contexts';
 
 const ContentWrap = (props) => {
-    //console.log('content-wrap);
+    //console.log('content-wrap');
 
     const [menuButtonStatus, changeMenuButtonStatus] = useState(false);
     const [navBarSearchStatus, changeNavBarSearchStatus] = useState(false);

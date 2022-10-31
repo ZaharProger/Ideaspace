@@ -2,21 +2,19 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { routes, localStorageKeys, queryStringParams } from '../globalConstants';
+import { cookies, routes } from '../globalConstants';
 import changeUserData from '../state-manager/actions/changeUserData';
 
 const ProtectedRoutes = () => {
     const location = useLocation();
-    
-    //localStorage.clear();
-    const sessionId = localStorage.getItem(localStorageKeys.session_id);
-
     const dispatch = useDispatch();
-    const dispatchCallback = useCallback((userData) => dispatch(changeUserData(userData)), [sessionId]);
+
+    const dispatchCallback = useCallback((userData) => dispatch(changeUserData(userData)), []);
+    const isLogged = document.cookie.includes(cookies.is_logged);
   
     useEffect(() => {
         async function getUserData(){
-            const response = await fetch(`/api/Users?${queryStringParams.session_id}=${sessionId}`, {
+            const response = await fetch('/api/Users', {
                 method: 'GET'
             });
     
@@ -27,18 +25,18 @@ const ProtectedRoutes = () => {
                 }
             }
         }
-      
-        if (sessionId != null){
+
+        if (isLogged){
             getUserData();
-        }
+        }        
     });
     
     let component = null;
     if (location.pathname == routes.auth){
-        component = sessionId != null? <Navigate to={ routes.main } /> : <Outlet />
+        component = isLogged ? <Navigate to={ routes.main } /> : <Outlet />
     }
     else{
-        component = sessionId != null? <Outlet /> : <Navigate to={ routes.auth } />
+        component = isLogged ? <Outlet /> : <Navigate to={ routes.auth } />
     }
 
     return component;

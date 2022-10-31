@@ -1,4 +1,4 @@
-import { RequestTypes, errorMessages } from "../globalConstants";
+import { requestTypes, errorMessages } from "../globalConstants";
 
 const useFormValidation = () => {
     function validateCase(inputsToValidate, messageIfError, predicate){
@@ -24,7 +24,7 @@ const useFormValidation = () => {
         validationResults.push(validateCase(formInputs, errorMessages.invalid_login,
             (input) => input.name == 'login' && input.value.includes(" ")));
 
-        if (requestType == RequestTypes.reg){
+        if (requestType == requestTypes.reg){
             validationResults.push(validateCase(formInputs, errorMessages.invalid_password,
             (input) => input.name == 'password' && input.value.length < 8));
 

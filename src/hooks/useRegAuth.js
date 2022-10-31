@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import useFormValidation from "./useFormValidation";
-import { localStorageKeys, RequestTypes, routes } from "../globalConstants";
+import { requestTypes, routes } from "../globalConstants";
 
 const useRegAuth = () => {
     const navigate = useNavigate();
@@ -16,10 +16,10 @@ const useRegAuth = () => {
 
     function performResultAction(requestType){
         switch(requestType){
-            case RequestTypes.auth:
+            case requestTypes.auth:
                 navigate(routes.main);
                 break;
-            case RequestTypes.reg:
+            case requestTypes.reg:
                 const regSuccessPopup = document.getElementById('Reg-success-popup');
                 if (regSuccessPopup.classList.contains('active')){
                     regSuccessPopup.classList.replace('active', 'hidden');
@@ -33,7 +33,7 @@ const useRegAuth = () => {
     return async function(form, requestType){
         const formInputs = Array.from(form.getElementsByTagName('input'));
         let { error_message: errorMessage, error_inputs: errorInputs } = validate(formInputs, requestType);
- 
+        
         if (errorMessage == ""){
             const formData = new FormData(form);        
             formData.delete("repeat-password");
@@ -52,8 +52,7 @@ const useRegAuth = () => {
             if (response.ok){
                 const responseData = await response.json();
         
-                if (responseData.result){
-                    localStorage.setItem(localStorageKeys.session_id, responseData.sessionId);
+                if (responseData.result){                   
                     errorInputs = [];             
                 }
                 else{

@@ -5,7 +5,7 @@ import { USER_DATA } from './stateConstants';
 const changeState = (state=initialState, action) => {
     switch (action.type){
         case USER_DATA:
-            return{
+            return {
                 ...state,
                 user_data: action.user_data
             }

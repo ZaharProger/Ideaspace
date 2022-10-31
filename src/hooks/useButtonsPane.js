@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { localStorageKeys, paneTemplates, queryStringParams, routes } from "../globalConstants";
+import { buttons, paneTemplates, routes } from "../globalConstants";
 import NavBarListItem from "../components/content/navbar/NavBarListItem";
 
 const useButtonsPane = (template) => {
@@ -11,21 +11,18 @@ const useButtonsPane = (template) => {
         if (template == paneTemplates.navigation){
             const { key , icon, caption, route } = template[i];
             let callback = null;
-            switch (route){
-                case routes.main:
-                case routes.settings:
-                case routes.create:
+            switch (key){
+                case buttons.settings:
+                case buttons.create:
                     callback = () => navigate(route);
                     break;
-                case routes.auth:
+                case buttons.sign_out:
                     callback = async () => {
-                        const sessionId = localStorage.getItem(localStorageKeys.session_id);
-                        const response = await fetch(`/api/Users?${queryStringParams.session_id}=${sessionId}`, {
+                        const response = await fetch('/api/Users?', {
                             method: 'DELETE'
                         });
 
                         if (response.ok){
-                            localStorage.removeItem(localStorageKeys.session_id);
                             navigate(route);
                         }
                     }
@@ -42,7 +39,32 @@ const useButtonsPane = (template) => {
         }
         else if (template == paneTemplates.profile_footer){
             const { key, caption } = template[i];
-            buttonsPane.push(<button type="button" key={ key } className="p-2">{ caption }</button>);
+            let callback = null;
+            switch(key){
+                case buttons.save_profile:
+                    callback = async () => {
+                        const profileInputs = Array.from(document.getElementById('Profile').querySelectorAll('p, textarea'));
+                        const profileForm = new FormData();
+                        profileInputs.forEach(profileInput => {
+                            profileForm.append(profileInput.name, profileInput.value);
+                        })
+
+                        const response = await fetch('/api/Users', {
+                            method: 'PUT',
+                            body: profileForm
+                        });
+
+                        if (response.ok){
+                            navigate(routes.main)
+                        }
+                    }
+                    break;
+                case buttons.cancel:
+                    callback = () => navigate(routes.main);
+                    break;
+            }
+
+            buttonsPane.push(<button type="button" key={ key } className="p-2" onClick={ () => callback() }>{ caption }</button>);
         }
     }
 
