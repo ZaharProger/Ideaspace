@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 
 const RegSuccessPopup = () => {
-    useEffect(() => document.getElementById('popup-close-button').onclick = () => {
-        document.getElementById('Reg-success-popup').classList.replace('active', 'hidden');
+    useEffect(() => {
+        const popupCloseButton = document.getElementById('popup-close-button')
+        if (popupCloseButton != null){
+            popupCloseButton.onclick = () => {
+                document.getElementById('Reg-success-popup').classList.replace('active', 'hidden');
+            }
+        }
     })
 
     return(

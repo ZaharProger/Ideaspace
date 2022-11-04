@@ -78,8 +78,8 @@
 #Profile-header > input, #Profile-content > textarea, #Profile-footer > input {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
-    color: black;
     outline: none;
+    color: black;
     padding: 2px 20px;
     border-radius: 10px;
     border: 2px solid;

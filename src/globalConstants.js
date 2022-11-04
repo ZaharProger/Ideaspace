@@ -18,10 +18,6 @@ export const errorMessages = {
     password_mismatch: 'Пароли не совпадают!'
 }
 
-export const cookies = {
-    is_logged: 'is_logged=true'
-}
-
 export const requestTypes = {
     auth: 'auth',
     reg: 'reg'

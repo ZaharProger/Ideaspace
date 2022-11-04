@@ -9,6 +9,7 @@ import { routes } from '../globalConstants';
 import ProtectedRoutes from './ProtectedRoutes';
 import '../styles/media.css';
 import '../styles/placeholder.css';
+import '../styles/validation.css';
 
 const App = () => {
   //console.log('app');

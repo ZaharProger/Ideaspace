@@ -1,17 +1,16 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { cookies, routes } from '../globalConstants';
+import { routes } from '../globalConstants';
 import changeUserData from '../state-manager/actions/changeUserData';
 
 const ProtectedRoutes = () => {
     const location = useLocation();
     const dispatch = useDispatch();
-
     const dispatchCallback = useCallback((userData) => dispatch(changeUserData(userData)), []);
-    const isLogged = document.cookie.includes(cookies.is_logged);
-  
+    const [isLogged, changeIsLogged] = useState(false);
+
     useEffect(() => {
         async function getUserData(){
             const response = await fetch('/api/Users', {
@@ -23,13 +22,13 @@ const ProtectedRoutes = () => {
                 if (responseData.result){
                     dispatchCallback(responseData.data[0]);
                 }
+                changeIsLogged(responseData.result);
             }
         }
+    
+        getUserData();
+    })
 
-        if (isLogged){
-            getUserData();
-        }        
-    });
     
     let component = null;
     if (location.pathname == routes.auth){

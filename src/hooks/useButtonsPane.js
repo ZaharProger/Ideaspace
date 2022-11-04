@@ -5,8 +5,8 @@ import NavBarListItem from "../components/content/navbar/NavBarListItem";
 
 const useButtonsPane = (template) => {
     const navigate = useNavigate();
-    const buttonsPane = [];
 
+    const buttonsPane = [];
     for (let i = 0; i < template.length; ++i){
         if (template == paneTemplates.navigation){
             const { key , icon, caption, route } = template[i];
@@ -43,10 +43,20 @@ const useButtonsPane = (template) => {
             switch(key){
                 case buttons.save_profile:
                     callback = async () => {
-                        const profileInputs = Array.from(document.getElementById('Profile').querySelectorAll('p, textarea'));
+                        const saveButton = document.getElementById('save-button');
+                        const prevCaption = saveButton.innerText;
+                        saveButton.innerText = 'Подождите...';
+
+                        const profileInputs = Array.from(document.getElementById('Profile').querySelectorAll('input, textarea'));
                         const profileForm = new FormData();
                         profileInputs.forEach(profileInput => {
-                            profileForm.append(profileInput.name, profileInput.value);
+                            let fieldValue = profileInput.value;
+                            if (profileInput.name == 'UserBirthday'){
+                                const splittedDate = profileInput.value.split('.');
+                                fieldValue = Math.floor(new Date([splittedDate[2], splittedDate[1], splittedDate[0]]
+                                    .join('-')).getTime() / 1000);
+                            }
+                            profileForm.append(profileInput.name, fieldValue);
                         })
 
                         const response = await fetch('/api/Users', {
@@ -55,7 +65,8 @@ const useButtonsPane = (template) => {
                         });
 
                         if (response.ok){
-                            navigate(routes.main)
+                            saveButton.innerText = prevCaption;
+                            navigate(routes.main);
                         }
                     }
                     break;
@@ -64,7 +75,8 @@ const useButtonsPane = (template) => {
                     break;
             }
 
-            buttonsPane.push(<button type="button" key={ key } className="p-2" onClick={ () => callback() }>{ caption }</button>);
+            buttonsPane.push(<button id={ key == buttons.save_profile? 'save-button' : '' } type="button" key={ key } className="p-2"
+            onClick={ () => callback() }>{ caption }</button>);
         }
     }
 

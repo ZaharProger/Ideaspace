@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import NavBar from './navbar/NavBar';
 import Content from './content-body/Content';
@@ -6,21 +6,18 @@ import { navBarContext } from '../../contexts';
 
 const ContentWrap = (props) => {
     //console.log('content-wrap');
-
-    const [menuButtonStatus, changeMenuButtonStatus] = useState(false);
-    const [navBarSearchStatus, changeNavBarSearchStatus] = useState(false);
+    const [menuButtonStatus, changeMenuButtonStatus] = useState(window.innerWidth <= 1000);
+    const [navBarSearchStatus, changeNavBarSearchStatus] = useState(window.innerWidth <= 1000);
     const [wallWidth, changeWallWidth] = useState('col-7');
 
-    useEffect(() => {
-        window.onresize = () => {
-            const isMediaActive = window.innerWidth <= 1100;
+    window.onresize = () => {
+        const isMediaActive = window.innerWidth <= 1100;
 
-            changeMenuButtonStatus(isMediaActive);
-            changeNavBarSearchStatus(isMediaActive);
-            changeWallWidth(isMediaActive? '' : 'col-7');
-        }
-        window.onresize();
-    })
+        changeMenuButtonStatus(isMediaActive);
+        changeNavBarSearchStatus(isMediaActive);
+        changeWallWidth(isMediaActive? '' : 'col-7');
+    }
+
     return (
         <div id="Content-wrap" className='d-flex flex-column'>
             <navBarContext.Provider value={ menuButtonStatus }>

@@ -46,23 +46,6 @@
     cursor: pointer;
 }
 
-.active{
-    display: flex;
-    animation: reg-success-popup-reveal 1s ease-out 0s 1 forwards;
-}
-
-.hidden{
-    display: none;
-}
-
-.correct{
-    box-shadow: none;
-}
-
-.incorrect{
-    box-shadow: 0 3px 3px red;
-}
-
 @keyframes reg-success-popup-reveal{
     from{
         transform: translateY(-100px);

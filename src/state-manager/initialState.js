@@ -1,9 +1,5 @@
 const initialState = {
-    user_data: {
-     user_login: "",
-     user_status: "",
-     user_birthday: ""
-    }
+    user_data: null
 };
 
 export default initialState;
