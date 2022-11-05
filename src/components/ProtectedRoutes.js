@@ -1,41 +1,50 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-import { routes } from '../globalConstants';
-import changeUserData from '../state-manager/actions/changeUserData';
+import { routes, reduxKeys, localStorageKeys } from '../globalConstants';
+import useRedux from '../hooks/useRedux';
 
 const ProtectedRoutes = () => {
     const location = useLocation();
-    const dispatch = useDispatch();
-    const dispatchCallback = useCallback((userData) => dispatch(changeUserData(userData)), []);
-    const [isLogged, changeIsLogged] = useState(false);
+    const reduxCallback = useRedux(reduxKeys.get_user);
+    
+    let savedIsLogged = false;
+    if (localStorage.getItem(localStorageKeys.is_logged) != null){
+        savedIsLogged = localStorage.getItem(localStorageKeys.is_logged) == '1';
+        localStorage.removeItem(localStorageKeys.is_logged);
+    }
+
+    const isLogged = useSelector(state => state.user_data) != null ;
+    const isLocationAuth = location.pathname == routes.auth;
+
+    window.onbeforeunload = () => {
+        localStorage.setItem(localStorageKeys.is_logged, isLogged? '1' : '0');
+    };
+
+    async function getUserData(){
+        const response = await fetch('/api/Users', {
+            method: 'GET'
+        });
+
+        if (response.ok){
+            const responseData = await response.json();
+            reduxCallback(responseData.result? responseData.data[0] : null);
+        }
+    }
 
     useEffect(() => {
-        async function getUserData(){
-            const response = await fetch('/api/Users', {
-                method: 'GET'
-            });
-    
-            if (response.ok){
-                const responseData = await response.json();
-                if (responseData.result){
-                    dispatchCallback(responseData.data[0]);
-                }
-                changeIsLogged(responseData.result);
-            }
+        if (!isLocationAuth && !isLogged){
+            getUserData();
         }
-    
-        getUserData();
     })
 
-    
     let component = null;
-    if (location.pathname == routes.auth){
-        component = isLogged ? <Navigate to={ routes.main } /> : <Outlet />
+    if (isLocationAuth){
+        component = isLogged || savedIsLogged? <Navigate to={ routes.main } /> : <Outlet />;
     }
     else{
-        component = isLogged ? <Outlet /> : <Navigate to={ routes.auth } />
+        component = isLogged || savedIsLogged? <Outlet /> : <Navigate to={ routes.auth } />;
     }
 
     return component;

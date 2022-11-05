@@ -9,15 +9,22 @@ import '../../../../styles/profile.css';
 
 const Profile = (props) => {
     //console.log('profile');
-    const userData = useSelector(state => state.user_data);
+    let userData = useSelector(state => state.user_data);
+    if (userData === null){
+        userData = {
+            user_login: '',
+            user_status: null,
+            user_birthday: null
+        }
+    }
 
     const profileMargins = `profile-position-settings-${props.enable_settings? 'on' : 'off'}`;
     const contextData = {
         user_data: {
             ...userData,
-            user_status: userData.user_status != null? userData.user_status : "",
+            user_status: userData.user_status != null? userData.user_status : '',
             user_birthday: userData.user_birthday != null?
-            new Date(userData.user_birthday * 1000).toLocaleDateString() : ""
+            new Date(userData.user_birthday * 1000).toLocaleDateString() : ''
         },
         enable_settings: props.enable_settings
     };    
@@ -41,7 +48,7 @@ const Profile = (props) => {
         Array.from(document.getElementById('Profile').querySelectorAll('textarea, input')).forEach(input => {
             input.value = getInputValue(input.name);
         })
-    }, []);
+    });
 
     return(
         <div id="Profile" className={`d-flex flex-column col-5 p-2 ${profileMargins}`}>

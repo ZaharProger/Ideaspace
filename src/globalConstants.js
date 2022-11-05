@@ -75,3 +75,12 @@ export const profilePlaceholders = {
     profile_content: 'Статус',
     profile_footer: 'дд.мм.гггг'
 }
+
+export const reduxKeys = {
+    sign_out: 'sign_out',
+    get_user: 'get_user'
+}
+
+export const localStorageKeys = {
+    is_logged: 'is_logged'
+}

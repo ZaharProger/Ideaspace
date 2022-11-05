@@ -1,9 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import { buttons, paneTemplates, routes } from "../globalConstants";
+import { buttons, paneTemplates, reduxKeys, routes } from "../globalConstants";
 import NavBarListItem from "../components/content/navbar/NavBarListItem";
+import useRedux from "./useRedux";
+
 
 const useButtonsPane = (template) => {
+    const signOutCallback = useRedux(reduxKeys.sign_out);
+    const updateUserCallback = useRedux(reduxKeys.get_user);
+    const currentUser = useSelector(state => state.user_data);
     const navigate = useNavigate();
 
     const buttonsPane = [];
@@ -23,6 +29,7 @@ const useButtonsPane = (template) => {
                         });
 
                         if (response.ok){
+                            signOutCallback();
                             navigate(route);
                         }
                     }
@@ -66,6 +73,11 @@ const useButtonsPane = (template) => {
 
                         if (response.ok){
                             saveButton.innerText = prevCaption;
+                            updateUserCallback({
+                                ...currentUser,
+                                user_status: profileForm.get('UserStatus'),
+                                user_birthday: profileForm.get('UserBirthday')
+                            });
                             navigate(routes.main);
                         }
                     }
