@@ -82,15 +82,11 @@
     color: black;
     padding: 2px 20px;
     border-radius: 10px;
-    border: 2px solid;
+    border: 2px solid #a2a2a2;
 }
 
 #Profile-content > textarea{
     min-height: 100px;
-}
-
-#Profile-content > textarea, #Profile-header > input, #Profile-footer > input{
-    border-color: #a2a2a2;
 }
 
 #Profile-content > textarea:focus, #Profile-header > input:focus, #Profile-footer > input:focus{

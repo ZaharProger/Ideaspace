@@ -1,6 +1,13 @@
 import { requestTypes, errorMessages } from "../globalConstants";
 
 const useFormValidation = () => {
+    function updateInputs(oldInputs, newInputs){
+        oldInputs.forEach(input => {
+            input.classList.remove('correct', 'incorrect');
+            input.classList.add(newInputs.includes(input)? 'incorrect' : 'correct');
+        });
+    }
+
     function validateCase(inputsToValidate, messageIfError, predicate){
         const validationResult = inputsToValidate.filter(input => predicate(input));
 
@@ -17,20 +24,26 @@ const useFormValidation = () => {
         }
     }
 
-    return function validateForm(formInputs, requestType) {
+    function validateForm(formInputs, requestType) {
         let validationResults = [];
 
         validationResults.push(validateCase(formInputs, errorMessages.empty_fields, (input) => input.value == ""));
-        validationResults.push(validateCase(formInputs, errorMessages.invalid_login,
+        if (requestType == requestTypes.reg || requestType == requestTypes.auth){
+            validationResults.push(validateCase(formInputs, errorMessages.invalid_login,
             (input) => input.name == 'login' && input.value.includes(" ")));
-
-        if (requestType == requestTypes.reg){
-            validationResults.push(validateCase(formInputs, errorMessages.invalid_password,
-            (input) => input.name == 'password' && input.value.length < 8));
-
-            const formPasswords = formInputs.filter(input => input.name.includes('password'));
-            validationResults.push(validateCase(formPasswords, errorMessages.password_mismatch,
-            (input) => input.value != formPasswords[0].value));
+    
+            if (requestType == requestTypes.reg){
+                validationResults.push(validateCase(formInputs, errorMessages.invalid_password,
+                (input) => input.name == 'password' && input.value.length < 8));
+    
+                const formPasswords = formInputs.filter(input => input.name.includes('password'));
+                validationResults.push(validateCase(formPasswords, errorMessages.password_mismatch,
+                (input) => input.value != formPasswords[0].value));
+            }
+        }
+        else if (requestType == requestTypes.create){
+            validationResults.push(validateCase(formInputs, errorMessages.empty_fields, 
+            (input) => input.value.split(/[\s]+/).every(splittedItem => splittedItem == '')));
         }
 
         let i = 0;
@@ -41,6 +54,8 @@ const useFormValidation = () => {
         
         return validationResults[--i];
     }
+
+    return [validateForm, updateInputs];
 }
 
 export default useFormValidation;

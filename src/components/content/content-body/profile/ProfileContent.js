@@ -1,20 +1,21 @@
 import React, { useContext } from 'react';
 
-import { profileContext } from '../../../../contexts';
+import { contentContext, profileContext } from '../../../../contexts';
 import { profilePlaceholders } from '../../../../globalConstants';
 
 const ProfileContent = () => {
     //console.log('profile-content');
-    const contextData = useContext(profileContext);
+    const userData = useContext(profileContext).user_data;
+    const enableSettings = useContext(contentContext);
 
     return(
         <div id="Profile-content" className="d-flex mb-4">
             {
-                contextData.enable_settings?
+                enableSettings?
                 <textarea name="UserStatus" type="text" autoComplete="off" placeholder={ profilePlaceholders.profile_content }
                 className="input-placeholder w-100"></textarea>
                 :
-                <p className="d-flex me-auto ms-auto">{ contextData.user_data.user_status }</p>
+                <p className="d-flex me-auto ms-auto">{ userData.user_status }</p>
             }
         </div>
     )

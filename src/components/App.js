@@ -19,8 +19,9 @@ const App = () => {
       <RegSuccessPopup />
       <Routes>
         <Route element={ <ProtectedRoutes /> }>
-          <Route path={ routes.main } element={ <ContentWrap show_profile={ false } /> } />
-          <Route path={ routes.settings } element={ <ContentWrap show_profile={ true } /> } />
+          <Route path={ routes.main } element={ <ContentWrap /> } />
+          <Route path={ routes.settings } element={ <ContentWrap /> } />
+          <Route path={ routes.create } element={ <ContentWrap /> } />
           <Route path={ routes.auth } element={ <LoginWrap /> } />
         </Route>
         <Route path={ routes.not_found } element={ <ErrorWrap /> } />

@@ -5,14 +5,7 @@ import { requestTypes, routes } from "../globalConstants";
 
 const useRegAuth = () => {
     const navigate = useNavigate();
-    const validate = useFormValidation();
-
-    function updateInputs(oldInputs, newInputs){
-        oldInputs.forEach(input => {
-            input.classList.remove('correct', 'incorrect');
-            input.classList.add(newInputs.includes(input)? 'incorrect' : 'correct');
-        });
-    }
+    const [validate, updateInputs] = useFormValidation();
 
     function performResultAction(requestType){
         switch(requestType){

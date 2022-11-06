@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import ProfileHeader from './ProfileHeader';
 import ProfileContent from './ProfileContent';
 import ProfileFooter from './ProfileFooter';
-import { profileContext } from '../../../../contexts';
+import { contentContext, profileContext } from '../../../../contexts';
 import '../../../../styles/profile.css';
 
-const Profile = (props) => {
+const Profile = () => {
+    const enableSettings = useContext(contentContext);
     //console.log('profile');
     let userData = useSelector(state => state.user_data);
     if (userData === null){
@@ -18,41 +19,40 @@ const Profile = (props) => {
         }
     }
 
-    const profileMargins = `profile-position-settings-${props.enable_settings? 'on' : 'off'}`;
-    const contextData = {
+    const profileMargins = `profile-position-settings-${enableSettings? 'on' : 'off'}`;
+    const profileContextData = {
         user_data: {
             ...userData,
             user_status: userData.user_status != null? userData.user_status : '',
             user_birthday: userData.user_birthday != null?
-            new Date(userData.user_birthday * 1000).toLocaleDateString() : ''
-        },
-        enable_settings: props.enable_settings
-    };    
-
-    const getInputValue = (inputName) => {
-        let inputValue = "";
-
-        switch (inputName){
-            case 'UserStatus':
-                inputValue = contextData.user_data.user_status;
-                break;
-            case 'UserBirthday':
-                inputValue = contextData.user_data.user_birthday;
-                break;
+            new Date(userData.user_birthday * 1000).toLocaleDateString('fr-CH') : ''
         }
-
-        return inputValue;
-    }
+    };    
 
     useEffect(() => {
         Array.from(document.getElementById('Profile').querySelectorAll('textarea, input')).forEach(input => {
-            input.value = getInputValue(input.name);
+            switch (input.name){
+                case 'UserStatus':
+                    input.value = profileContextData.user_data.user_status;
+                    break;
+                case 'UserBirthday':
+                    input.onfocus = () => input.type = 'date';
+                    input.onblur = () => {
+                        input.type = 'text';
+                        if (input.value != ''){
+                            const splittedDate = input.value.split('-');
+                            input.value = [splittedDate[2], splittedDate[1], splittedDate[0]].join('.');
+                        }
+                    };
+                    input.value = profileContextData.user_data.user_birthday;
+                    break;
+            }
         })
     });
 
     return(
         <div id="Profile" className={`d-flex flex-column col-5 p-2 ${profileMargins}`}>
-            <profileContext.Provider value={ contextData } >
+            <profileContext.Provider value={ profileContextData } >
                 <ProfileHeader />
                 <ProfileContent />
                 <ProfileFooter />

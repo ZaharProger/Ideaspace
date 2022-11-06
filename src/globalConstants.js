@@ -20,7 +20,9 @@ export const errorMessages = {
 
 export const requestTypes = {
     auth: 'auth',
-    reg: 'reg'
+    reg: 'reg',
+    create: 'create',
+    edit: 'edit'
 }
 
 export const buttons = {
@@ -29,6 +31,7 @@ export const buttons = {
     liked: 'liked',
     sign_out: 'sign out',
     save_profile: 'save_profile',
+    create_post: 'create_post',
     cancel: 'cancel'
 }
 
@@ -68,12 +71,23 @@ export const paneTemplates = {
             key: buttons.cancel,
             caption: 'Отмена'
         }
+    ],
+    post_footer: [
+        {
+            key: buttons.create_post,
+            caption: 'Создать'
+        },
+        {
+            key: buttons.cancel,
+            caption: 'Отмена'
+        }
     ]
 }
 
 export const profilePlaceholders = {
     profile_content: 'Статус',
-    profile_footer: 'дд.мм.гггг'
+    profile_footer: 'дд.мм.гггг',
+    post_content: 'Напишите ваши мысли'
 }
 
 export const reduxKeys = {
@@ -83,4 +97,10 @@ export const reduxKeys = {
 
 export const localStorageKeys = {
     is_logged: 'is_logged'
+}
+
+export const layoutTypes = {
+    both: 'both',
+    profile: 'profile',
+    post: 'post'
 }

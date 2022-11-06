@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { buttons, paneTemplates, reduxKeys, routes } from "../globalConstants";
+import { buttons, paneTemplates, reduxKeys, routes, requestTypes } from "../globalConstants";
 import NavBarListItem from "../components/content/navbar/NavBarListItem";
 import useRedux from "./useRedux";
+import useFormValidation from './useFormValidation';
+import useForm from './useForm';
 
 
 const useButtonsPane = (template) => {
+    const makeForm = useForm();
+    const [validate, updateInputs]= useFormValidation();
     const signOutCallback = useRedux(reduxKeys.sign_out);
     const updateUserCallback = useRedux(reduxKeys.get_user);
     const currentUser = useSelector(state => state.user_data);
@@ -55,30 +59,24 @@ const useButtonsPane = (template) => {
                         saveButton.innerText = 'Подождите...';
 
                         const profileInputs = Array.from(document.getElementById('Profile').querySelectorAll('input, textarea'));
-                        const profileForm = new FormData();
-                        profileInputs.forEach(profileInput => {
-                            let fieldValue = profileInput.value;
-                            if (profileInput.name == 'UserBirthday'){
-                                const splittedDate = profileInput.value.split('.');
-                                fieldValue = Math.floor(new Date([splittedDate[2], splittedDate[1], splittedDate[0]]
-                                    .join('-')).getTime() / 1000);
-                            }
-                            profileForm.append(profileInput.name, fieldValue);
-                        })
+                        const profileForm = makeForm(profileInputs, requestTypes.edit);
 
                         const response = await fetch('/api/Users', {
                             method: 'PUT',
                             body: profileForm
                         });
 
+                        saveButton.innerText = prevCaption;
                         if (response.ok){
-                            saveButton.innerText = prevCaption;
-                            updateUserCallback({
-                                ...currentUser,
-                                user_status: profileForm.get('UserStatus'),
-                                user_birthday: profileForm.get('UserBirthday')
-                            });
-                            navigate(routes.main);
+                            const responseData = await response.json();
+                            if (responseData.result){
+                                updateUserCallback({
+                                    ...currentUser,
+                                    user_status: profileForm.get('UserStatus'),
+                                    user_birthday: profileForm.get('UserBirthday')
+                                });
+                                navigate(routes.main);
+                            }
                         }
                     }
                     break;
@@ -89,6 +87,49 @@ const useButtonsPane = (template) => {
 
             buttonsPane.push(<button id={ key == buttons.save_profile? 'save-button' : '' } type="button" key={ key } className="p-2"
             onClick={ () => callback() }>{ caption }</button>);
+        }
+        else if (template == paneTemplates.post_footer){
+            const { key, caption } = template[i];
+            let callback = null;
+
+            switch(key){
+                case buttons.create_post:
+                    callback = async () => {
+                        const createButton = document.getElementById('create-button');
+                        const prevCaption = createButton.innerText;
+                        createButton.innerText = 'Подождите...';
+                        
+                        const inputFields = Array.from(document.getElementById('Wall').querySelectorAll('textarea'));
+                        const validationResult = validate(inputFields, requestTypes.create);
+
+                        document.getElementById('error-message').innerText = validationResult.error_message;
+                        updateInputs(inputFields, validationResult.error_inputs);
+                        if (validationResult.error_message == ''){
+                            const postForm = makeForm(inputFields, requestTypes.create);
+
+                            const response = await fetch('/api/Posts', {
+                                method: 'POST',
+                                body: postForm
+                            });
+
+                            createButton.innerText = prevCaption;
+                            
+                            if (response.ok){
+                                const responseData = await response.json();
+                                if (responseData.result){
+                                    navigate(routes.main);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case buttons.cancel:
+                    callback = () => navigate(routes.main);
+                    break;
+            }
+
+            buttonsPane.push(<button id={ key == buttons.create_post? 'create-button' : '' } type="button" key={ key } 
+            className='p-2' onClick={ () => callback() }>{ caption }</button>);
         }
     }
 
