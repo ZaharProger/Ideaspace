@@ -41,7 +41,7 @@ const useFormValidation = () => {
                 (input) => input.value != formPasswords[0].value));
             }
         }
-        else if (requestType == requestTypes.create){
+        else if (requestType == requestTypes.create || requestType == requestTypes.search){
             validationResults.push(validateCase(formInputs, errorMessages.empty_fields, 
             (input) => input.value.split(/[\s]+/).every(splittedItem => splittedItem == '')));
         }

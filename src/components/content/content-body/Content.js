@@ -2,6 +2,7 @@ import React from 'react';
 
 import Profile from './profile/Profile';
 import Wall from './Wall';
+import SearchResultsWrap from './search-results/SearchResultsWrap';
 import NavBarSearch from '../navbar/NavBarSearch';
 import '../../../styles/content.css';
 import { layoutTypes } from '../../../globalConstants';
@@ -33,7 +34,12 @@ const Content = (props) => {
             }
             <contentContext.Provider value={ props.content_props.layout_type != layoutTypes.both }>
             {
-                layoutBasedComponent
+                props.content_props.search_visibility? 
+                <SearchResultsWrap search_results_props={ {
+                    search_width: props.content_props.search_width,
+                    search_visibility: props.content_props.search_visibility,
+                    found_data: props.content_props.found_data
+                } } /> : layoutBasedComponent
             }
             </contentContext.Provider>
         </div>

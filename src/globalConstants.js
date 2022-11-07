@@ -22,7 +22,8 @@ export const requestTypes = {
     auth: 'auth',
     reg: 'reg',
     create: 'create',
-    edit: 'edit'
+    edit: 'edit',
+    search: 'search'
 }
 
 export const buttons = {
