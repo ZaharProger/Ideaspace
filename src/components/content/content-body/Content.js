@@ -25,6 +25,9 @@ const Content = (props) => {
         case layoutTypes.post:
             layoutBasedComponent = <Wall wall_width={ props.content_props.wall_width } />;
             break;
+        case layoutTypes.search:
+            layoutBasedComponent = <SearchResultsWrap search_results_width={ props.search_results_width } />;
+            break;
     }
 
     return (
@@ -34,12 +37,7 @@ const Content = (props) => {
             }
             <contentContext.Provider value={ props.content_props.layout_type != layoutTypes.both }>
             {
-                props.content_props.search_visibility? 
-                <SearchResultsWrap search_results_props={ {
-                    search_width: props.content_props.search_width,
-                    search_visibility: props.content_props.search_visibility,
-                    found_data: props.content_props.found_data
-                } } /> : layoutBasedComponent
+                layoutBasedComponent
             }
             </contentContext.Provider>
         </div>

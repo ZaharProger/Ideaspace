@@ -33,24 +33,18 @@
     color: #4848ca;
 }
 
-#close-search-button > span, #Search-results > span{
+#Search-results > span, #Page-end{
     font-family: 'Roboto', sans-serif;
 }
 
-#close-search-button > span{
+#Page-end > span{
     font-size: 1.3em;
 }
 
-#close-search-button > i{
+#Page-end > i{
     font-size: 2.5em;
 }
 
-#close-search-button{
-    cursor: pointer;
-    transition: 0.3s ease-out;
-    color: #787878;
-}
-
-#close-search-button:hover{
+#Page-end{
     color: #4848ca;
 }

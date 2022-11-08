@@ -1,5 +1,6 @@
 export const routes = {
     main: '/',
+    search: '/search',
     auth: '/auth',
     settings: '/settings',
     create: '/create',
@@ -93,7 +94,8 @@ export const profilePlaceholders = {
 
 export const reduxKeys = {
     sign_out: 'sign_out',
-    get_user: 'get_user'
+    get_user: 'get_user',
+    search_data: 'search_data'
 }
 
 export const localStorageKeys = {
@@ -103,5 +105,6 @@ export const localStorageKeys = {
 export const layoutTypes = {
     both: 'both',
     profile: 'profile',
-    post: 'post'
+    post: 'post',
+    search: 'search'
 }

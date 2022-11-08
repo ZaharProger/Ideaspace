@@ -77,6 +77,14 @@
         border-color: #787878;
     }
 
+    #Navbar-search > i{
+        color: #787878;
+    }
+
+    #Navbar-search > i:hover{
+        color: #4848ca;
+    }
+
     .Navbar-list-item{
         margin-bottom: 20px;
         opacity: 0;

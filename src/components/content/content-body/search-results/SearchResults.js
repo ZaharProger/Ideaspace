@@ -1,30 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
+import SearchItem from '../search-results/SearchItem';
+import usePagination from '../../../../hooks/usePagination';
+import PageEnd from './PageEnd';
 
 const SearchResults = (props) => {
-    const [lastIndex, changeLastIndex] = useState(29);
-    const foundData = props.search_results_props.found_data;
+    const foundData = useSelector(state => state.search_data).map(responseItem => {
+        return <SearchItem key={ responseItem.user_login } item_data={ responseItem } />
+    });
     const isDataFound = foundData.length != 0;
+    const [applyPagination, updatePage] = usePagination(foundData, 30);
 
+    const dataPortion = updatePage();
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) =>{
-            entries.forEach(entry => {
-                if (entry.isIntersecting){
-                    console.log(1);
-                }
-            })
-        });
-
-        if (isDataFound){
-            observer.observe(foundData[lastIndex]);
-        }
-    })
+        applyPagination(document.getElementById('Page-end'));
+    }, [foundData]);
 
     return(
-        <div id="Search-results" className={ `d-flex flex-column me-auto ms-auto ${props.search_results_props.search_width}` }>
-            <span id="Search-results-header" className="mb-3"></span>
+        <div id="Search-results" className={ `d-flex flex-column me-auto ms-auto ${props.search_width}` }>
+            <span id="Search-results-header" className="mb-3">{ isDataFound? 'Результаты поиска' : 'Ничего не найдено...' }</span>
             {
-
-                isDataFound? props.search_results_props.found_data : null
+                isDataFound? 
+                <>
+                {
+                    dataPortion
+                }
+                {
+                    dataPortion.length != foundData.length? <PageEnd /> : null
+                }
+                </> : null
             }
         </div>
     )

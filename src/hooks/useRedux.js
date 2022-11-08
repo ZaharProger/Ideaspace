@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 
 import changeUserData from "../state-manager/actions/changeUserData";
+import changeSearchData from '../state-manager/actions/changeSearchData';
 import { reduxKeys } from "../globalConstants";
 
 const useRedux = (reduxAction) => {
@@ -14,6 +15,9 @@ const useRedux = (reduxAction) => {
             break;
         case reduxKeys.get_user:
             callback = (userData) => dispatch(changeUserData(userData));
+            break;
+        case reduxKeys.search_data:
+            callback = (searchData) => dispatch(changeSearchData(searchData));
             break;
     }
 

@@ -1,5 +1,6 @@
 const initialState = {
-    user_data: null
+    user_data: null,
+    search_data: []
 };
 
 export default initialState;
