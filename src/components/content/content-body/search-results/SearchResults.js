@@ -9,13 +9,14 @@ const SearchResults = (props) => {
     const foundData = useSelector(state => state.search_data).map(responseItem => {
         return <SearchItem key={ responseItem.user_login } item_data={ responseItem } />
     });
-    const isDataFound = foundData.length != 0;
-    const [applyPagination, updatePage] = usePagination(foundData, 30);
+    const searchLimit = useSelector(state => state.search_limit);
 
-    const dataPortion = updatePage();
+    const isDataFound = foundData.length != 0;
+    const applyPagination = usePagination(30);
+
     useEffect(() => {
         applyPagination(document.getElementById('Page-end'));
-    }, [foundData]);
+    });
 
     return(
         <div id="Search-results" className={ `d-flex flex-column me-auto ms-auto ${props.search_width}` }>
@@ -24,10 +25,10 @@ const SearchResults = (props) => {
                 isDataFound? 
                 <>
                 {
-                    dataPortion
+                    foundData
                 }
                 {
-                    dataPortion.length != foundData.length? <PageEnd /> : null
+                    searchLimit? null : <PageEnd />
                 }
                 </> : null
             }

@@ -1,36 +1,17 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import useRedux from '../../../hooks/useRedux';
-import useFormValidation from '../../../hooks/useFormValidation';
-import { queryStringParams, requestTypes, reduxKeys, routes } from '../../../globalConstants';
-
+import useRedirection from '../../../hooks/useRedirection';
+import { routes } from '../../../globalConstants';
+import usePagination from '../../../hooks/usePagination';
 
 const NavBarSearch = () => {
     //console.log('navbar-search');
-    const navigate = useNavigate();
-    const [validate] = useFormValidation();
-    const searchDataCallback = useRedux(reduxKeys.search_data);
+    const redirect = useRedirection();
+    const searchData = usePagination();
 
     useEffect(() => {
         const searchField = document.getElementById('search-field');
-        searchField.onfocus = () => navigate(routes.search);
-
-        const searchData = async () => {
-            if (validate([searchField], requestTypes.search).error_message == ''){
-                const response = await fetch(`/api/Users?${queryStringParams.search_string}=${searchField.value.trim()}`, {
-                    method: 'GET'
-                });
-                
-                if (response.ok){
-                    const responseData = await response.json();
-                    searchDataCallback(responseData.data);            
-                }
-            }
-            else{
-                searchDataCallback([]);
-            }
-        };
+        searchField.onfocus = () => redirect(routes.search);
         
         const searchButton = document.getElementById('Search-button');
         searchButton.onclick = () => {
@@ -38,6 +19,7 @@ const NavBarSearch = () => {
                 searchData();
             }
         }
+        
         document.onkeydown = (e) => {
             if (e.key == 'Enter' && document.activeElement == searchField){
                 searchData();

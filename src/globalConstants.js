@@ -9,7 +9,8 @@ export const routes = {
 
 export const queryStringParams = {
     user_id: 'UserId',
-    search_string: 'SearchString'
+    search_string: 'SearchString',
+    limit: 'Limit'
 }
 
 export const errorMessages = {
@@ -95,7 +96,8 @@ export const profilePlaceholders = {
 export const reduxKeys = {
     sign_out: 'sign_out',
     get_user: 'get_user',
-    search_data: 'search_data'
+    search_data: 'search_data',
+    search_limit: 'search_limit'
 }
 
 export const localStorageKeys = {

@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { buttons, paneTemplates, reduxKeys, routes, requestTypes } from "../globalConstants";
@@ -6,6 +5,7 @@ import NavBarListItem from "../components/content/navbar/NavBarListItem";
 import useRedux from "./useRedux";
 import useFormValidation from './useFormValidation';
 import useForm from './useForm';
+import useRedirection from './useRedirection';
 
 
 const useButtonsPane = (template) => {
@@ -14,7 +14,7 @@ const useButtonsPane = (template) => {
     const signOutCallback = useRedux(reduxKeys.sign_out);
     const updateUserCallback = useRedux(reduxKeys.get_user);
     const currentUser = useSelector(state => state.user_data);
-    const navigate = useNavigate();
+    const redirect = useRedirection();
 
     const buttonsPane = [];
     for (let i = 0; i < template.length; ++i){
@@ -24,7 +24,7 @@ const useButtonsPane = (template) => {
             switch (key){
                 case buttons.settings:
                 case buttons.create:
-                    callback = () => navigate(route);
+                    callback = () => redirect(route);
                     break;
                 case buttons.sign_out:
                     callback = async () => {
@@ -34,7 +34,7 @@ const useButtonsPane = (template) => {
 
                         if (response.ok){
                             signOutCallback();
-                            navigate(route);
+                            redirect(route);
                         }
                     }
                     break;
@@ -75,13 +75,13 @@ const useButtonsPane = (template) => {
                                     user_status: profileForm.get('UserStatus'),
                                     user_birthday: profileForm.get('UserBirthday')
                                 });
-                                navigate(routes.main);
+                                redirect(routes.main);
                             }
                         }
                     }
                     break;
                 case buttons.cancel:
-                    callback = () => navigate(routes.main);
+                    callback = () => redirect(routes.main);
                     break;
             }
 
@@ -117,14 +117,14 @@ const useButtonsPane = (template) => {
                             if (response.ok){
                                 const responseData = await response.json();
                                 if (responseData.result){
-                                    navigate(routes.main);
+                                    redirect(routes.main);
                                 }
                             }
                         }
                     }
                     break;
                 case buttons.cancel:
-                    callback = () => navigate(routes.main);
+                    callback = () => redirect(routes.main);
                     break;
             }
 

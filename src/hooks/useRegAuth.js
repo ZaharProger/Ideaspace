@@ -1,16 +1,15 @@
-import { useNavigate } from "react-router-dom";
-
 import useFormValidation from "./useFormValidation";
+import useRedirection from './useRedirection';
 import { requestTypes, routes } from "../globalConstants";
 
 const useRegAuth = () => {
-    const navigate = useNavigate();
+    const redirect = useRedirection();
     const [validate, updateInputs] = useFormValidation();
 
     function performResultAction(requestType){
         switch(requestType){
             case requestTypes.auth:
-                navigate(routes.main);
+                redirect(routes.main);
                 break;
             case requestTypes.reg:
                 const regSuccessPopup = document.getElementById('Reg-success-popup');

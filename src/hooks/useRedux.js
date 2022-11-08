@@ -3,6 +3,7 @@ import { useCallback } from "react";
 
 import changeUserData from "../state-manager/actions/changeUserData";
 import changeSearchData from '../state-manager/actions/changeSearchData';
+import changeSearchLimit from '../state-manager/actions/changeSearchLimit';
 import { reduxKeys } from "../globalConstants";
 
 const useRedux = (reduxAction) => {
@@ -18,6 +19,9 @@ const useRedux = (reduxAction) => {
             break;
         case reduxKeys.search_data:
             callback = (searchData) => dispatch(changeSearchData(searchData));
+            break;
+        case reduxKeys.search_limit:
+            callback = (searchLimit) => dispatch(changeSearchLimit(searchLimit));
             break;
     }
 
