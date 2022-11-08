@@ -26,7 +26,7 @@ const Content = (props) => {
             layoutBasedComponent = <Wall wall_width={ props.content_props.wall_width } />;
             break;
         case layoutTypes.search:
-            layoutBasedComponent = <SearchResultsWrap search_results_width={ props.search_results_width } />;
+            layoutBasedComponent = <SearchResultsWrap search_results_width={ props.content_props.search_results_width } />;
             break;
     }
 
