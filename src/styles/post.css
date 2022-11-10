@@ -70,7 +70,11 @@
 .Post-footer > i{
     color: #787878;
     cursor: pointer;
-    transition: 0.3s ease-out;
+    transition: 0.3s, ease-out;
+}
+
+.Post-footer > i:first-child:hover{
+    color: #ec0000;
 }
 
 .Post-footer > i:hover{
