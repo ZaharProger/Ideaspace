@@ -98,6 +98,7 @@ export const reduxKeys = {
     get_user: 'get_user',
     search_data: 'search_data',
     search_limit: 'search_limit'
+
 }
 
 export const localStorageKeys = {

@@ -6,9 +6,7 @@ import usePagination from '../../../../hooks/usePagination';
 import PageEnd from './PageEnd';
 
 const SearchResults = (props) => {
-    const foundData = useSelector(state => state.search_data).map(responseItem => {
-        return <SearchItem key={ responseItem.user_login } item_data={ responseItem } />
-    });
+    const foundData = useSelector(state => state.search_data);
     const searchLimit = useSelector(state => state.search_limit);
 
     const isDataFound = foundData.length != 0;
@@ -16,7 +14,7 @@ const SearchResults = (props) => {
 
     useEffect(() => {
         applyPagination(document.getElementById('Page-end'));
-    });
+    }, [applyPagination]);
 
     return(
         <div id="Search-results" className={ `d-flex flex-column me-auto ms-auto ${props.search_width}` }>
@@ -25,7 +23,7 @@ const SearchResults = (props) => {
                 isDataFound? 
                 <>
                 {
-                    foundData
+                    foundData.map(responseItem => <SearchItem key={ responseItem.user_login } item_data={ responseItem } />)
                 }
                 {
                     searchLimit? null : <PageEnd />

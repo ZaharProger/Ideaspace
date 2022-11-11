@@ -25,7 +25,8 @@ const NavBarSearch = () => {
                 searchData();
             }
         }
-    });
+
+    }, [redirect]);
 
     return(
         <div id="Navbar-search" className="d-flex flex-row flex-grow-1 pb-4 pe-2 ps-2 w-100">

@@ -5,7 +5,7 @@ const RegSuccessPopup = () => {
         const popupCloseButton = document.getElementById('popup-close-button')
         if (popupCloseButton != null){
             popupCloseButton.onclick = () => {
-                document.getElementById('Reg-success-popup').classList.replace('active', 'hidden');
+                document.getElementById('Reg-success-popup').classList.replace('active-animated', 'hidden');
             }
         }
     })

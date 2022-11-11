@@ -13,10 +13,10 @@ const useRegAuth = () => {
                 break;
             case requestTypes.reg:
                 const regSuccessPopup = document.getElementById('Reg-success-popup');
-                if (regSuccessPopup.classList.contains('active')){
-                    regSuccessPopup.classList.replace('active', 'hidden');
+                if (regSuccessPopup.classList.contains('active-animated')){
+                    regSuccessPopup.classList.replace('active-animated', 'hidden');
                 }
-                setTimeout(() => regSuccessPopup.classList.replace('hidden', 'active'), 100);
+                setTimeout(() => regSuccessPopup.classList.replace('hidden', 'active-animated'), 100);
                 document.getElementById('Reg-ref-button').onclick(new MouseEvent('mousedown'), true);
                 break;
         }

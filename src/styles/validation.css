@@ -1,6 +1,10 @@
-.active{
+.active-animated{
     display: flex;
     animation: reg-success-popup-reveal 1s ease-out 0s 1 forwards;
+}
+
+.active{
+    display: flex;
 }
 
 .hidden{
