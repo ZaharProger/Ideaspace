@@ -11,9 +11,7 @@ const NavBarIcon = () => {
     return (
         <div id="Navbar-icon" className="d-flex flex-grow-1">
             <img src={ appLogo } alt="app-logo" className="mb-3" onClick={ () => redirect(routes.main) } />
-            {
-                window.innerWidth > 1100? <NavBarSearch /> : null
-            }
+            <NavBarSearch />
         </div>
     )
 }

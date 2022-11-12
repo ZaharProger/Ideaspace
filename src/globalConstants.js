@@ -107,8 +107,7 @@ export const reduxKeys = {
 }
 
 export const localStorageKeys = {
-    is_logged: 'is_logged',
-    search_data: 'search_data'
+    is_logged: 'is_logged'
 }
 
 export const layoutTypes = {

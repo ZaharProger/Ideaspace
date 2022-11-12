@@ -50,7 +50,8 @@
     }  
 
     #Navbar-icon > img{
-        margin-left: auto;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     #Navbar-list{
@@ -67,22 +68,6 @@
         margin-left: auto;
         margin-right: auto;
         margin-top: 16px;
-    }
-
-    #Navbar-search > input{
-        border-color: #a2a2a2;
-    }
-
-    #Navbar-search > input:focus{
-        border-color: #787878;
-    }
-
-    #Navbar-search > i{
-        color: #787878;
-    }
-
-    #Navbar-search > i:hover{
-        color: #4848ca;
     }
 
     .Navbar-list-item{

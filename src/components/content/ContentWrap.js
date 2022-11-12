@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import NavBar from './navbar/NavBar';
 import Content from './content-body/Content';
 import { navBarContext } from '../../contexts';
-import { layoutTypes, localStorageKeys, routes } from '../../globalConstants';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import { layoutTypes, routes } from '../../globalConstants';
 
 const ContentWrap = () => {
     //console.log('content-wrap');
     const location = useLocation();
-    const { set_item: setItem } = useLocalStorage();
     const [menuButtonStatus, changeMenuButtonStatus] = useState(window.innerWidth <= 1100);
-    const [navBarSearchStatus, changeNavBarSearchStatus] = useState(window.innerWidth <= 1100);
     const [wallWidth, changeWallWidth] = useState('col-7');
     const [searchResultsWidth, changeSearchResultsWidth] = useState('col-5');
     
@@ -20,15 +17,8 @@ const ContentWrap = () => {
         const isMediaActive = window.innerWidth <= 1100;
 
         changeMenuButtonStatus(isMediaActive);
-        changeNavBarSearchStatus(isMediaActive);
         changeWallWidth(isMediaActive? '' : 'col-7');
         changeSearchResultsWidth(isMediaActive? '' : 'col-5');
-
-        const searchField = document.getElementById('search-field');
-        if (searchField !== null){
-            searchField.oninput = () => setItem(localStorageKeys.search_data, searchField.value);
-            setItem(localStorageKeys.search_data, searchField.value);
-        }
     }
 
     let layoutType;
@@ -51,13 +41,18 @@ const ContentWrap = () => {
         layoutType = layoutTypes.search;
     }
 
+    useEffect(() => window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto'
+    }), [location.pathname]);
+
     return (
         <div id="Content-wrap" className='d-flex flex-column'>
             <navBarContext.Provider value={ menuButtonStatus }>
                 <NavBar />
             </navBarContext.Provider>
             <Content content_props={ {
-                navbar_search_status: navBarSearchStatus,
                 layout_type: layoutType,
                 wall_width: wallWidth,
                 search_results_width: searchResultsWidth,
