@@ -1,9 +1,9 @@
-import { USER_DATA } from "../stateConstants";
+import { PROFILE_DATA } from "../stateConstants";
 
-const changeUserData = (userData) => {
+const changeUserData = (profileData) => {
     return {
-        type: USER_DATA,
-        user_data: userData
+        type: PROFILE_DATA,
+        profile_data: profileData
     }
 }
 

@@ -4,15 +4,27 @@ import { useSelector } from 'react-redux';
 import SearchItem from '../search-results/SearchItem';
 import usePagination from '../../../../hooks/usePagination';
 import PageEnd from './PageEnd';
+import { routes } from '../../../../globalConstants';
+import useRedirection from '../../../../hooks/useRedirection';
 
 const SearchResults = (props) => {
+    const redirect = useRedirection();
+
     const foundData = useSelector(state => state.search_data);
     const searchLimit = useSelector(state => state.search_limit);
+    const currentEndIndex = useSelector(state => state.end_index);
 
     const isDataFound = foundData.length != 0;
-    const applyPagination = usePagination(30);
+    const { apply_pagination: applyPagination } = usePagination(30, currentEndIndex);
 
     useEffect(() => {
+        Array.from(document.getElementsByClassName('Search-item')).forEach(searchItem => {
+            searchItem.onclick = () => {
+                searchItem.classList.add('chosen');
+                redirect(routes.users);
+            }
+        });
+
         applyPagination(document.getElementById('Page-end'));
     }, [applyPagination]);
 

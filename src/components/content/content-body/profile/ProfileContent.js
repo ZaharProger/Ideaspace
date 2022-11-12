@@ -6,7 +6,7 @@ import { profilePlaceholders } from '../../../../globalConstants';
 const ProfileContent = () => {
     //console.log('profile-content');
     const userData = useContext(profileContext).user_data;
-    const enableSettings = useContext(contentContext);
+    const enableSettings = useContext(contentContext).enable_settings;
 
     return(
         <div id="Profile-content" className="d-flex mb-4">

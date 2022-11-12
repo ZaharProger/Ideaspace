@@ -19,11 +19,11 @@
     border-radius: 100%;
 }
 
-.Search-item > span, #Search-results > span{
+.Search-item > span, #Search-results > span, .Search-item > i{
     text-align: center;
 }
 
-.Search-item > span{
+.Search-item > span, .Search-item > i{
     font-family: 'Open Sans', sans-serif;
     font-size: 1.2em;
 }

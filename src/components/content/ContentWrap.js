@@ -4,11 +4,13 @@ import { useLocation } from 'react-router-dom';
 import NavBar from './navbar/NavBar';
 import Content from './content-body/Content';
 import { navBarContext } from '../../contexts';
-import { layoutTypes, routes } from '../../globalConstants';
+import { layoutTypes, localStorageKeys, routes } from '../../globalConstants';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const ContentWrap = () => {
     //console.log('content-wrap');
     const location = useLocation();
+    const { set_item: setItem } = useLocalStorage();
     const [menuButtonStatus, changeMenuButtonStatus] = useState(window.innerWidth <= 1100);
     const [navBarSearchStatus, changeNavBarSearchStatus] = useState(window.innerWidth <= 1100);
     const [wallWidth, changeWallWidth] = useState('col-7');
@@ -21,22 +23,32 @@ const ContentWrap = () => {
         changeNavBarSearchStatus(isMediaActive);
         changeWallWidth(isMediaActive? '' : 'col-7');
         changeSearchResultsWidth(isMediaActive? '' : 'col-5');
+
+        const searchField = document.getElementById('search-field');
+        if (searchField !== null){
+            searchField.oninput = () => setItem(localStorageKeys.search_data, searchField.value);
+            setItem(localStorageKeys.search_data, searchField.value);
+        }
     }
 
     let layoutType;
-    switch (location.pathname){
-        case routes.main:
-            layoutType = layoutTypes.both;
-            break;
-        case routes.settings:
-            layoutType = layoutTypes.profile;
-            break;
-        case routes.create:
-            layoutType = layoutTypes.post;
-            break;
-        case routes.search:
-            layoutType = layoutTypes.search;
-            break;
+    let anotherProfile = false;
+
+    if (location.pathname.includes(routes.users_base)){
+        layoutType = layoutTypes.both;
+        anotherProfile = true;
+    }
+    else if (location.pathname == routes.main){
+        layoutType = layoutTypes.both;
+    }
+    else if (location.pathname == routes.settings){
+        layoutType = layoutTypes.profile;
+    }
+    else if(location.pathname == routes.create){
+        layoutType = layoutTypes.post;
+    }
+    else if(location.pathname == routes.search){
+        layoutType = layoutTypes.search;
     }
 
     return (
@@ -48,7 +60,8 @@ const ContentWrap = () => {
                 navbar_search_status: navBarSearchStatus,
                 layout_type: layoutType,
                 wall_width: wallWidth,
-                search_results_width: searchResultsWidth
+                search_results_width: searchResultsWidth,
+                another_profile: anotherProfile
             } } />
         </div>
     )

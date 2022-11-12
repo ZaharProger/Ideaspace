@@ -8,7 +8,7 @@ const ProfileFooter = () => {
     //console.log('profile-footer');
     const footerButtons = useButtonsPane(paneTemplates.profile_footer);
     const userData = useContext(profileContext).user_data;
-    const enableSettings = useContext(contentContext);
+    const enableSettings = useContext(contentContext).enable_settings;
 
     return(
         <div id="Profile-footer" className='d-flex flex-column'>

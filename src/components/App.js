@@ -21,6 +21,7 @@ const App = () => {
         <Route element={ <ProtectedRoutes /> }>
           <Route path={ routes.main } element={ <ContentWrap /> } />
           <Route path={ routes.search } element={ <ContentWrap /> } />
+          <Route path={ routes.users } element={ <ContentWrap /> } />
           <Route path={ routes.settings } element={ <ContentWrap /> } />
           <Route path={ routes.create } element={ <ContentWrap /> } />
           <Route path={ routes.auth } element={ <LoginWrap /> } />

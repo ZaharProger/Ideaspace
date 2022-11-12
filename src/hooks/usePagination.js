@@ -1,46 +1,45 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import useRedux from './useRedux';
 import useFormValidation from './useFormValidation';
 import { queryStringParams, requestTypes, reduxKeys } from '../globalConstants';
 
-const usePagination = (portionLength=null) => {
+const usePagination = (portionLength, currentEndIndex=0) => {
     const [validate] = useFormValidation();
 
     const searchLimitCallback = useRedux(reduxKeys.search_limit);
     const searchDataCallback = useRedux(reduxKeys.search_data);
-    const [endIndex, changeEndIndex] = useState(portionLength !== null? portionLength : 30);
-    const [isFetching, changeIsFetching] = useState(false);
-    console.log(endIndex);
+    const endIndexCallback = useRedux(reduxKeys.end_index);
 
     const observer = useRef();
 
     const applyPagination = () => {
-        if (portionLength !== null){
-            const eventFireObject = document.getElementById('Page-end');
-            if (eventFireObject !== null){
-                if (observer.current){
-                    observer.current.disconnect();
-                }
-
-                observer.current = new IntersectionObserver(entries => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && !isFetching){
-                            changeIsFetching(true);
-                            searchData();
-                        }
-                    });
-                }, { rootMargin: '200px' });
-    
-                observer.current.observe(eventFireObject);
+        const eventFireObject = document.getElementById('Page-end');
+        if (eventFireObject !== null){
+            if (observer.current){
+                observer.current.disconnect();
             }
+
+            observer.current = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting){
+                        searchData();
+                    }
+                });
+            }, { rootMargin: '200px' });
+
+            observer.current.observe(eventFireObject);
         }
     }
 
     const searchData = async () => {
         const searchField = document.getElementById('search-field');
+
         if (validate([searchField], requestTypes.search).error_message == ''){
-            const queryParams = `${queryStringParams.search_string}=${searchField.value.trim()}&${queryStringParams.limit}=${endIndex}`;
+            const searchString = searchField.value.trim();
+            const finalEndIndex =  currentEndIndex + portionLength;
+
+            const queryParams = `${queryStringParams.search_string}=${searchString}&${queryStringParams.limit}=${finalEndIndex}`;
             const queryString = `/api/Users?${queryParams}`;
             const response = await fetch(queryString, {
                 method: 'GET'
@@ -50,17 +49,19 @@ const usePagination = (portionLength=null) => {
                 const responseData = await response.json();
                 searchDataCallback(responseData.data);
                 searchLimitCallback(responseData.isOver);
-                changeEndIndex(endIndex + portionLength);
-                changeIsFetching(false);
+                endIndexCallback(finalEndIndex);
             }
         }
         else{
             searchDataCallback(Array());
-            changeEndIndex(30);
+            endIndexCallback(0);
         }
     };
 
-    return portionLength !== null? applyPagination : searchData;
+    return {
+        apply_pagination: applyPagination,
+        search_data: searchData
+    };
 }
 
 export default usePagination;

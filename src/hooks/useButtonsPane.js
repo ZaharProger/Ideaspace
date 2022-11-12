@@ -12,8 +12,8 @@ const useButtonsPane = (template) => {
     const makeForm = useForm();
     const [validate, updateInputs]= useFormValidation();
     const signOutCallback = useRedux(reduxKeys.sign_out);
-    const updateUserCallback = useRedux(reduxKeys.get_user);
-    const currentUser = useSelector(state => state.user_data);
+    const updateUserCallback = useRedux(reduxKeys.profile_data);
+    const currentUser = useSelector(state => state.profile_data);
     const redirect = useRedirection();
 
     const buttonsPane = [];
@@ -23,6 +23,8 @@ const useButtonsPane = (template) => {
             let callback = null;
             switch (key){
                 case buttons.settings:
+                    callback = () => redirect(route);
+                    break;
                 case buttons.create:
                     callback = () => redirect(route);
                     break;

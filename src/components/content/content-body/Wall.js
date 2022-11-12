@@ -6,7 +6,7 @@ import Post from './post/Post';
 const Wall = (props) => {
     //console.log('wall');
 
-    const enableSettings = useContext(contentContext);
+    const enableSettings = useContext(contentContext).enable_settings;
     const posts = [
         <Post key="0" />,
         <Post key="1" />,

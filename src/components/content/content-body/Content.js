@@ -35,7 +35,10 @@ const Content = (props) => {
             {
                 props.content_props.navbar_search_status? <NavBarSearch /> : null
             }
-            <contentContext.Provider value={ props.content_props.layout_type != layoutTypes.both }>
+            <contentContext.Provider value={ {
+                enable_settings: props.content_props.layout_type != layoutTypes.both,
+                another_profile: props.content_props.another_profile
+            } }>
             {
                 layoutBasedComponent
             }

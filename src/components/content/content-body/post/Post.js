@@ -11,7 +11,7 @@ import { paneTemplates } from '../../../../globalConstants';
 const Post = () => {
     //console.log('post');
     const footerButtons = useButtonsPane(paneTemplates.post_footer);
-    const enableSettings = useContext(contentContext);
+    const enableSettings = useContext(contentContext).enable_settings;
 
     return(
         <div className="Post d-flex flex-column w-100">

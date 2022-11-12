@@ -5,7 +5,7 @@ import { profilePlaceholders } from '../../../../globalConstants';
 
 const PostContent = () => {
     //console.log('post-content');
-    const enableSettings = useContext(contentContext);
+    const enableSettings = useContext(contentContext).enable_settings;
 
     return(
         <div className="Post-content d-flex">

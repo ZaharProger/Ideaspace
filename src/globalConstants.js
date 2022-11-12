@@ -1,5 +1,7 @@
 export const routes = {
     main: '/',
+    users: '/users/:login',
+    users_base: '/users/',
     search: '/search',
     auth: '/auth',
     settings: '/settings',
@@ -8,7 +10,7 @@ export const routes = {
 };
 
 export const queryStringParams = {
-    user_id: 'UserId',
+    user_login: 'UserLogin',
     search_string: 'SearchString',
     limit: 'Limit'
 }
@@ -95,14 +97,17 @@ export const profilePlaceholders = {
 
 export const reduxKeys = {
     sign_out: 'sign_out',
-    get_user: 'get_user',
+    profile_data: 'profile_data',
+    found_user_data: 'found_user_data',
     search_data: 'search_data',
-    search_limit: 'search_limit'
+    search_limit: 'search_limit',
+    end_index: 'end_index'
 
 }
 
 export const localStorageKeys = {
-    is_logged: 'is_logged'
+    is_logged: 'is_logged',
+    search_data: 'search_data'
 }
 
 export const layoutTypes = {

@@ -8,9 +8,10 @@ import { contentContext, profileContext } from '../../../../contexts';
 import '../../../../styles/profile.css';
 
 const Profile = () => {
-    const enableSettings = useContext(contentContext);
+    const contentContextData = useContext(contentContext);
     //console.log('profile');
-    let userData = useSelector(state => state.user_data);
+    let userData = useSelector(state => 
+        contentContextData.another_profile? state.found_user_profile_data : state.profile_data);
     if (userData === null){
         userData = {
             user_login: '',
@@ -19,15 +20,16 @@ const Profile = () => {
         }
     }
 
-    const profileMargins = `profile-position-settings-${enableSettings? 'on' : 'off'}`;
     const profileContextData = {
         user_data: {
             ...userData,
-            user_status: userData.user_status != null? userData.user_status : '',
+            user_status: userData.user_status != null? userData.user_status : 'Пользователя не существует в системе :(',
             user_birthday: userData.user_birthday != null?
             new Date(userData.user_birthday * 1000).toLocaleDateString('fr-CH') : ''
         }
-    };    
+    };   
+
+    const profileMargins = `profile-position-settings-${contentContextData.enable_settings? 'on' : 'off'}`; 
 
     useEffect(() => {
         Array.from(document.getElementById('Profile').querySelectorAll('textarea, input')).forEach(input => {

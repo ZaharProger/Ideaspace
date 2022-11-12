@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 
 import useRedirection from '../../../hooks/useRedirection';
-import { routes } from '../../../globalConstants';
+import { localStorageKeys, routes } from '../../../globalConstants';
 import usePagination from '../../../hooks/usePagination';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
 const NavBarSearch = () => {
     //console.log('navbar-search');
     const redirect = useRedirection();
-    const searchData = usePagination();
+    const { search_data: searchData } = usePagination(30);
+    const { get_item: getItem } = useLocalStorage();
 
     useEffect(() => {
         const searchField = document.getElementById('search-field');
@@ -16,15 +18,17 @@ const NavBarSearch = () => {
         const searchButton = document.getElementById('Search-button');
         searchButton.onclick = () => {
             if (document.getElementById('Search-results') !== null){
-                searchData();
+                searchData(true);
             }
         }
         
         document.onkeydown = (e) => {
             if (e.key == 'Enter' && document.activeElement == searchField){
-                searchData();
+                searchData(true);
             }
         }
+
+        searchField.value = getItem(localStorageKeys.search_data, '');
 
     }, [redirect]);
 
