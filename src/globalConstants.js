@@ -101,7 +101,8 @@ export const reduxKeys = {
     found_user_data: 'found_user_data',
     search_data: 'search_data',
     search_limit: 'search_limit',
-    end_index: 'end_index'
+    end_index: 'end_index',
+    menu_status: 'menu_status'
 
 }
 

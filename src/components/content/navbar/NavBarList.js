@@ -1,12 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import { paneTemplates } from '../../../globalConstants';
+import { paneTemplates, reduxKeys } from '../../../globalConstants';
 import { navBarContext } from '../../../contexts';
 import useButtonsPane from '../../../hooks/useButtonsPane';
+import useRedux from '../../../hooks/useRedux';
 
 const NavBarList = () => {
     //console.log('navbar-list');
-    const [menuStatus, changeMenuStatus] = useState(false);
+    const menuStatus = useSelector(state => state.menu_status);
+    const menuStatusCallback = useRedux(reduxKeys.menu_status);
+    
     const menuButtonStatus = useContext(navBarContext);
     const listItems = useButtonsPane(paneTemplates.navigation);
 
@@ -27,7 +31,7 @@ const NavBarList = () => {
         <div id="Navbar-list" className="d-flex pb-3">
             {
                 menuButtonStatus? <i id="Menu-button" className={ `fa-solid fa-bars ${menuStatus? 'mb-3' : ''}` }
-                onClick={ () => changeMenuStatus(!menuStatus) }></i> : null
+                onClick={ () => menuStatusCallback(!menuStatus) }></i> : null
             }
             {
                 menuStatus || !menuButtonStatus? listItems : null

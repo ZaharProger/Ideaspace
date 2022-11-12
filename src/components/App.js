@@ -13,7 +13,6 @@ import '../styles/validation.css';
 
 const App = () => {
   //console.log('app');
-
   return (
     <div id="App" className="d-flex flex-column w-100 h-100">
       <RegSuccessPopup />

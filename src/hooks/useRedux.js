@@ -6,6 +6,7 @@ import changeSearchData from '../state-manager/actions/changeSearchData';
 import changeSearchLimit from '../state-manager/actions/changeSearchLimit';
 import changeEndIndex from '../state-manager/actions/changeEndIndex';
 import changeFoundUserProfileData from '../state-manager/actions/changeFoundUserProfileData';
+import changeMenuStatus from '../state-manager/actions/changeMenuStatus';
 import { reduxKeys } from "../globalConstants";
 
 const useRedux = (reduxAction) => {
@@ -30,6 +31,9 @@ const useRedux = (reduxAction) => {
             break;
         case reduxKeys.end_index:
             callback = (endIndex) => dispatch(changeEndIndex(endIndex));
+            break;
+        case reduxKeys.menu_status:
+            callback = (menuStatus) => dispatch(changeMenuStatus(menuStatus));
             break;
     }
 

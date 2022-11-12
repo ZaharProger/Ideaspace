@@ -18,7 +18,6 @@ const ProtectedRoutes = () => {
     const { set_item: setItem, get_item: getItem } = useLocalStorage();
     const savedIsLogged = getItem(localStorageKeys.is_logged, '0');
     const isLogged = useSelector(state => state.profile_data) != null || savedIsLogged == '1';
-    console.log(useSelector(state => state.profile_data) != null, savedIsLogged == '1');
     
     window.onbeforeunload = () => {
         setItem(localStorageKeys.is_logged, isLogged? '1' : '0');

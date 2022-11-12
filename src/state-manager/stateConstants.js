@@ -3,3 +3,4 @@ export const FOUND_USER_PROFILE_DATA = 'FOUND_USER_PROFILE_DATA';
 export const SEARCH_DATA = 'SEARCH_DATA';
 export const SEARCH_LIMIT = 'SEARCH_LIMIT';
 export const END_INDEX = 'END_INDEX';
+export const MENU_STATUS = 'MENU_STATUS';
