@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { contentContext } from '../../../../contexts';
-import { profilePlaceholders } from '../../../../globalConstants';
+import { placeholders } from '../../../../globalConstants';
 
 const PostContent = () => {
     //console.log('post-content');
@@ -11,7 +11,7 @@ const PostContent = () => {
         <div className="Post-content d-flex">
             {
                 enableSettings?
-                <textarea name="Content" type="text" autoComplete="off" placeholder={ profilePlaceholders.post_content }
+                <textarea name="Content" type="text" autoComplete="off" placeholder={ placeholders.post_content }
                 className="input-placeholder w-100"></textarea>
                 :
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 

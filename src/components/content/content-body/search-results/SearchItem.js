@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import userIcon from '../../../../pics/user-icon-post.svg';
 
 const SearchItem = (props) => {
-    const profileLogin = useSelector(state => state.profile_data.user_login);
-    const userLogin = props.item_data.user_login;
+    const profileLogin = useSelector(state => state.profile_data.userLogin);
+    const userLogin = props.item_data.userLogin;
 
     return(
         <div className="Search-item d-flex flex-row">

@@ -35,7 +35,7 @@ const SearchResults = (props) => {
                 isDataFound? 
                 <>
                 {
-                    foundData.map(responseItem => <SearchItem key={ responseItem.user_login } item_data={ responseItem } />)
+                    foundData.map(responseItem => <SearchItem key={ responseItem.userLogin } item_data={ responseItem } />)
                 }
                 {
                     searchLimit? null : <PageEnd />

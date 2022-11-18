@@ -13,7 +13,7 @@ const PostHeader = () => {
     return(
         <div className="Post-header d-flex flex-row w-100 p-2 flex-wrap">
             <img src={ userIconPost } alt="user-icon" />
-            <span className="d-flex flex-grow-1">{ userData !== null? userData.user_login : '' }</span>
+            <span className="d-flex flex-grow-1">{ userData !== null? userData.userLogin : '' }</span>
             {
                 contentContextData.enable_settings?
                 null

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { contentContext, profileContext } from '../../../../contexts';
-import { profilePlaceholders } from '../../../../globalConstants';
+import { placeholders } from '../../../../globalConstants';
 
 const ProfileContent = () => {
     //console.log('profile-content');
@@ -12,7 +12,7 @@ const ProfileContent = () => {
         <div id="Profile-content" className="d-flex mb-4">
             {
                 enableSettings?
-                <textarea name="UserStatus" type="text" autoComplete="off" placeholder={ profilePlaceholders.profile_content }
+                <textarea name="UserStatus" type="text" autoComplete="off" placeholder={ placeholders.profile_content }
                 className="input-placeholder w-100"></textarea>
                 :
                 <p className="d-flex me-auto ms-auto">{ userData.user_status }</p>

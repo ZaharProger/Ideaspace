@@ -19,13 +19,13 @@ const Profile = () => {
             user_birthday: null
         }
     }
-
+   
     const profileContextData = {
         user_data: {
             ...userData,
-            user_status: userData.user_status != null? userData.user_status : 'Пользователя не существует в системе :(',
-            user_birthday: userData.user_birthday != null?
-            new Date(userData.user_birthday * 1000).toLocaleDateString('fr-CH') : ''
+            user_status: userData.userStatus != null? userData.userStatus : '',
+            user_birthday: userData.userBirthday != null?
+            new Date(userData.userBirthday * 1000).toLocaleDateString('fr-CH') : ''
         }
     };   
 

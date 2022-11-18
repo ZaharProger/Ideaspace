@@ -89,7 +89,7 @@ export const paneTemplates = {
     ]
 }
 
-export const profilePlaceholders = {
+export const placeholders = {
     profile_content: 'Статус',
     profile_footer: 'дд.мм.гггг',
     post_content: 'Напишите ваши мысли'
