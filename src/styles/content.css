@@ -6,3 +6,11 @@
 #Wall{
     padding: 16px 16px 16px 48px;
 }
+
+#Wall > span{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    color: #4848ca;
+    text-align: center;
+    margin-top: 150px;
+}

@@ -16,20 +16,18 @@
 
 #Profile-header > p, #Profile-content > p, #Profile-footer > p, #Footer-buttons > button{
     font-family: 'Roboto', sans-serif;
-    text-align: center;
 }
 
 #Profile-header > p, #Profile-content > p, #Profile-footer > p{
-    font-family: 'Roboto', sans-serif;
     padding: 0;
     margin: 0;
-    text-align: center;
 }
 
 #Profile-header > p{
     color: #787878;
     font-weight: bolder;
     font-size: 1.3em;
+    text-align: center;
 }
 
 #Profile-header > img{
@@ -40,11 +38,13 @@
     font-style: italic;
     opacity: 0.9;
     color: #000000b5;
+    text-align: justify;
 }
 
 #Profile-footer > p{
     margin-top: auto;
     color: #787878;
+    text-align: center;
 }
 
 #Footer-buttons{

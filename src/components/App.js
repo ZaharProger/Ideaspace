@@ -23,6 +23,7 @@ const App = () => {
           <Route path={ routes.users } element={ <ContentWrap /> } />
           <Route path={ routes.settings } element={ <ContentWrap /> } />
           <Route path={ routes.create } element={ <ContentWrap /> } />
+          <Route path={ routes.liked } element={ <ContentWrap /> } />
           <Route path={ routes.auth } element={ <LoginWrap /> } />
         </Route>
         <Route path={ routes.not_found } element={ <ErrorWrap /> } />

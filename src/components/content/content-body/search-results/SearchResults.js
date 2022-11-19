@@ -4,18 +4,14 @@ import { useSelector } from 'react-redux';
 import SearchItem from '../search-results/SearchItem';
 import usePagination from '../../../../hooks/usePagination';
 import PageEnd from './PageEnd';
-import { routes } from '../../../../globalConstants';
+import { reduxKeys, routes } from '../../../../globalConstants';
 import useRedirection from '../../../../hooks/useRedirection';
 
 const SearchResults = (props) => {
     const redirect = useRedirection();
-
     const foundData = useSelector(state => state.search_data);
-    const searchLimit = useSelector(state => state.search_limit);
-    const currentEndIndex = useSelector(state => state.end_index);
-
-    const isDataFound = foundData.length != 0;
-    const { apply_pagination: applyPagination } = usePagination(30, currentEndIndex);
+    const isDataFound = foundData.data.length != 0;
+    const { apply_pagination: applyPagination } = usePagination(30, '/api/Users', reduxKeys.search_data, foundData.end_index);
 
     useEffect(() => {
         Array.from(document.getElementsByClassName('Search-item')).forEach(searchItem => {
@@ -25,7 +21,7 @@ const SearchResults = (props) => {
             }
         });
 
-        applyPagination(document.getElementById('Page-end'));
+        applyPagination(document.getElementById('search-field').value.trim());
     }, [applyPagination]);
 
     return(
@@ -35,10 +31,10 @@ const SearchResults = (props) => {
                 isDataFound? 
                 <>
                 {
-                    foundData.map(responseItem => <SearchItem key={ responseItem.userLogin } item_data={ responseItem } />)
+                    foundData.data.map(responseItem => <SearchItem key={ responseItem.userLogin } item_data={ responseItem } />)
                 }
                 {
-                    searchLimit? null : <PageEnd />
+                    foundData.search_limit? null : <PageEnd />
                 }
                 </> : null
             }

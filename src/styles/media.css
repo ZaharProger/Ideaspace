@@ -122,6 +122,10 @@
         padding: 16px;
     }
 
+    #Wall > span{
+        margin-top: 50px;
+    }
+
     #Profile{
         position: relative;
         width: 100%;

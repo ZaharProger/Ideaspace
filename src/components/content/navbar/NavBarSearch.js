@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 
 import useRedirection from '../../../hooks/useRedirection';
-import { routes } from '../../../globalConstants';
+import { reduxKeys, routes } from '../../../globalConstants';
 import usePagination from '../../../hooks/usePagination';
 
 const NavBarSearch = () => {
     //console.log('navbar-search');
     const redirect = useRedirection();
-    const { search_data: searchData } = usePagination(30);
+    const { search_data: searchData } = usePagination(30, '/api/Users', reduxKeys.search_data);
 
     useEffect(() => {
         const searchField = document.getElementById('search-field');
@@ -21,7 +21,7 @@ const NavBarSearch = () => {
                     left: 0,
                     behavior: 'auto'
                 });
-                searchData(true);
+                searchData(searchField.value.trim());
             }
         }
         
@@ -32,7 +32,7 @@ const NavBarSearch = () => {
                     left: 0,
                     behavior: 'auto'
                 });
-                searchData(true);
+                searchData(searchField.value.trim());
             }
         }
 

@@ -3,8 +3,7 @@ import { useCallback } from "react";
 
 import changeProfileData from "../state-manager/actions/changeUserData";
 import changeSearchData from '../state-manager/actions/changeSearchData';
-import changeSearchLimit from '../state-manager/actions/changeSearchLimit';
-import changeEndIndex from '../state-manager/actions/changeEndIndex';
+import changePostData from '../state-manager/actions/changePostData';
 import changeFoundUserProfileData from '../state-manager/actions/changeFoundUserProfileData';
 import changeMenuStatus from '../state-manager/actions/changeMenuStatus';
 import { reduxKeys } from "../globalConstants";
@@ -26,11 +25,8 @@ const useRedux = (reduxAction) => {
         case reduxKeys.search_data:
             callback = (searchData) => dispatch(changeSearchData(searchData));
             break;
-        case reduxKeys.search_limit:
-            callback = (searchLimit) => dispatch(changeSearchLimit(searchLimit));
-            break;
-        case reduxKeys.end_index:
-            callback = (endIndex) => dispatch(changeEndIndex(endIndex));
+        case reduxKeys.post_data:
+            callback = (postData) => dispatch(changePostData(postData));
             break;
         case reduxKeys.menu_status:
             callback = (menuStatus) => dispatch(changeMenuStatus(menuStatus));

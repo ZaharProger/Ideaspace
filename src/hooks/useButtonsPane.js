@@ -28,6 +28,9 @@ const useButtonsPane = (template) => {
                 case buttons.create:
                     callback = () => redirect(route);
                     break;
+                case buttons.liked:
+                    callback = () => redirect(route);
+                    break;
                 case buttons.sign_out:
                     callback = async () => {
                         const response = await fetch('/api/Users?', {

@@ -6,12 +6,13 @@ export const routes = {
     auth: '/auth',
     settings: '/settings',
     create: '/create',
+    liked: '/liked',
     not_found: '/*'
 };
 
 export const queryStringParams = {
-    user_login: 'UserLogin',
-    search_string: 'SearchString',
+    key: 'Key',
+    likes: 'Likes',
     limit: 'Limit'
 }
 
@@ -58,7 +59,7 @@ export const paneTemplates = {
             key: buttons.liked,
             icon: 'fa-heart',
             caption: 'Понравилось',
-            route: routes.main
+            route: routes.liked
         },
         {
             key: buttons.sign_out,
@@ -100,8 +101,7 @@ export const reduxKeys = {
     profile_data: 'profile_data',
     found_user_data: 'found_user_data',
     search_data: 'search_data',
-    search_limit: 'search_limit',
-    end_index: 'end_index',
+    post_data: 'post_data',
     menu_status: 'menu_status'
 
 }

@@ -1,19 +1,14 @@
 import { useRef } from "react";
 
 import useRedux from './useRedux';
-import useFormValidation from './useFormValidation';
-import { queryStringParams, requestTypes, reduxKeys } from '../globalConstants';
+import { queryStringParams } from '../globalConstants';
 
-const usePagination = (portionLength, currentEndIndex=0) => {
-    const [validate] = useFormValidation();
-
-    const searchLimitCallback = useRedux(reduxKeys.search_limit);
-    const searchDataCallback = useRedux(reduxKeys.search_data);
-    const endIndexCallback = useRedux(reduxKeys.end_index);
-
+const usePagination = (portionLength, apiEndpoint, listKey, currentEndIndex=0) => {
+    const savedApiEndpoint = apiEndpoint;
+    const reduxCallback = useRedux(listKey);
     const observer = useRef();
 
-    const applyPagination = () => {
+    const applyPagination = (keyToSearch) => {
         const eventFireObject = document.getElementById('Page-end');
         if (eventFireObject !== null){
             if (observer.current){
@@ -23,7 +18,7 @@ const usePagination = (portionLength, currentEndIndex=0) => {
             observer.current = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting){
-                        searchData();
+                        searchData(keyToSearch);
                     }
                 });
             }, { rootMargin: '200px' });
@@ -32,29 +27,31 @@ const usePagination = (portionLength, currentEndIndex=0) => {
         }
     }
 
-    const searchData = async () => {
-        const searchField = document.getElementById('search-field');
-
-        if (validate([searchField], requestTypes.search).error_message == ''){
-            const searchString = searchField.value.trim();
+    const searchData = async (keyToSearch) => {
+        if (!keyToSearch.split(/[\s]?/).every(splittedItem => splittedItem == '')){
             const finalEndIndex =  currentEndIndex + portionLength;
 
-            const queryParams = `${queryStringParams.search_string}=${searchString}&${queryStringParams.limit}=${finalEndIndex}`;
-            const queryString = `/api/Users?${queryParams}`;
+            const queryParams = `${queryStringParams.key}=${keyToSearch}&${queryStringParams.limit}=${finalEndIndex}`;
+            const queryString = `${savedApiEndpoint}?${queryParams}`;
             const response = await fetch(queryString, {
                 method: 'GET'
             });
             
             if (response.ok){
-                const responseData = await response.json();
-                searchDataCallback(responseData.data);
-                searchLimitCallback(responseData.isOver);
-                endIndexCallback(finalEndIndex);
+                const { isOver, data: foundData } = await response.json();
+                reduxCallback({
+                    search_limit: isOver,
+                    end_index: finalEndIndex,
+                    data: foundData
+                });
             }
         }
         else{
-            searchDataCallback(Array());
-            endIndexCallback(0);
+            reduxCallback({
+                search_limit: false,
+                end_index: 0,
+                data: Array(0)
+            });
         }
     };
 

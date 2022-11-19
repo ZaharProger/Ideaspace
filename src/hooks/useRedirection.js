@@ -8,20 +8,24 @@ const useRedirection = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const profileLogin = useSelector(state => state.profile_data !== null? state.profile_data.user_login : '');
+    const profileLogin = useSelector(state => state.profile_data !== null? state.profile_data.userLogin : '');
     const searchDataCallback = useRedux(reduxKeys.search_data);
 
     return function(route){
         if (location.pathname != route){
             if (location.pathname != routes.search){
-                searchDataCallback([]);
+                searchDataCallback({
+                    search_limit: false,
+                    end_index: 0,
+                    data: Array(0)
+                });
             }
 
             if (route == routes.users){
                 const chosenSearchItem = document.querySelector('.chosen');
                 const chosenSearchItemLogin = chosenSearchItem.querySelector('span').innerText;
                 chosenSearchItem.classList.remove('chosen');
-
+                
                 route = profileLogin == chosenSearchItemLogin? routes.main : routes.users_base + chosenSearchItemLogin;
             }
 
