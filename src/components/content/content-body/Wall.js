@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
 import { contentContext } from '../../../contexts';
-import { reduxKeys, routes } from '../../../globalConstants';
+import { reduxKeys, routes, buttons } from '../../../globalConstants';
 import Post from './post/Post';
 import PageEnd from './search-results/PageEnd';
 import usePagination from '../../../hooks/usePagination';
@@ -15,7 +15,21 @@ const Wall = (props) => {
 
     const profileData = useSelector(state => state.profile_data);
     const foundData = useSelector(state => state.post_data);
-    const posts = foundData.data.filter(post => location.pathname == routes.liked? post.isLiked : !post.isLiked);
+    const posts = foundData.data.filter(post => {
+        let predicate = null;
+
+        if (location.pathname == routes.liked){
+            predicate = post.isLiked;
+        }
+        else if (location.pathname == routes.main){
+            predicate = post.isReposted || profileData.userLogin == post.userLogin;
+        }
+        else if (location.pathname.includes(routes.users_base)){
+            predicate = !post.isLiked;
+        }
+
+        return predicate;
+    });
 
     const { apply_pagination: applyPagination } = usePagination(30, '/api/Posts', reduxKeys.post_data, foundData.end_index);
 
@@ -24,10 +38,22 @@ const Wall = (props) => {
     
     useEffect(() => {
         if (!enableSettings){
+            Array.from(document.getElementsByClassName('Post')).forEach(postElement => {
+                Array.from(postElement.getElementsByTagName('i')).forEach(button => {
+                    const foundPost = posts.find(post => post.postId == postElement.id);
+
+                    const isButtonLiked = button.classList.contains(buttons.like) && foundPost.isLiked;
+                    const isButtonReposted = button.classList.contains(buttons.repost) && foundPost.isReposted;
+
+                    isButtonLiked || isButtonReposted? button.classList.add('pressed') : button.classList.remove('pressed');
+                    button.classList.replace(isButtonLiked || isButtonReposted? 'fa-regular' : 'fa-solid', 
+                    isButtonLiked || isButtonReposted? 'fa-solid' : 'fa-regular');
+                });
+            });
             const searchKey = profileData !== null? profileData.userLogin : params.login;
             applyPagination(searchKey);
         }
-    }, [applyPagination]);
+    }, [foundData]);
 
     return(
         <div id="Wall" className={ `d-flex flex-column pt-4 ${props.wall_width} ${wallMargins}` }>

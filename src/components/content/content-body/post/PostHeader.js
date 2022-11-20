@@ -1,20 +1,14 @@
 import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 
 import { contentContext, postContext } from '../../../../contexts';
-import { routes } from '../../../../globalConstants';
 import userIconPost from '../../../../pics/user-icon-post.svg';
 
 const PostHeader = () => {
     //console.log('post-header');
-    const location = useLocation();
-
-    const profileData = useSelector(state => state.profile_data);
     const postContextData = useContext(postContext);
     const contentContextData = useContext(contentContext);
 
-    const prepareUserLogin = () => profileData.userLogin != postContextData.userLogin && location.pathname == routes.main?
+    const prepareUserLogin = () => postContextData.isReposted?
     `Репост записи ${postContextData.userLogin}` : postContextData.userLogin;
 
     const prepareCreationTime = () => {

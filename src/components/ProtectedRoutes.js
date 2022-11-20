@@ -39,7 +39,7 @@ const ProtectedRoutes = () => {
             if (responseData.result){
                 callback(responseData.data[0]);
                 if ([routes.main, routes.liked].includes(location.pathname) || anotherProfile){
-                    await searchData(responseData.data[0].userLogin);
+                    await searchData(anotherProfile? params.login : responseData.data[0].userLogin);
                 }
             }
             else{

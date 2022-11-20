@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import useButtonsPane from '../../../../hooks/useButtonsPane';
 import { paneTemplates, placeholders } from '../../../../globalConstants';
 import { contentContext, profileContext } from '../../../../contexts';
+import FooterButtons from '../FooterButtons';
 
 const ProfileFooter = () => {
     //console.log('profile-footer');
@@ -17,11 +18,7 @@ const ProfileFooter = () => {
                 <>
                     <input id="birthday-field" name="UserBirthday" min="1900/01/01" max="2100/01/01" autoComplete="off"
                     placeholder={ placeholders.profile_footer } className="input-placeholder"></input>
-                    <div id="Footer-buttons" className="d-flex mt-4">
-                    {
-                        footerButtons
-                    }
-                    </div>
+                    <FooterButtons buttons={ footerButtons } />
                 </>
                 :
                 <p>{ userData.user_birthday }</p>

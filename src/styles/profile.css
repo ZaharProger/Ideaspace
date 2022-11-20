@@ -47,34 +47,6 @@
     text-align: center;
 }
 
-#Footer-buttons{
-    margin-left: auto;
-    margin-right: auto;
-    flex-direction: row;
-}
-
-#Footer-buttons > button{
-    margin-right: 36px;
-    width: 200px;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-color: #4848ca;
-    color: white;
-    letter-spacing: 2px;
-    font-size: 1.3em;
-    transition: 0.3s ease-out;
-}
-
-#Footer-buttons > button:last-child{
-    margin-right: 0;
-}
-
-#Footer-buttons > button:hover{
-    color: #4848ca;
-    background-color: transparent;
-    border-color: #4848ca;
-}
-
 #Profile-header > input, #Profile-content > textarea, #Profile-footer > input {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;

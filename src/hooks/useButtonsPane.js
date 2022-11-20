@@ -8,13 +8,17 @@ import useForm from './useForm';
 import useRedirection from './useRedirection';
 
 
+
 const useButtonsPane = (template) => {
+    const redirect = useRedirection();
+    
     const makeForm = useForm();
     const [validate, updateInputs]= useFormValidation();
+
     const signOutCallback = useRedux(reduxKeys.sign_out);
     const updateUserCallback = useRedux(reduxKeys.profile_data);
+
     const currentUser = useSelector(state => state.profile_data);
-    const redirect = useRedirection();
 
     const buttonsPane = [];
     for (let i = 0; i < template.length; ++i){
@@ -116,8 +120,6 @@ const useButtonsPane = (template) => {
                                 method: 'POST',
                                 body: postForm
                             });
-
-                            createButton.innerText = prevCaption;
                             
                             if (response.ok){
                                 const responseData = await response.json();
@@ -126,6 +128,8 @@ const useButtonsPane = (template) => {
                                 }
                             }
                         }
+
+                        createButton.innerText = prevCaption;
                     }
                     break;
                 case buttons.cancel:
@@ -135,6 +139,19 @@ const useButtonsPane = (template) => {
 
             buttonsPane.push(<button id={ key == buttons.create_post? 'create-button' : '' } type="button" key={ key } 
             className='p-2' onClick={ () => callback() }>{ caption }</button>);
+        }
+        else if (template == paneTemplates.post_icons){
+            const { key, icon } = template[i];
+            let callback = () => console.log(1);
+            switch(key){
+                case buttons.like:
+                    break;
+                case buttons.repost:
+                    break;
+            }
+
+            buttonsPane.push(<i key={ key } className={ `fa-regular ${key} ${icon}${i != 0? ' ms-4' : ''}` }
+            onClick={ () => callback() }></i>);
         }
     }
 

@@ -14,3 +14,46 @@
     text-align: center;
     margin-top: 150px;
 }
+
+.Footer-buttons > button{
+    margin-right: 36px;
+    width: 200px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-color: #4848ca;
+    color: white;
+    letter-spacing: 2px;
+    font-size: 1.3em;
+    transition: 0.3s ease-out;
+}
+
+.Footer-buttons > button:last-child{
+    margin-right: 0;
+}
+
+.Footer-buttons > button:hover{
+    color: #4848ca;
+    background-color: transparent;
+    border-color: #4848ca;
+}
+
+.Footer-buttons > i{
+    color: #787878;
+    cursor: pointer;
+    transition: 0.3s, ease-out;
+}
+
+.pressed{
+    color: #4848ca!important;
+}
+
+.enabled-settings{
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+}
+
+.disabled-settings{
+    font-size: 1.5em;
+    margin: auto auto 8px 16px;
+}

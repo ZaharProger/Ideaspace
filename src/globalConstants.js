@@ -38,7 +38,9 @@ export const buttons = {
     sign_out: 'sign out',
     save_profile: 'save_profile',
     create_post: 'create_post',
-    cancel: 'cancel'
+    cancel: 'cancel',
+    like: 'like',
+    repost: 'repost'
 }
 
 export const paneTemplates = {
@@ -86,6 +88,16 @@ export const paneTemplates = {
         {
             key: buttons.cancel,
             caption: 'Отмена'
+        }
+    ],
+    post_icons: [
+        {
+            key: buttons.like,
+            icon: 'fa-heart'
+        },
+        {
+            key: buttons.repost,
+            icon: 'fa-arrow-up-right-from-square'
         }
     ]
 }
