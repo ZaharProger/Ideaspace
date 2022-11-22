@@ -8,9 +8,6 @@ const PostHeader = () => {
     const postContextData = useContext(postContext);
     const contentContextData = useContext(contentContext);
 
-    const prepareUserLogin = () => postContextData.isReposted?
-    `Репост записи ${postContextData.userLogin}` : postContextData.userLogin;
-
     const prepareCreationTime = () => {
         let creationTimeHours = Math.trunc(postContextData.creationTime / 3600);
         let creationTimeMinutes = Math.trunc((postContextData.creationTime - creationTimeHours * 3600) / 60);
@@ -29,7 +26,7 @@ const PostHeader = () => {
                 :
                 <>
                     <img src={ userIconPost } alt="user-icon" />
-                    <span className="d-flex flex-grow-1">{ prepareUserLogin() }</span>
+                    <span className="d-flex flex-grow-1">{ postContextData.userLogin }</span>
                     <span>{ new Date(postContextData.creationDate * 1000).toLocaleDateString('fr-CH') }</span>
                     <span>{ prepareCreationTime() }</span>
                 </>

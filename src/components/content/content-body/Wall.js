@@ -16,16 +16,13 @@ const Wall = (props) => {
     const profileData = useSelector(state => state.profile_data);
     const foundData = useSelector(state => state.post_data);
     const posts = foundData.data.filter(post => {
-        let predicate = null;
+        let predicate = true;
 
         if (location.pathname == routes.liked){
             predicate = post.isLiked;
         }
         else if (location.pathname == routes.main){
             predicate = post.isReposted || profileData.userLogin == post.userLogin;
-        }
-        else if (location.pathname.includes(routes.users_base)){
-            predicate = !post.isLiked;
         }
 
         return predicate;
@@ -58,10 +55,16 @@ const Wall = (props) => {
     return(
         <div id="Wall" className={ `d-flex flex-column pt-4 ${props.wall_width} ${wallMargins}` }>
             {
-                enableSettings? <Post item_data={ profileData } /> : posts.length != 0? 
+                enableSettings? <Post item_data={ {
+                    profile_data: profileData,
+                    post_data: null
+                } } /> : posts.length != 0? 
                 <>
                 {
-                    posts.map(post => <Post key={ post.postId } item_data={ post } />)
+                    posts.map(post => <Post key={ post.postId } item_data={ {
+                        profile_data: profileData,
+                        post_data: post
+                    } } />)
                 }
                 {
                     foundData.search_limit? null : <PageEnd />
