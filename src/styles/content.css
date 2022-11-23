@@ -38,9 +38,14 @@
 }
 
 .Footer-buttons > i{
+    opacity: 1;
     color: #787878;
     cursor: pointer;
     transition: 0.3s, ease-out;
+}
+
+.Footer-buttons > i:hover{
+    opacity: 0.45;
 }
 
 .pressed{
@@ -56,4 +61,32 @@
 .disabled-settings{
     font-size: 1.5em;
     margin: auto auto 8px 16px;
+}
+
+@keyframes post-footer-item-click{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(2) rotateZ(45deg);
+    }
+    100%{
+        transform: scale(1) rotateZ(0);
+    }
+}
+
+@keyframes post-footer-item-click-media{
+    0%{
+        transform: scaleX(1);
+    }
+    50%{
+        transform: scaleX(-1);
+    }
+    100%{
+        transform: scaleX(1);
+    }
+}
+
+.post-footer-animation{
+    animation: post-footer-item-click 1s ease-out 0s 1 forwards;
 }

@@ -12,8 +12,9 @@ export const routes = {
 
 export const queryStringParams = {
     key: 'Key',
-    likes: 'Likes',
-    limit: 'Limit'
+    limit: 'Limit',
+    postId: 'postId',
+    date: 'date'
 }
 
 export const errorMessages = {

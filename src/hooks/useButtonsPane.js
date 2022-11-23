@@ -142,16 +142,8 @@ const useButtonsPane = (template) => {
         }
         else if (template == paneTemplates.post_icons){
             const { key, icon } = template[i];
-            let callback = () => console.log(1);
-            switch(key){
-                case buttons.like:
-                    break;
-                case buttons.repost:
-                    break;
-            }
 
-            buttonsPane.push(<i key={ key } className={ `fa-regular ${key} ${icon}${i != 0? ' ms-4' : ''}` }
-            onClick={ () => callback() }></i>);
+            buttonsPane.push(<i key={ key } className={ `fa-regular ${key} ${icon}${i != 0? ' ms-4' : ''}` }></i>);
         }
     }
 

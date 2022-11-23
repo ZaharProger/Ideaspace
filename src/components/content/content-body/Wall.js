@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
 import { contentContext } from '../../../contexts';
-import { reduxKeys, routes, buttons } from '../../../globalConstants';
+import { reduxKeys, routes, buttons, queryStringParams } from '../../../globalConstants';
 import Post from './post/Post';
 import PageEnd from './search-results/PageEnd';
 import usePagination from '../../../hooks/usePagination';
@@ -45,6 +45,38 @@ const Wall = (props) => {
                     isButtonLiked || isButtonReposted? button.classList.add('pressed') : button.classList.remove('pressed');
                     button.classList.replace(isButtonLiked || isButtonReposted? 'fa-regular' : 'fa-solid', 
                     isButtonLiked || isButtonReposted? 'fa-solid' : 'fa-regular');
+
+                    button.onclick = async () => {
+                        let apiEndpoint = button.classList.contains(buttons.like)? '/api/Likes?' : '/api/Reposts?';
+
+                        apiEndpoint += `${queryStringParams.postId}=${foundPost.postId}`;
+                        if (button.classList.contains(buttons.repost)){
+                            apiEndpoint += `&${queryStringParams.date}=${Math.floor(new Date().getTime() / 1000)}`;
+                        }
+
+                        if (!button.classList.contains('post-footer-animation')){
+                            button.classList.add('post-footer-animation');
+                            setTimeout(() => button.classList.remove('post-footer-animation'), 1100);
+                        }
+
+                        const isButtonPressed = button.classList.contains('pressed');
+                        isButtonPressed? button.classList.remove('pressed') : button.classList.add('pressed');
+                        button.classList.replace(isButtonPressed? 'fa-solid' : 'fa-regular', 
+                        isButtonPressed? 'fa-regular' : 'fa-solid');
+                        
+                        const response = await fetch(apiEndpoint, {
+                            method: isButtonPressed? 'DELETE' : 'POST'
+                        });
+                        
+                        if (response.ok){
+                            const responseData = await response.json();
+                            if (!responseData.result){
+                                isButtonPressed? button.classList.add('pressed') : button.classList.remove('pressed');
+                                button.classList.replace(isButtonPressed? 'fa-regular' : 'fa-solid', 
+                                isButtonPressed? 'fa-solid' : 'fa-regular');
+                            }
+                        }
+                    }
                 });
             });
             const searchKey = profileData !== null? profileData.userLogin : params.login;
