@@ -37,15 +37,24 @@
     border-color: #4848ca;
 }
 
-.Footer-buttons > i{
+.footer-button > i{
     opacity: 1;
-    color: #787878;
     cursor: pointer;
     transition: 0.3s, ease-out;
 }
 
-.Footer-buttons > i:hover{
+.footer-button > i:hover{
     opacity: 0.45;
+}
+
+.footer-button > span{
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.footer-button{
+    color: #787878;
 }
 
 .pressed{

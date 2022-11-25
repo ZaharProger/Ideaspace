@@ -36,14 +36,23 @@ const Wall = (props) => {
     useEffect(() => {
         if (!enableSettings){
             Array.from(document.getElementsByClassName('Post')).forEach(postElement => {
-                Array.from(postElement.getElementsByTagName('i')).forEach(button => {
+                Array.from(postElement.getElementsByClassName('footer-button')).forEach(button => {
                     const foundPost = posts.find(post => post.postId == postElement.id);
+                    const buttonIcon = button.querySelector('i');
+                    const buttonCaption = button.querySelector('span');
+
+                    if (button.classList.contains(buttons.like)){
+                        buttonCaption.innerText = foundPost.likesAmount != 0? foundPost.likesAmount : '';
+                    }
+                    else if (button.classList.contains(buttons.repost)){
+                        buttonCaption.innerText = foundPost.repostsAmount != 0? foundPost.repostsAmount : '';
+                    }
 
                     const isButtonLiked = button.classList.contains(buttons.like) && foundPost.isLiked;
                     const isButtonReposted = button.classList.contains(buttons.repost) && foundPost.isReposted;
 
                     isButtonLiked || isButtonReposted? button.classList.add('pressed') : button.classList.remove('pressed');
-                    button.classList.replace(isButtonLiked || isButtonReposted? 'fa-regular' : 'fa-solid', 
+                    buttonIcon.classList.replace(isButtonLiked || isButtonReposted? 'fa-regular' : 'fa-solid', 
                     isButtonLiked || isButtonReposted? 'fa-solid' : 'fa-regular');
 
                     button.onclick = async () => {
@@ -54,15 +63,23 @@ const Wall = (props) => {
                             apiEndpoint += `&${queryStringParams.date}=${Math.floor(new Date().getTime() / 1000)}`;
                         }
 
-                        if (!button.classList.contains('post-footer-animation')){
-                            button.classList.add('post-footer-animation');
-                            setTimeout(() => button.classList.remove('post-footer-animation'), 1100);
+                        if (!buttonIcon.classList.contains('post-footer-animation')){
+                            buttonIcon.classList.add('post-footer-animation');
+                            setTimeout(() => buttonIcon.classList.remove('post-footer-animation'), 1100);
                         }
 
                         const isButtonPressed = button.classList.contains('pressed');
                         isButtonPressed? button.classList.remove('pressed') : button.classList.add('pressed');
-                        button.classList.replace(isButtonPressed? 'fa-solid' : 'fa-regular', 
+                        buttonIcon.classList.replace(isButtonPressed? 'fa-solid' : 'fa-regular', 
                         isButtonPressed? 'fa-regular' : 'fa-solid');
+                        if (isButtonPressed){
+                            buttonCaption.innerText = button.classList.contains(buttons.like)? --foundPost.likesAmount :
+                            --foundPost.repostsAmount;
+                        }
+                        else{
+                            buttonCaption.innerText = button.classList.contains(buttons.like)? ++foundPost.likesAmount :
+                            ++foundPost.repostsAmount;
+                        }
                         
                         const response = await fetch(apiEndpoint, {
                             method: isButtonPressed? 'DELETE' : 'POST'
@@ -74,6 +91,14 @@ const Wall = (props) => {
                                 isButtonPressed? button.classList.add('pressed') : button.classList.remove('pressed');
                                 button.classList.replace(isButtonPressed? 'fa-regular' : 'fa-solid', 
                                 isButtonPressed? 'fa-solid' : 'fa-regular');
+                                if (isButtonPressed){
+                                    buttonCaption.innerText = button.classList.contains(buttons.like)? ++foundPost.likesAmount :
+                                    ++foundPost.repostsAmount;
+                                }
+                                else{
+                                    buttonCaption.innerText = button.classList.contains(buttons.like)? --foundPost.likesAmount :
+                                    --foundPost.repostsAmount;
+                                }
                             }
                         }
                     }

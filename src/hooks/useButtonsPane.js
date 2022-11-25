@@ -143,7 +143,10 @@ const useButtonsPane = (template) => {
         else if (template == paneTemplates.post_icons){
             const { key, icon } = template[i];
 
-            buttonsPane.push(<i key={ key } className={ `fa-regular ${key} ${icon}${i != 0? ' ms-4' : ''}` }></i>);
+            buttonsPane.push(<div key={ key } className={`footer-button d-flex flex-row ${ key }${i != 0? ' ms-4' : ''}`}>
+                <i className={ `fa-regular ${icon} me-2` }></i>
+                <span></span>
+            </div>);
         }
     }
 
