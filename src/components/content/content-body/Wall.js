@@ -42,10 +42,10 @@ const Wall = (props) => {
                     const buttonCaption = button.querySelector('span');
 
                     if (button.classList.contains(buttons.like)){
-                        buttonCaption.innerText = foundPost.likesAmount != 0? foundPost.likesAmount : '';
+                        buttonCaption.innerText = foundPost.likesAmount;
                     }
                     else if (button.classList.contains(buttons.repost)){
-                        buttonCaption.innerText = foundPost.repostsAmount != 0? foundPost.repostsAmount : '';
+                        buttonCaption.innerText = foundPost.repostsAmount;
                     }
 
                     const isButtonLiked = button.classList.contains(buttons.like) && foundPost.isLiked;
@@ -72,14 +72,8 @@ const Wall = (props) => {
                         isButtonPressed? button.classList.remove('pressed') : button.classList.add('pressed');
                         buttonIcon.classList.replace(isButtonPressed? 'fa-solid' : 'fa-regular', 
                         isButtonPressed? 'fa-regular' : 'fa-solid');
-                        if (isButtonPressed){
-                            buttonCaption.innerText = button.classList.contains(buttons.like)? --foundPost.likesAmount :
-                            --foundPost.repostsAmount;
-                        }
-                        else{
-                            buttonCaption.innerText = button.classList.contains(buttons.like)? ++foundPost.likesAmount :
-                            ++foundPost.repostsAmount;
-                        }
+                        buttonCaption.innerText = isButtonPressed?
+                        parseInt(buttonCaption.innerText) - 1 : parseInt(buttonCaption.innerText) + 1;
                         
                         const response = await fetch(apiEndpoint, {
                             method: isButtonPressed? 'DELETE' : 'POST'
@@ -91,14 +85,8 @@ const Wall = (props) => {
                                 isButtonPressed? button.classList.add('pressed') : button.classList.remove('pressed');
                                 button.classList.replace(isButtonPressed? 'fa-regular' : 'fa-solid', 
                                 isButtonPressed? 'fa-solid' : 'fa-regular');
-                                if (isButtonPressed){
-                                    buttonCaption.innerText = button.classList.contains(buttons.like)? ++foundPost.likesAmount :
-                                    ++foundPost.repostsAmount;
-                                }
-                                else{
-                                    buttonCaption.innerText = button.classList.contains(buttons.like)? --foundPost.likesAmount :
-                                    --foundPost.repostsAmount;
-                                }
+                                buttonCaption.innerText = isButtonPressed?
+                                parseInt(buttonCaption.innerText) + 1 : parseInt(buttonCaption.innerText) - 1;
                             }
                         }
                     }
