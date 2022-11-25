@@ -14,7 +14,8 @@ export const queryStringParams = {
     key: 'Key',
     limit: 'Limit',
     postId: 'postId',
-    date: 'date'
+    date: 'date',
+    predicate: 'predicate'
 }
 
 export const errorMessages = {

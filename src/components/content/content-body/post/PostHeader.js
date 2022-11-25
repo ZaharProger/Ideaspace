@@ -26,7 +26,7 @@ const PostHeader = () => {
                 :
                 <>
                     <img src={ userIconPost } alt="user-icon" />
-                    <span className="d-flex flex-grow-1">{ postContextData.userLogin }</span>
+                    <span className="d-flex flex-grow-1"></span>
                     <span>{ new Date(postContextData.creationDate * 1000).toLocaleDateString('fr-CH') }</span>
                     <span>{ prepareCreationTime() }</span>
                 </>

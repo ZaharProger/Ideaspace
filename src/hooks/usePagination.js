@@ -1,12 +1,14 @@
 import { useRef } from "react";
+import { useLocation } from 'react-router-dom';
 
 import useRedux from './useRedux';
-import { queryStringParams } from '../globalConstants';
+import { queryStringParams, reduxKeys, routes } from '../globalConstants';
 
 const usePagination = (portionLength, apiEndpoint, listKey, currentEndIndex=0) => {
     const savedApiEndpoint = apiEndpoint;
     const reduxCallback = useRedux(listKey);
     const observer = useRef();
+    const location = useLocation();
 
     const applyPagination = (keyToSearch) => {
         const eventFireObject = document.getElementById('Page-end');
@@ -31,8 +33,14 @@ const usePagination = (portionLength, apiEndpoint, listKey, currentEndIndex=0) =
         if (!keyToSearch.split(/[\s]?/).every(splittedItem => splittedItem == '')){
             const finalEndIndex =  currentEndIndex + portionLength;
 
-            const queryParams = `${queryStringParams.key}=${keyToSearch}&${queryStringParams.limit}=${finalEndIndex}`;
+            let queryParams = `${queryStringParams.key}=${keyToSearch}&${queryStringParams.limit}=${finalEndIndex}`;
+            if (listKey == reduxKeys.post_data){
+                queryParams += location.pathname == routes.liked? `&${queryStringParams.predicate}=${1}` :
+                location.pathname == routes.main? `&${queryStringParams.predicate}=${2}` : 
+                `&${queryStringParams.predicate}=${0}`;
+            }
             const queryString = `${savedApiEndpoint}?${queryParams}`;
+
             const response = await fetch(queryString, {
                 method: 'GET'
             });

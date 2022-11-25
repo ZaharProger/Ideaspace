@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { contentContext } from '../../../contexts';
 import { reduxKeys, routes, buttons, queryStringParams } from '../../../globalConstants';
@@ -11,22 +11,10 @@ import usePagination from '../../../hooks/usePagination';
 const Wall = (props) => {
     //console.log('wall');
     const location = useLocation();
-    const params = useParams();
 
+    const foundProfileData = useSelector(state => state.found_user_profile_data);
     const profileData = useSelector(state => state.profile_data);
     const foundData = useSelector(state => state.post_data);
-    const posts = foundData.data.filter(post => {
-        let predicate = true;
-
-        if (location.pathname == routes.liked){
-            predicate = post.isLiked;
-        }
-        else if (location.pathname == routes.main){
-            predicate = post.isReposted || profileData.userLogin == post.userLogin;
-        }
-
-        return predicate;
-    });
 
     const { apply_pagination: applyPagination } = usePagination(30, '/api/Posts', reduxKeys.post_data, foundData.end_index);
 
@@ -36,8 +24,20 @@ const Wall = (props) => {
     useEffect(() => {
         if (!enableSettings){
             Array.from(document.getElementsByClassName('Post')).forEach(postElement => {
-                Array.from(postElement.getElementsByClassName('footer-button')).forEach(button => {
-                    const foundPost = posts.find(post => post.postId == postElement.id);
+                const foundPost = foundData.data.find(post => post.postId == postElement.id);
+
+                let headerCaption = '';
+                if (location.pathname.includes(routes.users_base) && foundProfileData !== null){
+                    headerCaption = foundProfileData.userLogin == foundPost.userLogin?
+                    foundPost.userLogin : `Репост записи ${foundPost.userLogin}`;                   
+                }
+                else if (profileData !== null){
+                    headerCaption = profileData.userLogin == foundPost.userLogin || !foundPost.isReposted?
+                    foundPost.userLogin : `Репост записи ${foundPost.userLogin}`;
+                }
+                postElement.querySelector('.Post-header').querySelector('span').innerText = headerCaption;
+
+                Array.from(postElement.getElementsByClassName('footer-button')).forEach(button => {                
                     const buttonIcon = button.querySelector('i');
                     const buttonCaption = button.querySelector('span');
 
@@ -92,8 +92,16 @@ const Wall = (props) => {
                     }
                 });
             });
-            const searchKey = profileData !== null? profileData.userLogin : params.login;
-            applyPagination(searchKey);
+            
+            let searchKey = '';
+            if (location.pathname.includes(routes.users_base) && foundProfileData !== null){
+                searchKey = foundProfileData.userLogin;
+            }
+            else if (profileData !== null){
+                searchKey = profileData.userLogin;
+            }   
+            
+            applyPagination(searchKey); 
         }
     }, [foundData]);
 
@@ -103,10 +111,10 @@ const Wall = (props) => {
                 enableSettings? <Post item_data={ {
                     profile_data: profileData,
                     post_data: null
-                } } /> : posts.length != 0? 
+                } } /> : foundData.data.length != 0? 
                 <>
                 {
-                    posts.map(post => <Post key={ post.postId } item_data={ {
+                    foundData.data.map(post => <Post key={ post.postId } item_data={ {
                         profile_data: profileData,
                         post_data: post
                     } } />)
