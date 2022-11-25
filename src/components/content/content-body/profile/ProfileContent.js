@@ -16,7 +16,7 @@ const ProfileContent = () => {
                 className="input-placeholder w-100"></textarea>
                 :
                 <p className="d-flex me-auto ms-auto">
-                    { userData.user_status.split('\r\n').map(splittedItem => [splittedItem, <br />]) }
+                    { userData.userStatus.split('\r\n').map(splittedItem => [splittedItem, <br />]) }
                 </p>
             }
         </div>

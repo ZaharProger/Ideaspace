@@ -21,7 +21,7 @@ const ProfileFooter = () => {
                     <FooterButtons buttons={ footerButtons } />
                 </>
                 :
-                <p>{ userData.user_birthday }</p>
+                <p>{ userData.userBirthday }</p>
             }
         </div>
     )

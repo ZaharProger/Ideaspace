@@ -14,17 +14,17 @@ const Profile = () => {
         contentContextData.another_profile? state.found_user_profile_data : state.profile_data);
     if (userData === null){
         userData = {
-            user_login: '',
-            user_status: null,
-            user_birthday: null
+            userLogin: '',
+            userStatus: null,
+            userBirthday: null
         }
     }
    
     const profileContextData = {
         user_data: {
             ...userData,
-            user_status: userData.userStatus != null? userData.userStatus : '',
-            user_birthday: userData.userBirthday != null?
+            userStatus: userData.userStatus != null? userData.userStatus : '',
+            userBirthday: userData.userBirthday != null?
             new Date(userData.userBirthday * 1000).toLocaleDateString('fr-CH') : ''
         }
     };   
@@ -35,7 +35,7 @@ const Profile = () => {
         Array.from(document.getElementById('Profile').querySelectorAll('textarea, input')).forEach(input => {
             switch (input.name){
                 case 'UserStatus':
-                    input.value = profileContextData.user_data.user_status;
+                    input.value = profileContextData.user_data.userStatus;
                     break;
                 case 'UserBirthday':
                     input.onfocus = () => input.type = 'date';
@@ -46,7 +46,7 @@ const Profile = () => {
                             input.value = [splittedDate[2], splittedDate[1], splittedDate[0]].join('.');
                         }
                     };
-                    input.value = profileContextData.user_data.user_birthday;
+                    input.value = profileContextData.user_data.userBirthday;
                     break;
             }
         })
