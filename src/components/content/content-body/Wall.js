@@ -57,11 +57,7 @@ const Wall = (props) => {
 
                     button.onclick = async () => {
                         let apiEndpoint = button.classList.contains(buttons.like)? '/api/Likes?' : '/api/Reposts?';
-
-                        apiEndpoint += `${queryStringParams.postId}=${foundPost.postId}`;
-                        if (button.classList.contains(buttons.repost)){
-                            apiEndpoint += `&${queryStringParams.date}=${Math.floor(new Date().getTime() / 1000)}`;
-                        }
+                        apiEndpoint += `${queryStringParams.postId}=${foundPost.postId}&${queryStringParams.date}=${Math.floor(new Date().getTime() / 1000)}`;                       
 
                         if (!buttonIcon.classList.contains('post-footer-animation')){
                             buttonIcon.classList.add('post-footer-animation');
