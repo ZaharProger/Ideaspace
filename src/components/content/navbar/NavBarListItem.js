@@ -7,7 +7,7 @@ const NavBarListItem = (props) => {
     const menuStatusCallback = useRedux(reduxKeys.menu_status);
 
     return (
-        <div className="Navbar-list-item d-flex flex-column" onClick={ () => {
+        <div id={ props.navbar_item_props.route } className="Navbar-list-item d-flex flex-column" onClick={ () => {
             menuStatusCallback(false);
             props.navbar_item_props.callback();
         } }>

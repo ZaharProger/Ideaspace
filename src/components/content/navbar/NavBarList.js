@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import { paneTemplates, reduxKeys } from '../../../globalConstants';
 import { navBarContext } from '../../../contexts';
@@ -8,6 +9,7 @@ import useRedux from '../../../hooks/useRedux';
 
 const NavBarList = () => {
     //console.log('navbar-list');
+    const location = useLocation();
     const menuStatus = useSelector(state => state.menu_status);
     const menuStatusCallback = useRedux(reduxKeys.menu_status);
     
@@ -16,14 +18,24 @@ const NavBarList = () => {
 
     useEffect(() => {
         Array.from(document.getElementById('Navbar-list').getElementsByClassName('Navbar-list-item')).forEach(listItem => {
+            const isLocationSame = location.pathname == listItem.id;
+
+            isLocationSame? listItem.classList.add('pressed') : listItem.classList.remove('pressed');
+            listItem.querySelector('i').classList.replace(isLocationSame? 'fa-regular' : 'fa-solid', isLocationSame? 'fa-solid' : 'fa-regular');
+            listItem.style.color = isLocationSame? '#4848ca' : '#787878';
+
             listItem.onmouseover = () => {
-                Array.from(listItem.getElementsByTagName('i'))[0].classList.replace('fa-regular', 'fa-solid');
-                listItem.style.color = '#4848ca';
+                if (!listItem.classList.contains('pressed')){
+                    listItem.querySelector('i').classList.replace('fa-regular', 'fa-solid');
+                    listItem.style.color = '#4848ca';
+                }
             }
             listItem.onmouseleave = () => {
-                Array.from(listItem.getElementsByTagName('i'))[0].classList.replace('fa-solid', 'fa-regular');
-                listItem.style.color = '#787878';
-            }
+                if (!listItem.classList.contains('pressed')){
+                    listItem.querySelector('i').classList.replace('fa-solid', 'fa-regular');
+                    listItem.style.color = '#787878';
+                }
+            }           
         })
     })
 
