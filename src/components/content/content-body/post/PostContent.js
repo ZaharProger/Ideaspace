@@ -7,7 +7,7 @@ const PostContent = () => {
     //console.log('post-content');
     const postContextData = useContext(postContext);
     const enableSettings = useContext(contentContext).enable_settings;
-
+    
     return(
         <div className="Post-content d-flex">
             {

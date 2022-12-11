@@ -7,22 +7,56 @@ import { reduxKeys, routes, buttons, queryStringParams } from '../../../globalCo
 import Post from './post/Post';
 import PageEnd from './search-results/PageEnd';
 import usePagination from '../../../hooks/usePagination';
+import useRedirection from '../../../hooks/useRedirection';
 
 const Wall = (props) => {
     //console.log('wall');
     const location = useLocation();
+    const redirect = useRedirection();
 
     const foundProfileData = useSelector(state => state.found_user_profile_data);
     const profileData = useSelector(state => state.profile_data);
     const foundData = useSelector(state => state.post_data);
+    const foundPostData = useSelector(state => state.found_post);
 
     const { apply_pagination: applyPagination } = usePagination(30, '/api/Posts', reduxKeys.post_data, foundData.end_index);
 
     const enableSettings = useContext(contentContext).enable_settings;
     const wallMargins = enableSettings? 'me-auto ms-auto mt-4' : 'ms-auto';
     
+    const getComponent = () => {
+        let component = null;
+
+        if (enableSettings){
+            component = <Post item_data={ {
+                profile_data: profileData,
+                post_data: location.pathname == routes.create? null : foundPostData
+            } } />;
+        }
+        else{
+            component = foundData.data.length != 0? 
+            <>
+            {
+                foundData.data.map(post => <Post key={ post.postId } item_data={ {
+                    profile_data: profileData,
+                    post_data: post
+                } } />)
+            }
+            {
+                foundData.search_limit? null : <PageEnd />
+            }
+            </> : <span className="d-flex me-auto ms-auto mb-2">Записей не найдено...</span>
+        }
+
+        return component;
+    }
+
     useEffect(() => {
-        if (!enableSettings){
+        if (enableSettings){
+            const postForm = document.querySelector('.Post');
+            postForm.querySelector('textarea').value = location.pathname == routes.create? '' : foundPostData !== null? foundPostData.content : '';
+        }
+        else{
             Array.from(document.getElementsByClassName('Post')).forEach(postElement => {
                 const foundPost = foundData.data.find(post => post.postId == postElement.id);
 
@@ -55,7 +89,7 @@ const Wall = (props) => {
                     buttonIcon.classList.replace(isButtonLiked || isButtonReposted? 'fa-regular' : 'fa-solid', 
                     isButtonLiked || isButtonReposted? 'fa-solid' : 'fa-regular');
 
-                    button.onclick = async () => {
+                    button.onclick =  !button.classList.contains(buttons.edit_post)? async () => {
                         let apiEndpoint = button.classList.contains(buttons.like)? '/api/Likes?' : '/api/Reposts?';
                         apiEndpoint += `${queryStringParams.postId}=${foundPost.postId}&${queryStringParams.date}=${Math.floor(new Date().getTime() / 1000)}`;                       
 
@@ -86,6 +120,11 @@ const Wall = (props) => {
                             }
                         }
                     }
+                    :
+                    () => {
+                        postElement.classList.add('chosen');
+                        redirect(routes.post);
+                    }
                 });
             });
             
@@ -99,26 +138,12 @@ const Wall = (props) => {
             
             applyPagination(searchKey); 
         }
-    }, [foundData]);
+    }, [foundData, applyPagination]);
 
     return(
         <div id="Wall" className={ `d-flex flex-column pt-4 ${props.wall_width} ${wallMargins}` }>
             {
-                enableSettings? <Post item_data={ {
-                    profile_data: profileData,
-                    post_data: null
-                } } /> : foundData.data.length != 0? 
-                <>
-                {
-                    foundData.data.map(post => <Post key={ post.postId } item_data={ {
-                        profile_data: profileData,
-                        post_data: post
-                    } } />)
-                }
-                {
-                    foundData.search_limit? null : <PageEnd />
-                }
-                </> : <span className="d-flex me-auto ms-auto mb-2">Записей не найдено...</span>
+                getComponent()
             }
         </div>
     )

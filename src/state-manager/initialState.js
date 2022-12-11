@@ -11,7 +11,8 @@ const initialState = {
         end_index: 30,
         data: Array(0)
     },
-    menu_status: false
+    menu_status: false,
+    found_post: null
 };
 
 export default initialState;

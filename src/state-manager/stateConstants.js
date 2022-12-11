@@ -3,3 +3,4 @@ export const FOUND_USER_PROFILE_DATA = 'FOUND_USER_PROFILE_DATA';
 export const POST_DATA = 'POST_DATA';
 export const SEARCH_DATA = 'SEARCH_DATA';
 export const MENU_STATUS = 'MENU_STATUS';
+export const FOUND_POST = 'FOUND_POST';

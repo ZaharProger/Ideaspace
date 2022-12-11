@@ -21,12 +21,17 @@ const useRedirection = () => {
                 });
             }
 
-            if (route == routes.users){
-                const chosenSearchItem = document.querySelector('.chosen');
-                const chosenSearchItemLogin = chosenSearchItem.querySelector('span').innerText;
-                chosenSearchItem.classList.remove('chosen');
+            if ([routes.users, routes.post].includes(route)){
+                const chosenElement = document.querySelector('.chosen');
+                const chosenElementData = route == routes.users? chosenElement.querySelector('span').innerText : chosenElement.id;
+                chosenElement.classList.remove('chosen');
                 
-                route = profileLogin == chosenSearchItemLogin? routes.main : routes.users_base + chosenSearchItemLogin;
+                if (route == routes.users){
+                    route = profileLogin == chosenElementData? routes.main : routes.users_base + chosenElementData;
+                }
+                else{
+                    route = routes.post_base + chosenElementData;
+                }
             }
 
             navigate(route);

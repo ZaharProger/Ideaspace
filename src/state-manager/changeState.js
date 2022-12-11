@@ -1,6 +1,6 @@
 import initialState from './initialState.js';
 
-import { PROFILE_DATA, FOUND_USER_PROFILE_DATA,  SEARCH_DATA, MENU_STATUS, POST_DATA } from './stateConstants';
+import { PROFILE_DATA, FOUND_USER_PROFILE_DATA,  SEARCH_DATA, MENU_STATUS, POST_DATA, FOUND_POST } from './stateConstants';
 
 const changeState = (state=initialState, action) => {
     switch (action.type){
@@ -28,6 +28,11 @@ const changeState = (state=initialState, action) => {
             return {
                 ...state,
                 menu_status: action.menu_status
+            }
+        case FOUND_POST:
+            return {
+                ...state,
+                found_post: action.found_post
             }
         default:
             return state;

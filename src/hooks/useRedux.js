@@ -6,6 +6,7 @@ import changeSearchData from '../state-manager/actions/changeSearchData';
 import changePostData from '../state-manager/actions/changePostData';
 import changeFoundUserProfileData from '../state-manager/actions/changeFoundUserProfileData';
 import changeMenuStatus from '../state-manager/actions/changeMenuStatus';
+import changeFoundPost from '../state-manager/actions/changeFoundPost';
 import { reduxKeys } from "../globalConstants";
 
 const useRedux = (reduxAction) => {
@@ -30,6 +31,9 @@ const useRedux = (reduxAction) => {
             break;
         case reduxKeys.menu_status:
             callback = (menuStatus) => dispatch(changeMenuStatus(menuStatus));
+            break;
+        case reduxKeys.found_post:
+            callback = (foundPost) => dispatch(changeFoundPost(foundPost));
             break;
     }
 

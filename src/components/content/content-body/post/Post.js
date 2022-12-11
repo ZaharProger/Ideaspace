@@ -6,7 +6,7 @@ import FooterButtons from '../FooterButtons';
 import '../../../../styles/post.css';
 import { contentContext, postContext } from '../../../../contexts';
 import useButtonsPane from '../../../../hooks/useButtonsPane';
-import { paneTemplates } from '../../../../globalConstants';
+import { buttons, paneTemplates } from '../../../../globalConstants';
 
 const Post = (props) => {
     //console.log('post');
@@ -14,15 +14,23 @@ const Post = (props) => {
     let footerButtons = useButtonsPane(enableSettings? paneTemplates.post_footer : paneTemplates.post_icons);
 
     if (!enableSettings){
-        if (props.item_data.post_data.userLogin == props.item_data.profile_data.userLogin){
-            footerButtons.pop();
-        }
+        footerButtons = footerButtons.filter(footerButton => {
+            let predicateResult;
+            if (props.item_data.post_data.userLogin == props.item_data.profile_data.userLogin){
+                predicateResult = props.item_data.post_data.parentUserId !== null?
+                ![buttons.repost, buttons.edit_post].includes(footerButton.key) : footerButton.key != buttons.repost;
+            }
+            else{
+                predicateResult = footerButton.key != buttons.edit_post;
+            }
+
+            return predicateResult;
+        });
     }
 
     return(
         <div id={ enableSettings? '' : props.item_data.post_data.postId } className="Post d-flex flex-column w-100">
-            <postContext.Provider value={ props.item_data.post_data !== null? 
-                props.item_data.post_data : props.item_data.profile_data }>
+            <postContext.Provider value={ props.item_data.post_data }>
                 <PostHeader />
                 <PostContent />
                 {

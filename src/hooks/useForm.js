@@ -1,6 +1,10 @@
+import { useParams } from "react-router-dom";
+
 import { requestTypes } from "../globalConstants";
 
 const useForm = () => {
+    const params = useParams();
+
     return function(formFields, requestType){
         const form = new FormData();
         formFields.forEach(formField => {
@@ -25,6 +29,9 @@ const useForm = () => {
             const currentDate = new Date();
             form.append('CreationDate', Math.floor(currentDate.getTime() / 1000));
             form.append('CreationTime', currentDate.getHours() * 3600 + currentDate.getMinutes() * 60);
+        }
+        else if (requestType == requestTypes.edit){
+            form.append('PostId', params.id);
         }
 
         return form;

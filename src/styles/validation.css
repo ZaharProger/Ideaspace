@@ -4,17 +4,17 @@
 }
 
 .active{
-    display: flex;
+    display: flex!important;
 }
 
 .hidden{
-    display: none;
+    display: none!important;
 }
 
 .correct{
-    box-shadow: none;
+    box-shadow: none!important;
 }
 
 .incorrect{
-    box-shadow: 0 3px 3px red;
+    box-shadow: 0 3px 3px red!important;
 }

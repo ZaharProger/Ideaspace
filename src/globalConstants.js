@@ -7,6 +7,8 @@ export const routes = {
     settings: '/settings',
     create: '/create',
     liked: '/liked',
+    post: '/post/:id',
+    post_base: '/post/',
     not_found: '/*'
 };
 
@@ -42,7 +44,8 @@ export const buttons = {
     create_post: 'create_post',
     cancel: 'cancel',
     like: 'like',
-    repost: 'repost'
+    repost: 'repost',
+    edit_post: 'edit_post'
 }
 
 export const paneTemplates = {
@@ -88,6 +91,10 @@ export const paneTemplates = {
             caption: 'Создать'
         },
         {
+            key: buttons.edit_post,
+            caption: 'Сохранить'
+        },
+        {
             key: buttons.cancel,
             caption: 'Отмена'
         }
@@ -100,6 +107,10 @@ export const paneTemplates = {
         {
             key: buttons.repost,
             icon: 'fa-arrow-up-right-from-square'
+        },
+        {
+            key: buttons.edit_post,
+            icon: 'fa-pen-to-square'
         }
     ]
 }
@@ -116,8 +127,8 @@ export const reduxKeys = {
     found_user_data: 'found_user_data',
     search_data: 'search_data',
     post_data: 'post_data',
-    menu_status: 'menu_status'
-
+    menu_status: 'menu_status',
+    found_post: 'found_post'
 }
 
 export const localStorageKeys = {

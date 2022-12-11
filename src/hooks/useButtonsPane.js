@@ -102,9 +102,10 @@ const useButtonsPane = (template) => {
             let callback = null;
 
             switch(key){
+                case buttons.edit_post:
                 case buttons.create_post:
                     callback = async () => {
-                        const createButton = document.getElementById('create-button');
+                        const createButton = document.getElementById(key);
                         const prevCaption = createButton.innerText;
                         createButton.innerText = 'Подождите...';
                         
@@ -114,11 +115,10 @@ const useButtonsPane = (template) => {
                         document.getElementById('error-message').innerText = validationResult.error_message;
                         updateInputs(inputFields, validationResult.error_inputs);
                         if (validationResult.error_message == ''){
-                            const postForm = makeForm(inputFields, requestTypes.create);
-
+                            const form = makeForm(inputFields, key == buttons.create_post? requestTypes.create : requestTypes.edit);
                             const response = await fetch('/api/Posts', {
-                                method: 'POST',
-                                body: postForm
+                                method: key == buttons.create_post? 'POST' : 'PUT',
+                                body: form
                             });
                             
                             if (response.ok){
@@ -137,7 +137,7 @@ const useButtonsPane = (template) => {
                     break;
             }
 
-            buttonsPane.push(<button id={ key == buttons.create_post? 'create-button' : '' } type="button" key={ key } 
+            buttonsPane.push(<button id={ [buttons.create_post, buttons.edit_post].includes(key)? key : '' } type="button" key={ key } 
             className='p-2' onClick={ () => callback() }>{ caption }</button>);
         }
         else if (template == paneTemplates.post_icons){

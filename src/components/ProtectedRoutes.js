@@ -6,8 +6,10 @@ import { routes, reduxKeys, localStorageKeys, queryStringParams, layoutTypes } f
 import useRedux from '../hooks/useRedux';
 import useLocalStorage from '../hooks/useLocalStorage';
 import usePagination from '../hooks/usePagination';
+import useRedirection from '../hooks/useRedirection';
 
 const ProtectedRoutes = () => {
+    const redirect = useRedirection();
     const location = useLocation();
     const params = useParams();
     const isLocationAuth = location.pathname == routes.auth;
@@ -16,6 +18,7 @@ const ProtectedRoutes = () => {
 
     const foundUserCallback = useRedux(reduxKeys.found_user_data);
     const profileDataCallback = useRedux(reduxKeys.profile_data);
+    const postDataCallback = useRedux(reduxKeys.found_post);
 
     const { set_item: setItem, get_item: getItem } = useLocalStorage();
     const savedIsLogged = getItem(localStorageKeys.is_logged, '0');
@@ -29,7 +32,8 @@ const ProtectedRoutes = () => {
     let anotherProfile = false;
     let sideEffectFuncs = [];
 
-    async function getUserData(apiEndpoint, callback){
+    async function getData(apiEndpoint, callback){
+        let isSuccessfull = false;
         const response = await fetch(apiEndpoint, {
             method: 'GET'
         });
@@ -37,20 +41,21 @@ const ProtectedRoutes = () => {
         if (response.ok){
             const responseData = await response.json();
             if (responseData.result){
+                isSuccessfull = true;
                 callback(responseData.data[0]);
                 if ([routes.main, routes.liked].includes(location.pathname) || anotherProfile){
                     await searchData(anotherProfile? params.login : responseData.data[0].userLogin);
                 }
             }
-            else{
-                callback(null);
-            }
+        }
+
+        if (!isSuccessfull && location.pathname.includes(routes.post_base)){
+            redirect(params.id); 
         }
     }
 
     if (!isLocationAuth){
         sideEffectFuncs.push({
-            main_func: getUserData,
             endpoint: '/api/Users',
             callback: profileDataCallback
         });
@@ -60,12 +65,11 @@ const ProtectedRoutes = () => {
         layoutType = layoutTypes.both;
         anotherProfile = true;
         sideEffectFuncs.push({
-            main_func: getUserData,
             endpoint: `/api/Users?${queryStringParams.key}=${params.login}`,
             callback: foundUserCallback
         });
     }
-    else if (location.pathname == routes.main){
+    else if ([routes.main, routes.liked].includes(location.pathname)){
         layoutType = layoutTypes.both;
     }
     else if (location.pathname == routes.settings){
@@ -74,8 +78,12 @@ const ProtectedRoutes = () => {
     else if(location.pathname == routes.create){
         layoutType = layoutTypes.post;
     }
-    else if (location.pathname == routes.liked){
-        layoutType = layoutTypes.both;
+    else if (location.pathname.includes(routes.post_base)){
+        layoutType = layoutTypes.post;
+        sideEffectFuncs.push({
+            endpoint: `/api/Posts/${params.id}`,
+            callback: postDataCallback
+        });
     }
     else if(location.pathname == routes.search){
         layoutType = layoutTypes.search;
@@ -86,7 +94,7 @@ const ProtectedRoutes = () => {
         document.documentElement.scrollTo(0, 0);
 
         sideEffectFuncs.forEach(sideEffectFunc => {
-            sideEffectFunc.main_func(sideEffectFunc.endpoint, sideEffectFunc.callback)
+            getData(sideEffectFunc.endpoint, sideEffectFunc.callback);
         });
 
     }, [location.pathname]);
