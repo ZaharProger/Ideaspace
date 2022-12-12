@@ -18,10 +18,10 @@ const Post = (props) => {
             let predicateResult;
             if (props.item_data.post_data.userLogin == props.item_data.profile_data.userLogin){
                 predicateResult = props.item_data.post_data.parentUserId !== null?
-                ![buttons.repost, buttons.edit_post].includes(footerButton.key) : footerButton.key != buttons.repost;
+                ![buttons.repost, buttons.edit_post, buttons.delete_post].includes(footerButton.key) : footerButton.key != buttons.repost;
             }
             else{
-                predicateResult = footerButton.key != buttons.edit_post;
+                predicateResult = ![buttons.edit_post, buttons.delete_post].includes(footerButton.key);
             }
 
             return predicateResult;

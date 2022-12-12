@@ -13,6 +13,7 @@ const FooterButtons = (props) => {
         {
             props.buttons.filter(button => postContextData === null? button.key != buttons.edit_post : button.key != buttons.create_post)
         }
+        <span className="delete-caption d-flex ms-2 mt-auto mb-auto"></span>
         </div>
     )
 }

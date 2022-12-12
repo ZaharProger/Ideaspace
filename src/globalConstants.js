@@ -45,7 +45,8 @@ export const buttons = {
     cancel: 'cancel',
     like: 'like',
     repost: 'repost',
-    edit_post: 'edit_post'
+    edit_post: 'edit_post',
+    delete_post: 'delete_post'
 }
 
 export const paneTemplates = {
@@ -111,6 +112,10 @@ export const paneTemplates = {
         {
             key: buttons.edit_post,
             icon: 'fa-pen-to-square'
+        },
+        {
+            key: buttons.delete_post,
+            icon: 'fa-trash'
         }
     ]
 }

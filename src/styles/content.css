@@ -47,10 +47,18 @@
     opacity: 0.45;
 }
 
-.footer-button > span{
+.delete-caption, .footer-button > span{
     font-family: 'Roboto', sans-serif;
-    font-size: 0.9em;
     text-align: center;
+}
+
+.delete-caption{
+    font-size: 0.65em;
+    color: #4848ca;
+}
+
+.footer-button > span{
+    font-size: 0.9em;
 }
 
 .footer-button{

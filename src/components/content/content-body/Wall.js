@@ -89,7 +89,8 @@ const Wall = (props) => {
                     buttonIcon.classList.replace(isButtonLiked || isButtonReposted? 'fa-regular' : 'fa-solid', 
                     isButtonLiked || isButtonReposted? 'fa-solid' : 'fa-regular');
 
-                    button.onclick =  !button.classList.contains(buttons.edit_post)? async () => {
+                    button.onclick =  !button.classList.contains(buttons.edit_post) && !button.classList.contains(buttons.delete_post)? 
+                    async () => {
                         let apiEndpoint = button.classList.contains(buttons.like)? '/api/Likes?' : '/api/Reposts?';
                         apiEndpoint += `${queryStringParams.postId}=${foundPost.postId}&${queryStringParams.date}=${Math.floor(new Date().getTime() / 1000)}`;                       
 
@@ -113,7 +114,7 @@ const Wall = (props) => {
                             const responseData = await response.json();
                             if (!responseData.result){
                                 isButtonPressed? button.classList.add('pressed') : button.classList.remove('pressed');
-                                button.classList.replace(isButtonPressed? 'fa-regular' : 'fa-solid', 
+                                buttonIcon.classList.replace(isButtonPressed? 'fa-regular' : 'fa-solid', 
                                 isButtonPressed? 'fa-solid' : 'fa-regular');
                                 buttonCaption.innerText = isButtonPressed?
                                 parseInt(buttonCaption.innerText) + 1 : parseInt(buttonCaption.innerText) - 1;
@@ -121,9 +122,38 @@ const Wall = (props) => {
                         }
                     }
                     :
-                    () => {
-                        postElement.classList.add('chosen');
-                        redirect(routes.post);
+                    async () => {
+                        if (button.classList.contains(buttons.delete_post)){
+                            const postDeleteCaption = postElement.querySelector('.delete-caption');
+
+                            if (button.classList.contains('pressed')){
+                                const response = await fetch(`/api/Posts?${queryStringParams.postId}=${foundPost.postId}`, {
+                                    method: 'DELETE'
+                                });
+
+                                if (response.ok){
+                                    const responseData = await response.json();
+                                    if (responseData.result){
+                                        document.getElementById(foundPost.postId).remove();
+                                    }
+                                }  
+                            }
+                            else{
+                                buttonIcon.classList.replace('fa-regular', 'fa-solid');
+                                button.classList.add('pressed');   
+                                postDeleteCaption.innerText = 'Нажмите на иконку еще раз для удаления';   
+                                
+                                setTimeout(() => {
+                                    buttonIcon.classList.replace('fa-solid', 'fa-regular');
+                                    button.classList.remove('pressed');
+                                    postDeleteCaption.innerText = '';
+                                }, 5000);
+                            }
+                        }
+                        else{
+                            postElement.classList.add('chosen');
+                            redirect(routes.post);
+                        }
                     }
                 });
             });
